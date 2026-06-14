@@ -1,0 +1,437 @@
+===============================================================================
+ DAY 1 — DART FUNDAMENTALS : NOTES + INTERVIEW Q&A
+ (Flutter interview prep — 3 years experience, technical round)
+===============================================================================
+
+How to use this file:
+  - Read a section's NOTES, then cover the answers and try the Q&A out loud.
+  - Anything marked [GOTCHA] is a common trap interviewers use.
+  - Code references live in the .dart files in this same folder.
+
+===============================================================================
+ SECTION 1 — VARIABLES, TYPES & TYPE INFERENCE
+===============================================================================
+
+NOTES
+-----
+- Dart is STATICALLY TYPED with TYPE INFERENCE. You can write `var x = 5` and
+  the compiler infers `int`. Once inferred, the type is fixed.
+- Declaration keywords:
+    var      -> mutable, type inferred and then fixed.
+    final    -> single assignment, value set at RUNTIME, then immutable.
+    const    -> compile-time constant; value must be known at compile time.
+    dynamic  -> opts OUT of static type checking (errors deferred to runtime).
+    Object?  -> can hold anything, but type-safe (must check/cast to use members).
+- Type inference also works with collections: `var list = [1,2,3]` -> List<int>.
+- Everything in Dart is an OBJECT, including numbers, functions, and null.
+  Every type ultimately extends `Object` (non-null) / `Object?` (nullable).
+
+KEY DISTINCTIONS
+----------------
+var vs dynamic:
+  - var  : type is inferred ONCE and locked. Compile-time safe.
+  - dynamic : no type checking at all; you can call any method (fails at runtime
+              if it doesn't exist).
+  var x = 5;     x = 'hi';  // ERROR
+  dynamic y = 5; y = 'hi';  // OK (no safety)
+
+dynamic vs Object?:
+  - Both can hold any value.
+  - dynamic: compiler lets you call ANY member (unsafe).
+  - Object?: compiler only lets you call Object members (toString, hashCode);
+             you must cast/check before calling type-specific members. SAFER.
+
+INTERVIEW Q&A
+-------------
+Q1. Difference between final and const?
+A.  final = set once, value computed at RUNTIME (e.g. DateTime.now() is fine).
+    const = COMPILE-TIME constant; value must be known when compiling, and the
+    object is deeply immutable. const objects are CANONICALIZED — two identical
+    const values are the SAME instance in memory (identical() returns true).
+
+Q2. Can you have a const final? Difference between `const x` and `final x`?
+A.  `const` implies compile-time + deeply immutable + canonicalized.
+    `final` is just "assign once". A const variable is also implicitly final,
+    but not vice versa. Use const when the value is a literal known at compile
+    time; use final for runtime-computed values you won't reassign.
+
+Q3. [GOTCHA] Is `const` a deep or shallow immutability?
+A.  Deep. A const list/map cannot be modified at all, and its elements must
+    themselves be const. `final` only prevents REASSIGNING the variable — the
+    object it points to can still be mutated (e.g. final list.add(x) works).
+
+Q4. What is the difference between var, dynamic and Object?
+A.  var = inferred static type, fixed after inference (type-safe).
+    dynamic = no compile-time checking, any member call allowed (unsafe).
+    Object? = holds anything but only Object members callable without a cast.
+
+Q5. What's the supertype of int and double?
+A.  num. So `num x = 5; x = 5.5;` is valid. int and double both extend num.
+
+Q6. [GOTCHA] What is `identical()` vs `==`?
+A.  == checks VALUE equality (can be overridden). identical() checks REFERENCE
+    equality (same object in memory). const canonicalization makes identical()
+    true for equal const literals.
+
+===============================================================================
+ SECTION 2 — NULL SAFETY (?, !, ??, ??=, late)
+===============================================================================
+
+NOTES
+-----
+- Dart has SOUND null safety: if a type is non-nullable, the value is GUARANTEED
+  non-null at runtime. The compiler enforces it — no surprise null crashes.
+- Non-nullable (default): `int x = 5;` — must be initialized, never null.
+- Nullable: add `?` -> `int? x;` — can be a value OR null. Defaults to null.
+
+OPERATORS
+---------
+  ?.   null-aware access  -> obj?.member ; whole expression is null if obj null.
+  ??   if-null            -> a ?? b ; returns b when a is null.
+  ??=  null-aware assign  -> a ??= b ; assigns b only if a is currently null.
+  !    null assertion     -> a! ; tells compiler "trust me, not null".
+                             THROWS at runtime if a is actually null.
+  ?..  null-aware cascade
+  ...? null-aware spread (skip if the collection is null)
+
+late KEYWORD (two uses)
+-----------------------
+  1) Deferred init of a NON-NULLABLE: you promise to set it before first read.
+     Reading it before assignment throws LateInitializationError.
+       late String name;  name = 'x';  // ok
+  2) LAZY initialization: the initializer runs ONLY on first access, then caches.
+       late final config = expensiveSetup(); // runs on first use only
+
+FLOW ANALYSIS / TYPE PROMOTION [GOTCHA]
+---------------------------------------
+- The compiler "promotes" a nullable to non-null after a null check:
+      if (x != null) { x.length; }  // x is treated as non-null inside the if
+- Promotion does NOT work on non-local / instance fields (another method could
+  change them). Use a local variable or `!` for those:
+      final v = obj.field; if (v != null) { v.use(); }
+
+INTERVIEW Q&A
+-------------
+Q1. What does sound null safety mean?
+A.  "Sound" = the type system's non-null guarantee can be trusted at runtime.
+    The compiler statically proves a non-nullable value is never null, so there
+    are no hidden null-dereference crashes from typed code.
+
+Q2. Difference between `?` and `!`?
+A.  `?` makes a type nullable (declares it CAN be null).
+    `!` is a null assertion that strips nullability at a use site (asserts it
+    is NOT null right now). `!` throws if you're wrong; `?` never throws.
+
+Q3. When does `!` throw, and why is it risky?
+A.  It throws a runtime error (Null check operator used on a null value) when
+    the value is actually null. Risky because it bypasses the compiler's safety
+    — only use it when YOU know more than the type system can prove.
+
+Q4. Difference between `??` and `??=`?
+A.  `a ?? b` is an expression returning a or b (doesn't change a).
+    `a ??= b` is an assignment — sets a = b only if a was null.
+
+Q5. What are the two uses of `late`?
+A.  (1) Initialize a non-nullable variable later (deferred), promising to set it
+    before reading. (2) Lazy initialization — defer an expensive initializer
+    until first access, then cache the result.
+
+Q6. [GOTCHA] late vs nullable (int? vs late int) — when to use which?
+A.  Use `int?` when null is a VALID state (truly optional / may be absent).
+    Use `late int` when the value is always present but set after construction
+    (e.g. in initState), and you want non-null typing without `?` everywhere.
+    late trades a compile-time guarantee for a runtime check.
+
+Q7. What happens if you read a `late` variable before assigning it?
+A.  Throws LateInitializationError at runtime.
+
+Q8. Why might type promotion fail on a class field?
+A.  Because a non-final field could be mutated between the null-check and use
+    (even by another isolate/method), so the compiler can't guarantee it stays
+    non-null. Copy to a local, or make the field `final`, or use `!`.
+
+===============================================================================
+ SECTION 3 — FUNCTIONS
+===============================================================================
+
+NOTES
+-----
+- Functions are FIRST-CLASS objects: assign to variables, pass as args, return.
+- Parameter kinds:
+    Positional required : fn(a, b)
+    Optional positional : fn(a, [b, c])   -> in [], must be nullable or have default
+    Named               : fn({a, b})      -> in {}, optional by default
+    Named required      : fn({required a}) -> caller MUST pass it
+- Default values: fn({String g = 'Hi'}) or fn(a, [int b = 0]).
+- Arrow syntax: `int sq(int n) => n * n;` is sugar for `{ return n*n; }`
+  (only for a SINGLE expression).
+- A function with no explicit return returns null (declared return type `void`
+  or the inferred type).
+- Closures: an inner function captures variables from its enclosing scope and
+  keeps them alive ("remembers" them).
+- typedef: a named alias for a function signature, e.g.
+      typedef IntTransform = int Function(int);
+  Used heavily in Flutter (VoidCallback, ValueChanged<T>, etc.).
+
+[GOTCHA] You CANNOT mix optional positional [ ] and named { } in the same fn.
+
+INTERVIEW Q&A
+-------------
+Q1. Difference between optional positional and named parameters?
+A.  Optional positional [ ]: order matters, omitted from the right; good for a
+    small number of natural args. Named { }: order-independent, self-documenting
+    at the call site; can be marked `required`. Named is preferred for clarity,
+    especially with 2+ optional args (this is why Flutter widgets use named).
+
+Q2. Are named parameters required or optional by default?
+A.  Optional by default. Add `required` to force the caller to supply them, or
+    give a default value.
+
+Q3. What is a closure? Give an example.
+A.  A function that captures and retains variables from its lexical scope.
+    Example: a counter — `int Function() makeCounter() { int c=0; return ()=>++c; }`
+    Each returned closure keeps its own `c` alive across calls.
+
+Q4. What is a higher-order function?
+A.  A function that takes another function as a parameter and/or returns a
+    function. e.g. List.map, List.where, or makeAdder(int) returning a closure.
+
+Q5. What is the difference between `=>` and `{}` function bodies?
+A.  `=>` is for a single expression and implicitly returns its value.
+    `{}` is a block body that can contain multiple statements; you must write
+    `return` explicitly to return a value.
+
+Q6. What is a typedef and why use it?
+A.  An alias for a type (commonly a function signature). It improves readability
+    and reuse for callback types. e.g. `typedef Validator = bool Function(String);`
+
+Q7. [GOTCHA] What does a function with return type `void` return?
+A.  Conceptually nothing; you should not use its result. (Internally null, but
+    you shouldn't rely on that.)
+
+===============================================================================
+ SECTION 4 — COLLECTIONS (List, Set, Map) + Iterable methods
+===============================================================================
+
+NOTES
+-----
+LIST  : ordered, indexable, allows duplicates. Default growable.
+SET   : unordered (insertion-order in practice), UNIQUE elements, O(1) lookup.
+MAP   : key/value pairs, unique keys, value lookup by key.
+
+Common List ops: add, insert, remove (by value), removeAt (by index), indexOf,
+  contains, first, last, length, sort, sublist, reversed.
+Set ops: union, intersection, difference, contains, add (returns bool).
+Map ops: [], []=, putIfAbsent, update, remove, containsKey, keys, values, entries.
+
+ITERABLE METHODS (know these COLD):
+  map(f)      -> transform each element; NEW iterable, SAME length.
+  where(p)    -> filter; keeps elements where predicate is true.
+  fold(seed,f)-> reduce to ONE value with an initial seed; result type can DIFFER.
+  reduce(f)   -> like fold but seed = first element; THROWS on empty list.
+  forEach(f)  -> side effects only; returns nothing.
+  any(p)/every(p) -> boolean checks.
+  expand(f)   -> flatMap: map each element to an iterable, then flatten.
+  firstWhere/lastWhere/singleWhere -> find with predicate (orElse to avoid throw).
+  take(n)/skip(n), toList(), toSet(), join(sep).
+
+[GOTCHA] LAZINESS: map() and where() are LAZY — they return an Iterable and
+  don't run until iterated (e.g. via toList() or a for-in). This matters for
+  side effects and performance.
+
+COLLECTION-IF / COLLECTION-FOR / SPREAD (very common in Flutter widget trees):
+  [a, ...other, if (cond) b, for (var x in xs) x*2]
+
+INTERVIEW Q&A
+-------------
+Q1. Difference between List, Set and Map?
+A.  List = ordered, indexed, duplicates allowed. Set = unique, no index, fast
+    membership test. Map = key->value, unique keys. Choose Set for dedup/contains,
+    Map for lookups, List for ordered sequences.
+
+Q2. Difference between map(), where(), and fold()?
+A.  map transforms each element (same count); where filters; fold collapses the
+    whole iterable into a single accumulated value using a seed.
+
+Q3. Difference between fold() and reduce()?
+A.  reduce uses the FIRST element as the initial value and THROWS on an empty
+    collection; the result type matches the element type. fold takes an explicit
+    seed (safe on empty) and the result type can be different from the element.
+
+Q4. [GOTCHA] Are map/where eager or lazy?
+A.  Lazy. They return an Iterable computed on demand. Materialize with toList()/
+    toSet(), or iterate, to actually run the transformations.
+
+Q5. How do you remove duplicates from a List?
+A.  list.toSet().toList(). (Order is generally preserved for LinkedHashSet, the
+    default.)
+
+Q6. How do you safely read a missing map key?
+A.  map[key] returns null if absent; use `map[key] ?? defaultValue`, or
+    putIfAbsent / containsKey. Note the lookup return type is the value type
+    made nullable.
+
+Q7. Difference between putIfAbsent and update on a Map?
+A.  putIfAbsent(key, () => v) inserts only when the key is missing.
+    update(key, (old)=>new, ifAbsent: ()=>v) modifies an existing value, with
+    an optional fallback to create one if absent.
+
+Q8. What is the difference between expand() and map()?
+A.  map: 1 element -> 1 element. expand (flatMap): 1 element -> an iterable,
+    then all results are flattened into one iterable.
+
+===============================================================================
+ SECTION 5 — OOP IN DART
+===============================================================================
+
+NOTES
+-----
+- CLASS members: fields, constructors, getters/setters, methods, static members.
+- PRIVACY: a leading underscore `_name` makes a member private to its LIBRARY
+  (file), NOT to the class. Dart has no public/private/protected keywords.
+- CONSTRUCTORS:
+    Default          : ClassName(this.a, this.b);  // shorthand assigns fields
+    Named            : ClassName.fromJson(...) {}
+    Initializer list : ClassName(...) : _x = v, assert(...) { body }
+                       runs BEFORE the body; used for final fields, asserts,
+                       and calling super(...).
+    const constructor: const ClassName(...) -> enables compile-time instances.
+    Factory          : factory ClassName(...) -> can return cached/subtype
+                       instances; does NOT always create a new object.
+- GETTERS/SETTERS:
+    int get area => w * h;   // computed, read-only if no setter
+    set name(String v) => _name = v;
+    Prefer a getter over a public field when the value is derived or you want
+    read-only access (encapsulation).
+- INHERITANCE: `class B extends A` ; single inheritance only.
+    super(...) calls the parent constructor.
+    @override to redefine a method; call super.method() to extend behavior.
+- ABSTRACT classes: `abstract class Shape { double area(); }` — can't be
+  instantiated; defines a contract + optional shared code.
+- INTERFACES: every class is an implicit interface. `class A implements B`
+  forces A to provide ALL of B's members (no implementation inherited).
+- MIXINS: `mixin M {}` + `class C with M` — reuse code across unrelated classes
+  WITHOUT inheritance. Resolves the diamond problem via linearization.
+- POLYMORPHISM: a variable of the base type can hold any subtype; the actual
+  method that runs is the subtype's override (dynamic dispatch).
+
+[GOTCHA] extends vs implements vs with:
+  extends    -> inherit implementation (one parent), can call super.
+  implements -> inherit only the CONTRACT (must reimplement everything).
+  with       -> mix in reusable implementation from a mixin.
+
+INITIALIZER LIST ORDER [GOTCHA]:
+  1) initializer list (field inits, asserts) runs first,
+  2) then super constructor,
+  3) then the constructor body.
+  You cannot use `this` in the initializer list (object not built yet).
+
+INTERVIEW Q&A
+-------------
+Q1. How is privacy implemented in Dart?
+A.  By a leading underscore (_member). It's LIBRARY-private (per file), not
+    class-private. Same-file code can access another class's _members.
+
+Q2. Difference between a named constructor and a factory constructor?
+A.  Named constructor: an additional constructor with a name; always creates a
+    new instance via the normal mechanism. Factory: may return an existing
+    instance (caching/singleton), a subtype, or compute which object to return —
+    it doesn't have to create a fresh one and has no initializer list.
+
+Q3. What is an initializer list and when do you need it?
+A.  The `: field = value, assert(...)` part before the constructor body. Needed
+    to initialize FINAL fields, run asserts, and call super(...) — all before
+    the body runs and before `this` is available.
+
+Q4. Difference between extends, implements, and with?
+A.  extends = single inheritance of implementation (super available).
+    implements = adopt the interface/contract only; must implement every member.
+    with = mix in shared code from a mixin without an is-a relationship.
+
+Q5. What is the difference between an abstract class and an interface in Dart?
+A.  Dart has no separate `interface` keyword — every class defines an implicit
+    interface. An abstract class can't be instantiated and may contain concrete
+    methods + abstract ones; you `extend` it to inherit code or `implement` it
+    to use only its contract.
+
+Q6. What is a mixin and why use it over inheritance?
+A.  A mixin shares method/field implementations across classes that aren't in
+    the same hierarchy (composition over inheritance). Use it to reuse behavior
+    without forcing an is-a relationship or fighting single inheritance.
+
+Q7. When do you use a getter instead of a public field?
+A.  When the value is computed/derived (e.g. area = w*h), or when you want
+    read-only access while keeping the backing field private (encapsulation),
+    or to add logic/validation without changing the call site.
+
+Q8. What is polymorphism? Give a Dart example.
+A.  The ability to treat subtypes through a base-type reference and have the
+    correct overridden method run at runtime. e.g. List<BankAccount> holding a
+    SavingsAccount; calling withdraw() runs SavingsAccount's override.
+
+Q9. [GOTCHA] Why can't you use `this` in an initializer list?
+A.  Because the object isn't fully constructed yet — fields are still being
+    initialized and the super constructor hasn't run, so `this` is not valid.
+
+Q10. How do you create an immutable class in Dart?
+A.  Make all fields `final` and provide a `const` constructor. Then instances
+    can be const and are deeply immutable (this is exactly how Flutter widgets
+    like `const Text(...)` work, enabling widget reuse/perf).
+
+===============================================================================
+ RAPID-FIRE / CROSS-CUTTING QUESTIONS
+===============================================================================
+
+Q. Is Dart compiled or interpreted?
+A. Both. JIT (Just-In-Time) compilation in development enables hot reload; AOT
+   (Ahead-Of-Time) compiles to native machine code for fast release builds.
+   Dart can also compile to JavaScript for the web.
+
+Q. What is the entry point of a Dart program?
+A. The top-level `main()` function (optionally `main(List<String> args)`).
+
+Q. Does Dart support multiple inheritance?
+A. Not via classes (single inheritance). Achieve similar reuse with mixins
+   (`with`) and multiple `implements`.
+
+Q. What is the `==` default behavior for objects?
+A. By default == is identity (same reference). Override == and hashCode together
+   for value equality. (Or use records / packages / freezed in real projects.)
+
+Q. What is cascade notation (..)?
+A. Lets you chain operations on the SAME object without repeating it:
+     final p = Paint()..color = red ..strokeWidth = 2;
+   Returns the object itself, not the method results.
+
+Q. What is the difference between an Iterable and a List?
+A. Iterable is the abstract sequence you can iterate once/lazily; List is a
+   concrete, indexable, materialized Iterable with a length and random access.
+
+Q. What is `dynamic` typing's main risk?
+A. Errors move from compile time to RUNTIME — you lose autocomplete and the
+   compiler's safety net. Prefer specific types or Object? + casts.
+
+Q. What are records (Dart 3)?  [bonus, may impress]
+A. Lightweight anonymous immutable aggregates: `(int, String) r = (1, 'a');`
+   Great for returning multiple values without a class. Access via r.$1, r.$2
+   or named fields.
+
+Q. What is pattern matching / switch expressions (Dart 3)? [bonus]
+A. `switch` can now be an expression and destructure records/objects with
+   patterns, enabling concise, exhaustive branching.
+
+===============================================================================
+ ONE-LINE MEMORY HOOKS (revise before the interview)
+===============================================================================
+- final = runtime-once ; const = compile-time + canonicalized + deeply immutable.
+- ? declares nullable ; ! asserts non-null (and may throw).
+- ?? gives a fallback ; ??= assigns only if null.
+- late = "set me before you read me" OR "init me lazily on first use".
+- map=transform, where=filter, fold=collapse-with-seed, reduce=collapse-no-seed.
+- map/where are LAZY until toList().
+- Set for unique/contains, Map for lookups, List for ordered.
+- _underscore = library-private (per file).
+- extends = inherit code ; implements = contract only ; with = mixin reuse.
+- Initializer list runs before super(), before body; no `this` there.
+- Immutable class = all final fields + const constructor (a la Flutter widgets).
+===============================================================================
