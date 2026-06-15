@@ -1,0 +1,451 @@
+===============================================================================
+ DAY 2 — INTERMEDIATE DART : NOTES + INTERVIEW Q&A
+ (Flutter interview prep — 3 years experience, technical round)
+===============================================================================
+
+How to use this file:
+  - Read a section's NOTES, then cover the answers and try the Q&A out loud.
+  - Anything marked [GOTCHA] is a common trap interviewers use.
+  - Code references live in the .dart files in this same folder.
+
+Day 2 builds on Day 1 fundamentals. These are the topics interviewers reach for
+AFTER the basics, and most map directly to Flutter (Future->FutureBuilder,
+Stream->StreamBuilder/BLoC, mixins->TickerProvider, generics->everything).
+
+===============================================================================
+ SECTION 1 — GENERICS
+===============================================================================
+
+NOTES
+-----
+- Generics = type PARAMETERS. They let one class/function work over many types
+  while keeping COMPILE-TIME type safety (no `dynamic`, no casts everywhere).
+- Syntax: `class Box<T> {}`, `T first<T>(List<T> xs)`, `Map<K, V>`.
+- Type inference usually fills in the type arg: `Box(5)` infers `Box<int>`.
+- BOUNDED type params restrict what T can be (and unlock that type's members):
+      T maxOf<T extends Comparable<T>>(T a, T b) => a.compareTo(b) >= 0 ? a : b;
+- Generic METHODS can introduce their own type param distinct from the class's:
+      R fold<R>(R seed, ...) on a Box<T>.
+- WHY not just use `dynamic`/`Object?`: generics preserve the EXACT type end to
+  end, so you keep autocomplete, return types, and compile-time errors.
+
+KEY DISTINCTIONS
+----------------
+Generics vs dynamic:
+  - List<int> : compiler knows elements are int -> add('x') is a COMPILE error.
+  - List<dynamic> : anything allowed -> errors slip to RUN time.
+
+INTERVIEW Q&A
+-------------
+Q1. What are generics and why use them?
+A.  Type parameters that make a class/function reusable across types while
+    keeping static type safety. They avoid `dynamic` (which defers errors to
+    runtime) and remove the need for manual casts.
+
+Q2. What is a bounded type parameter? Give an example.
+A.  `<T extends SomeType>` constrains T and lets you call SomeType's members on
+    T inside the body. e.g. `T sumOf<T extends num>(List<T>)` can use `+`.
+
+Q3. [GOTCHA] Difference between List<dynamic> and List<Object?>?
+A.  Both hold anything. List<dynamic> lets you call ANY member on elements (no
+    checking). List<Object?> only allows Object members until you check/cast —
+    safer. (Same dynamic-vs-Object? story as Day 1, applied to collections.)
+
+Q4. Are Dart generics reified or erased?
+A.  REIFIED — type info is retained at runtime (unlike Java's erasure). So
+    `list is List<int>` actually works and `T` is known at runtime.
+
+===============================================================================
+ SECTION 2 — ASYNC PROGRAMMING (Future, async, await)
+===============================================================================
+
+NOTES
+-----
+- Dart runs on a single thread with an EVENT LOOP. async code does NOT spawn a
+  thread — it SUSPENDS at `await` and lets the loop run other work, then RESUMES.
+- A FUTURE represents ONE value available later. 3 states: uncompleted ->
+  completed-with-value OR completed-with-error.
+- `async` marks a function that returns a Future; `await` unwraps a Future's
+  value and pauses until it's ready. `await` is only legal inside `async`.
+- `.then(onValue)` / `.catchError(onErr)` is the callback equivalent of
+  await + try/catch.
+- PARALLEL vs SEQUENTIAL:
+    sequential: `await a(); await b();`  -> total = timeA + timeB
+    parallel  : `await Future.wait([a(), b()])` -> total = max(timeA, timeB)
+- EVENT LOOP ordering: sync code first, then the MICROTASK queue (completed
+  futures, scheduleMicrotask), then the EVENT queue (timers, I/O, Future.delayed).
+
+INTERVIEW Q&A
+-------------
+Q1. Does async/await create a new thread?
+A.  No. Dart is single-threaded per isolate. await gives CONCURRENCY by
+    suspending and resuming on the event loop, not parallelism. For true
+    parallelism you need an Isolate.
+
+Q2. Difference between Future and Stream?
+A.  Future = a single async value (one shot). Stream = a sequence of async
+    values over time (0..N). Future ~ a function return; Stream ~ a pipe.
+
+Q3. How do you run two async calls in parallel?
+A.  Start both without awaiting, then `await Future.wait([f1, f2])`. Awaiting
+    each on its own line runs them sequentially (slower).
+
+Q4. [GOTCHA] Order of microtask vs Future.delayed(Duration.zero)?
+A.  Microtasks run BEFORE the event queue. scheduleMicrotask / a completed
+    future's callback runs before a Timer/Future.delayed(zero), even with 0 delay.
+
+Q5. How do you handle errors in async code?
+A.  Wrap `await` in try/catch (reads like sync), or use `.catchError()` on the
+    Future. A throw inside an async function completes its Future with an error.
+
+Q6. What does `await` actually do to a non-Future value?
+A.  Awaiting a non-Future wraps it in an already-completed Future, so it just
+    yields the value (after a microtask hop).
+
+===============================================================================
+ SECTION 3 — STREAMS
+===============================================================================
+
+NOTES
+-----
+- A Stream is an async SEQUENCE. Consume with `await for (x in stream)` or
+  `stream.listen(onData, onError:, onDone:)`.
+- Two types:
+    SINGLE-SUBSCRIPTION (default): exactly ONE listener, can't re-listen. Good
+      for a result sequence (file read, HTTP body).
+    BROADCAST: many simultaneous listeners (UI events, sockets). Create via
+      StreamController.broadcast() or stream.asBroadcastStream().
+- async* + `yield` builds a stream (a generator). `yield*` delegates to another
+  stream. The function pauses at yield and resumes when the consumer pulls.
+- StreamController = a manual stream: push events via `.add()` / `.addError()`,
+  expose `.stream` to listeners, and ALWAYS `.close()` it to free resources.
+- Transformations (map, where, expand, take, etc.) are lazy & chainable like
+  Iterables. Reducers (fold, length, first, toList) return a Future.
+
+INTERVIEW Q&A
+-------------
+Q1. Single-subscription vs broadcast stream?
+A.  Single-subscription allows one listener and is meant to be consumed once
+    (e.g. a download). Broadcast supports many concurrent listeners and emits
+    to all of them (e.g. UI/event buses). Default is single-subscription.
+
+Q2. How do you create a stream?
+A.  async* generator (`yield`), a StreamController (manual .add), or factory
+    constructors like Stream.fromIterable / Stream.periodic.
+
+Q3. await for vs .listen()?
+A.  `await for` consumes the stream sequentially inside an async function and
+    pauses your code per event. `.listen()` is non-blocking and gives callback
+    hooks (onData/onError/onDone) plus a StreamSubscription you can pause/cancel.
+
+Q4. [GOTCHA] What happens if you don't close a StreamController?
+A.  The stream never emits `done`, listeners stay subscribed, and you leak
+    memory. In Flutter, cancel subscriptions / close controllers in dispose().
+
+Q5. What is yield* (yield-star)?
+A.  It delegates: emits ALL events of another stream/iterable into the current
+    one, instead of emitting a single value with `yield`.
+
+Q6. How does this map to Flutter?
+A.  StreamBuilder rebuilds the UI on each event; BLoC/Cubit expose state as a
+    stream; plugins (connectivity, sensors) deliver data as streams.
+
+===============================================================================
+ SECTION 4 — MIXINS & EXTENSIONS
+===============================================================================
+
+NOTES
+-----
+MIXINS
+- Reuse a bundle of methods/fields across UNRELATED classes WITHOUT inheritance.
+  Declared with `mixin M {}`, applied with `class C with M`.
+- A class can mix in MANY mixins; conflicts resolve by LINEARIZATION (the last
+  mixin in the `with` list wins for a clashing member).
+- `on` clause restricts where a mixin applies and lets it call the host's
+  members: `mixin Scrollable on Widget {}`.
+- mixin vs abstract class: a mixin is for horizontal code reuse (no is-a);
+  prefer it when behavior is shared by classes in different hierarchies.
+
+EXTENSIONS
+- Add methods/getters/operators to a type you DON'T own (String, int, List, a
+  package's class) WITHOUT subclassing or wrapping. `extension X on String {}`.
+- Resolved STATICALLY at compile time based on the static type (not virtual).
+- Can be generic: `extension ListX<T> on List<T> {}`.
+
+INTERVIEW Q&A
+-------------
+Q1. What problem do mixins solve?
+A.  Code reuse across classes that don't share a hierarchy, working around
+    single inheritance. Composition of behavior without an is-a relationship.
+
+Q2. What is the `on` clause in a mixin?
+A.  A constraint: the mixin can only be applied to classes that are (or extend)
+    the given type, which lets the mixin use that type's members.
+
+Q3. [GOTCHA] If two mixins define the same method, which wins?
+A.  The LAST one listed in `with` (mixin linearization order).
+
+Q4. mixin vs interface vs abstract class?
+A.  mixin = reuse implementation (with). interface/implements = contract only,
+    reimplement everything. abstract class = contract + optional shared code,
+    extended (one parent).
+
+Q5. What is an extension method and when is it useful?
+A.  A way to add functionality to an existing type without modifying it
+    (e.g. String.capitalize()). Useful for utility helpers and fluent APIs.
+
+Q6. [GOTCHA] Are extension methods polymorphic (virtual)?
+A.  No. They're resolved on the STATIC type at compile time, so they don't
+    participate in dynamic dispatch / overriding like instance methods.
+
+===============================================================================
+ SECTION 5 — CONSTRUCTORS & CLASS KINDS
+   (named, factory, abstract classes, interfaces)
+===============================================================================
+
+NOTES
+-----
+- DEFAULT constructor: `Point(this.x, this.y);` — field-init shorthand.
+- NAMED constructor: `Point.origin() : x = 0, y = 0;` — extra, descriptive
+  constructors. Always creates a NEW instance via the normal mechanism.
+- FACTORY constructor: `factory T(...)` — you control the return. May return a
+  CACHED instance, a SUBTYPE, or pick among options. Has NO initializer list and
+  doesn't have to create a new object. Commonly used for JSON parsing &
+  singletons. Needs a private generative constructor (`T._()`) to build instances.
+- ABSTRACT class: `abstract class Shape {}` — can't be instantiated; declares a
+  contract (members with no body) plus optional concrete shared code.
+- INTERFACE: Dart has no `interface` keyword — every class is an implicit
+  interface. `class A implements B` adopts B's CONTRACT only (must reimplement
+  all members; inherits NO code). You can implement many interfaces.
+
+INTERVIEW Q&A
+-------------
+Q1. Named vs factory constructor?
+A.  Named: an extra constructor with a name; ALWAYS builds a fresh instance and
+    can have an initializer list. Factory: controls what's returned (cache,
+    subtype, existing instance), has NO initializer list, may not create a new
+    object at all.
+
+Q2. Give a real use case for a factory constructor.
+A.  JSON deserialization (`factory User.fromJson`), singletons / caches
+    (return the same instance), or returning a subtype based on input.
+
+Q3. Abstract class vs interface in Dart?
+A.  No separate interface keyword — every class is an implicit interface.
+    Abstract class: can't instantiate, may hold concrete code, you EXTEND it
+    (one parent) to inherit. Interface (implements): contract only, reimplement
+    everything, multiple allowed.
+
+Q4. Can you instantiate an abstract class?
+A.  No — but it can declare a factory constructor that returns a concrete
+    subtype, so `Animal.create('dog')` still works.
+
+Q5. [GOTCHA] Can a factory constructor access `this`?
+A.  No. It runs before any instance exists (no initializer list, no `this`);
+    it must explicitly construct/return an object.
+
+Q6. extends vs implements (recap from Day 1)?
+A.  extends inherits implementation (single parent, super available);
+    implements adopts the contract only and forces you to define every member.
+
+===============================================================================
+ SECTION 6 — EXCEPTION HANDLING
+===============================================================================
+
+NOTES
+-----
+- try / catch / on / finally:
+    `on Type catch (e)` -> catch a specific type.
+    `catch (e)`         -> catch anything.
+    `catch (e, stack)`  -> also capture the StackTrace.
+    `finally {}`        -> ALWAYS runs (cleanup), whether or not it threw.
+- `throw` can throw ANY object, but throw Exception/Error subtypes by convention.
+- CUSTOM exception: a class `implements Exception` carrying context; override
+  toString() for good messages.
+- `rethrow` re-throws the CURRENT exception preserving its original stack trace
+  (use after logging/partial handling). `throw e;` would reset the stack.
+
+KEY DISTINCTION
+---------------
+Exception vs Error:
+  - Exception = anticipated, recoverable (bad input, network down) -> CATCH it.
+  - Error = a programming bug (RangeError, TypeError, null check on null) ->
+    FIX the code; generally don't catch.
+
+INTERVIEW Q&A
+-------------
+Q1. Difference between Exception and Error in Dart?
+A.  Exception = a recoverable condition you can anticipate and handle. Error =
+    a programmer mistake/bug that shouldn't be caught but fixed.
+
+Q2. What does `finally` guarantee?
+A.  Its block runs no matter what — normal completion, a caught exception, or
+    an exception propagating out. Used for cleanup (close files/sockets/db).
+
+Q3. Difference between `rethrow` and `throw e`?
+A.  rethrow preserves the original exception AND its stack trace. `throw e`
+    throws again but resets the stack trace to the current line, losing origin.
+
+Q4. How do you catch a specific exception type?
+A.  `on FormatException catch (e) {}`. Order multiple `on` clauses from most to
+    least specific; a bare `catch` last catches the rest.
+
+Q5. [GOTCHA] How do you handle errors from a Future / async function?
+A.  try/catch around `await`, or `.catchError()` on the Future. A throw inside
+    an async function surfaces as a Future error, not a synchronous throw.
+
+===============================================================================
+ SECTION 7 — ISOLATES (true parallelism)
+===============================================================================
+
+NOTES
+-----
+- An ISOLATE is an independent worker: its OWN memory heap + event loop, on a
+  separate thread. Isolates do NOT share memory.
+- They communicate only by passing MESSAGES (copies) through ports
+  (SendPort/ReceivePort). No shared state -> no locks, no data races.
+- WHY: async/await is concurrency on ONE thread; a long CPU loop still blocks
+  the UI (jank). Move heavy CPU work (parsing big JSON, image processing,
+  crypto) to another isolate to keep the UI at 60fps.
+- APIs:
+    Isolate.run(fn)  -> EASY (Dart 2.19+): run a function on a temp isolate,
+                        get a Future result, auto-cleanup. Use for one-shot work.
+    Isolate.spawn(entryPoint, message) + ReceivePort -> low-level, long-lived,
+                        two-way messaging.
+- Flutter shortcut: `compute(fn, arg)` from foundation.dart wraps this pattern.
+
+INTERVIEW Q&A
+-------------
+Q1. What is an isolate and how is it different from a thread?
+A.  An isolate is Dart's unit of concurrency: a thread WITH its own isolated
+    memory and event loop. Unlike OS threads, isolates share NO memory, so they
+    can't race on shared state — they pass message copies over ports.
+
+Q2. When would you use an isolate vs async/await?
+A.  async/await for I/O-bound waiting (network, disk) on the main isolate.
+    A separate isolate for CPU-bound work that would otherwise block the event
+    loop and freeze the UI.
+
+Q3. How do isolates communicate?
+A.  Via message passing over SendPort/ReceivePort. Messages are COPIED (no
+    shared references), which is what makes them race-free.
+
+Q4. What's the easiest way to run work on an isolate?
+A.  Isolate.run(() => ...) for a one-shot computation, or Flutter's
+    compute(fn, arg). Use Isolate.spawn for persistent, bidirectional workers.
+
+Q5. [GOTCHA] Can two isolates share an object?
+A.  No (with narrow exceptions like TransferableTypedData / immutable sends).
+    Generally objects are deep-copied across the boundary, so you can't mutate
+    one isolate's data from another.
+
+===============================================================================
+ SECTION 8 — COLLECTIONS DEEP DIVE + FUNCTIONAL PROGRAMMING
+===============================================================================
+
+NOTES
+-----
+- Iterable is the lazy backbone; List/Set/Map are concrete collections.
+- map / where / expand / take / skip are LAZY — they build a pipeline and only
+  run when iterated (toList/toSet/for-in/await for). Re-iterating RE-RUNS them.
+- fold(seed, f)  -> collapse to one value with an explicit seed; result type can
+                    DIFFER from element type; safe on empty.
+- reduce(f)      -> collapse using the FIRST element as seed; THROWS on empty;
+                    result type matches element type.
+- expand(f)      -> flatMap (1 -> many, then flatten).
+- No built-in groupBy in core Dart — use fold into a Map, or package:collection.
+- Functional STYLE: prefer immutable transformations (where/map/fold) and method
+  chaining over manual for-loops + mutation. Reads declaratively; fewer bugs.
+
+INTERVIEW Q&A
+-------------
+Q1. fold vs reduce?
+A.  fold takes an explicit seed, works on empty collections, and its result type
+    can differ from the element type. reduce seeds with the first element,
+    throws on empty, and the result type equals the element type.
+
+Q2. [GOTCHA] Are map() and where() eager or lazy?
+A.  Lazy. They return an Iterable that computes on demand. Nothing runs until
+    you iterate (toList/for-in). Re-iterating recomputes the whole pipeline.
+
+Q3. Difference between map() and expand()?
+A.  map: 1 element -> 1 element (same count). expand (flatMap): 1 element -> an
+    iterable, then flattened into one stream of results.
+
+Q4. How do you group a list by a key without a package?
+A.  fold into a Map<K, List<T>> using putIfAbsent:
+      list.fold(<K,List<T>>{}, (m, e) { m.putIfAbsent(key(e), ()=>[]).add(e); return m; })
+
+Q5. Why prefer functional transforms over for-loops?
+A.  They're declarative, composable, and avoid mutable bookkeeping — fewer
+    off-by-one/mutation bugs and clearer intent. (Watch laziness for side effects.)
+
+===============================================================================
+ SECTION 9 — MEMORY MANAGEMENT & GARBAGE COLLECTION (conceptual)
+===============================================================================
+
+NOTES
+-----
+- Dart is GARBAGE COLLECTED — you don't free memory manually. The GC reclaims
+  objects that are no longer REACHABLE from a root (globals, locals on the stack).
+- Dart uses a GENERATIONAL GC (per isolate):
+    YOUNG/new space: most objects die young; collected by a fast "scavenger"
+      (copying collector) very cheaply.
+    OLD space: objects that survive get promoted; collected by a slower
+      mark-sweep / mark-compact pass less often.
+- Each ISOLATE has its OWN heap and its own GC — collection in one doesn't pause
+  others, which helps avoid global stop-the-world pauses.
+- LEAKS still happen via lingering REFERENCES (something stays reachable):
+    * StreamSubscriptions / controllers not cancelled/closed.
+    * Timers / AnimationControllers not disposed.
+    * Listeners (addListener) never removed.
+    * Closures capturing large objects (e.g. holding `context`/State) and kept
+      alive by a long-lived object.
+- FLUTTER RULE: free what you create. Cancel subscriptions, dispose controllers
+  (AnimationController, TextEditingController, ScrollController) in dispose().
+
+INTERVIEW Q&A
+-------------
+Q1. How is memory managed in Dart?
+A.  Automatically via a garbage collector. Objects unreachable from roots are
+    reclaimed; there's no manual malloc/free.
+
+Q2. Describe Dart's GC.
+A.  Generational + per-isolate. A fast scavenger handles short-lived young
+    objects; survivors are promoted to old space, collected by mark-sweep/compact
+    less frequently. Each isolate GCs its own heap independently.
+
+Q3. If Dart is GC'd, how do memory leaks happen?
+A.  Through unintended REACHABILITY: undisposed controllers, uncancelled stream
+    subscriptions/timers, retained listeners, or closures capturing big objects
+    held by long-lived owners. The GC can't collect what's still referenced.
+
+Q4. [GOTCHA] How do you prevent leaks in Flutter specifically?
+A.  Cancel StreamSubscriptions, close StreamControllers, dispose
+    Animation/Text/Scroll controllers, and removeListener — all in State.dispose().
+
+Q5. Why does the per-isolate heap design matter?
+A.  No shared mutable memory means GC and execution in one isolate don't block
+    others, reducing global pauses and avoiding cross-thread data races.
+
+===============================================================================
+ ONE-LINE MEMORY HOOKS (revise before the interview)
+===============================================================================
+- Generics = type params -> reuse + compile-time safety (reified at runtime).
+- Future = one async value ; Stream = many async values over time.
+- async/await = concurrency on ONE thread (suspend/resume), NOT parallelism.
+- Future.wait = run in parallel (time = max), not sequential (time = sum).
+- microtasks run before the event/timer queue.
+- single-subscription stream = one listener ; broadcast = many.
+- async* + yield builds a stream ; close StreamControllers to avoid leaks.
+- mixin = horizontal reuse (with) ; `on` constrains the host type.
+- extension = add methods to types you don't own (static, not virtual).
+- factory = controls the returned instance (cache/subtype/parse), no `this`.
+- abstract = contract + shared code (extend) ; implements = contract only.
+- Exception = recoverable/catch ; Error = bug/fix. rethrow keeps the stack.
+- isolate = own heap + loop, message-passing, true parallelism (Isolate.run).
+- fold = seed + any result type (safe) ; reduce = first elem seed (throws empty).
+- map/where are LAZY until materialized ; re-iterating recomputes.
+- Dart is GC'd (generational, per-isolate) ; leaks = lingering references ->
+  dispose controllers / cancel subscriptions in Flutter.
+===============================================================================
