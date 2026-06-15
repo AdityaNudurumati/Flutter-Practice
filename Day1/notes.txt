@@ -41,6 +41,52 @@ dynamic vs Object?:
   - Object?: compiler only lets you call Object members (toString, hashCode);
              you must cast/check before calling type-specific members. SAFER.
 
+WHY Object? IS A SAFE ALTERNATIVE TO dynamic
+---------------------------------------------
+What `Object? x` means:
+  - Object is the parent type of almost everything in Dart.
+  - `?` means it can also be null.
+  - So Object? can hold ANY value or null:
+        Object? value = 'Hello';
+        value = 123;
+        value = true;
+        value = null;        // all valid
+
+The difference in safety:
+  dynamic value = 123;
+  print(value.length);   // COMPILES, then CRASHES at runtime (int has no length)
+
+  Object? value = 123;
+  print(value.length);   // COMPILE-TIME ERROR:
+                         // The getter 'length' isn't defined for the type 'Object'
+
+  Why? Dart only knows `value` is an Object, and not every object has `.length`.
+  You must CHECK the type before using type-specific members:
+        Object? value = 'Hello';
+        if (value is String) {
+          print(value.length);   // 5 — inside the if, Dart promotes value to String
+        }
+
+Analogy:
+  - dynamic = a box labelled "trust me, something's inside" -> use it blindly,
+    maybe it works, maybe it crashes.
+  - Object? = a box labelled "some object is inside, but check what it is first"
+    -> you inspect (`is`) before using it.
+
+Why does this matter in a large codebase?
+  dynamic data = getData();
+  data.someMethod();        // compiler can't help
+  data.someOtherMethod();   // any typo / missing member slips through
+  data.length;              // ...all blow up at run time
+
+  Object? data = getData();
+  data.someMethod();        // Error — compiler forces you to check the type
+  data.length;              // Error
+  Mistakes are caught BEFORE running the app, not after it ships.
+
+Bottom line: Object? forces you to verify the type before calling members that
+may not exist, so mistakes are caught at COMPILE TIME instead of crashing later.
+
 INTERVIEW Q&A
 -------------
 Q1. Difference between final and const?
@@ -72,6 +118,23 @@ Q6. [GOTCHA] What is `identical()` vs `==`?
 A.  == checks VALUE equality (can be overridden). identical() checks REFERENCE
     equality (same object in memory). const canonicalization makes identical()
     true for equal const literals.
+
+Q7. What is compile time vs run time? What's the difference?
+A.  COMPILE TIME = when your source code is being compiled/analyzed (before the
+    program runs). The compiler checks types, syntax, and rules here.
+    RUN TIME = when the compiled program is actually executing on a device.
+    Key differences:
+      - WHEN: compile time happens first (build); run time happens after (launch).
+      - ERRORS: compile-time errors stop the build (e.g. type mismatch, calling a
+        member that doesn't exist on a known type) — you see them in the IDE
+        before running. Run-time errors happen while the app runs (e.g. null
+        check on null, dividing by zero, a failed `!` assertion) and can crash
+        the app for the user.
+      - SAFETY: compile-time errors are SAFER/cheaper — caught early. Run-time
+        errors reach the user, so they're worse.
+    This is the whole point of static typing & null safety: move as many errors
+    as possible from RUN TIME to COMPILE TIME. (e.g. `const` is compile-time,
+    `final` is run-time; `Object?` errors at compile time, `dynamic` at run time.)
 
 ===============================================================================
  SECTION 2 — NULL SAFETY (?, !, ??, ??=, late)
