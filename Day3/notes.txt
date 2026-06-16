@@ -1,0 +1,285 @@
+===============================================================================
+ DAY 3 — OOP, GENERICS & ENUMS : NOTES + INTERVIEW Q&A
+ (Flutter interview prep — 3 years experience, technical round)
+===============================================================================
+
+How to use this file:
+  - Read a section's NOTES, then cover the answers and try the Q&A out loud.
+  - Anything marked [GOTCHA] is a common trap interviewers use.
+  - Code references live in the .dart files in this same folder.
+  - Finish with the PRACTICE PROJECT (10_student_management.dart) — it revises
+    classes, list, map, functions, generics, and enums together.
+
+===============================================================================
+ SECTION 1 — CONSTRUCTORS
+===============================================================================
+
+NOTES
+-----
+- DEFAULT    : ClassName(this.a, this.b);  // field-init shorthand assigns fields
+- NAMED      : ClassName.guest() : name = 'Guest';  // extra named constructors
+- FACTORY    : factory ClassName.fromJson(map) { ... return ClassName(...); }
+               Controls what's returned (parse / cache / subtype). No `this`,
+               no initializer list. `fromJson` is everywhere in Flutter.
+- INITIALIZER LIST: `: field = v, assert(...)` runs BEFORE the body; required
+  for final fields and to call super(...). `this` is NOT available there yet.
+
+INTERVIEW Q&A
+-------------
+Q1. Default vs named vs factory constructor?
+A.  Default = the primary constructor. Named = extra named variants, always
+    create a fresh instance. Factory = controls the returned object (cache,
+    subtype, parsed value); may not create a new instance and has no init list.
+
+Q2. Why is the factory constructor important in Flutter?
+A.  JSON parsing: `factory Model.fromJson(Map<String,dynamic>)` builds typed
+    objects from API responses. Also used for singletons and caching.
+
+Q3. [GOTCHA] Can a factory constructor use `this`?
+A.  No — no instance exists yet. It must build and return an object explicitly.
+
+Q4. What runs first: initializer list, super constructor, or body?
+A.  Initializer list -> super constructor -> constructor body.
+
+===============================================================================
+ SECTION 2 — ENCAPSULATION (private fields, getters, setters)
+===============================================================================
+
+NOTES
+-----
+- Encapsulation = hide internal state; expose a controlled API so the object
+  can't reach an invalid state.
+- PRIVACY: a leading underscore `_x` makes a member LIBRARY-private (per file).
+  Dart has no public/private/protected keywords.
+- GETTER:  `double get balance => _balance;` — read access, often computed.
+- SETTER:  `set owner(String v) { validate; _owner = v; }` — write WITH checks.
+- Prefer a getter over a public field when the value is derived or you want
+  read-only/validated access.
+
+INTERVIEW Q&A
+-------------
+Q1. How is privacy done in Dart?
+A.  Leading underscore -> library-private (per file), not class-private. There
+    are no access-modifier keywords.
+
+Q2. Why use getters/setters instead of public fields?
+A.  To validate writes, compute/derive reads, keep the backing field private,
+    and add logic later WITHOUT changing call sites.
+
+Q3. [GOTCHA] Is `_balance` accessible from another class in the SAME file?
+A.  Yes. Underscore privacy is per LIBRARY (file), not per class.
+
+===============================================================================
+ SECTION 3 — ABSTRACT CLASSES
+===============================================================================
+
+NOTES
+-----
+- `abstract class Animal { void makeSound(); }` — cannot be instantiated.
+- Defines a CONTRACT (abstract members, no body) + optional SHARED concrete code.
+- Subclasses `extend` it and MUST implement the abstract members.
+- Useful for template-method patterns (shared method calls abstract hooks).
+
+INTERVIEW Q&A
+-------------
+Q1. What is an abstract class and can you instantiate it?
+A.  A class that can't be instantiated; it declares a contract plus optional
+    shared code. You extend it (or it can expose a factory returning a subtype).
+
+Q2. Abstract method vs concrete method?
+A.  Abstract = declared with no body, must be overridden. Concrete = has a body
+    and is inherited/shared by subclasses.
+
+===============================================================================
+ SECTION 4 — INTERFACES (implements)
+===============================================================================
+
+NOTES
+-----
+- Dart has NO `interface` keyword — EVERY class is an implicit interface.
+- `class A implements B` adopts B's CONTRACT only: no code inherited, you must
+  reimplement EVERY member. You can implement MANY interfaces.
+- extends vs implements:
+    extends    -> inherit implementation (one parent, super available).
+    implements -> contract only (reimplement everything); multiple allowed.
+
+INTERVIEW Q&A
+-------------
+Q1. How do interfaces work in Dart (no `interface` keyword)?
+A.  Every class defines an implicit interface. `implements` adopts that
+    interface's contract and forces you to provide all members yourself.
+
+Q2. extends vs implements?
+A.  extends inherits the implementation (single parent, can call super).
+    implements adopts only the contract — no inherited code, reimplement all.
+
+Q3. [GOTCHA] Can one class implement multiple interfaces?
+A.  Yes (`implements A, B`). It must implement every member of each.
+
+===============================================================================
+ SECTION 5 — MIXINS
+===============================================================================
+
+NOTES
+-----
+- `mixin Logger { void log(...) {} }` + `class User with Logger {}`.
+- Reuse behavior across UNRELATED classes WITHOUT inheritance.
+- Use `with`, not `extends`: a capability (logging/flying) is shared, not an
+  identity; and you can mix in MANY mixins but extend only ONE class.
+- Conflicts resolve by linearization (last mixin in `with` wins).
+- `on Type` restricts the host and unlocks that type's members in the mixin.
+
+INTERVIEW Q&A
+-------------
+Q1. What problem do mixins solve?
+A.  Horizontal code reuse across classes in different hierarchies, working
+    around single inheritance — composition of behavior without an is-a link.
+
+Q2. Why `with` and not `extends`?
+A.  Mixins add a capability, not an identity, and you can compose many. extends
+    is single inheritance for an is-a relationship.
+
+Q3. [GOTCHA] Two mixins define the same method — which wins?
+A.  The LAST one listed in the `with` clause (mixin linearization).
+
+Q4. mixin vs abstract class vs interface?
+A.  mixin = reuse code (with). abstract class = contract + shared code (extend).
+    interface/implements = contract only, reimplement everything.
+
+===============================================================================
+ SECTION 6 — EXTENSION METHODS
+===============================================================================
+
+NOTES
+-----
+- `extension StringExtension on String { String capitalize() {...} }`.
+- Add methods/getters/operators to a type you don't own, no subclass/wrapper.
+- Resolved STATICALLY on the static type (not virtual / not overridable).
+- Can be generic: `extension ListX<T> on List<T> {}`.
+
+INTERVIEW Q&A
+-------------
+Q1. What is an extension method?
+A.  A way to add functionality to an existing type (String, int, a package
+    class) without modifying or subclassing it.
+
+Q2. [GOTCHA] Are extensions polymorphic?
+A.  No — they bind to the STATIC type at compile time, so they don't take part
+    in dynamic dispatch/overriding like instance methods.
+
+===============================================================================
+ SECTION 7 — GENERICS (MOST IMPORTANT)
+===============================================================================
+
+NOTES
+-----
+- Type parameters: reuse code over many types with COMPILE-TIME safety.
+    <T>            one type param          (Box<T>, List<T>)
+    <K, V>         two type params         (Map<K, V>, Pair<K, V>)
+    <T extends X>  bounded param           (T must be an X; unlocks X's members)
+- Generic function: `T? firstOrNull<T>(List<T> xs)` — keeps the caller's type.
+- Type inference usually fills in the type: `Box(100)` infers `Box<int>`.
+- WHY over dynamic: generics preserve the EXACT type end-to-end (autocomplete,
+  return types, compile-time errors) — dynamic defers errors to runtime.
+- Dart generics are REIFIED (type info kept at runtime), unlike Java erasure.
+
+INTERVIEW Q&A
+-------------
+Q1. Why use generics instead of dynamic?
+A.  Type safety + reuse: the compiler checks element/argument types and keeps
+    return types precise. dynamic loses all checking (errors at runtime).
+
+Q2. What is a bounded type parameter?
+A.  `<T extends num>` restricts T and lets you use that bound's members (e.g.
+    arithmetic) on values of type T.
+
+Q3. [GOTCHA] Are Dart generics reified or erased?
+A.  Reified — retained at runtime, so `list is List<int>` works.
+
+===============================================================================
+ SECTION 8 — EXCEPTION HANDLING
+===============================================================================
+
+NOTES
+-----
+- try / catch / on / finally:
+    `on Type catch (e)` -> specific type ; `catch (e)` -> anything ;
+    `catch (e, stack)`  -> capture trace ; `finally {}` -> ALWAYS runs.
+- `throw` any object; by convention throw Exception/Error subtypes.
+- CUSTOM exception: `class XException implements Exception { ... }`.
+- `rethrow` re-throws the current exception preserving its original stack.
+- Exception (recoverable, catch) vs Error (a bug, fix the code).
+
+INTERVIEW Q&A
+-------------
+Q1. Exception vs Error?
+A.  Exception = anticipated, recoverable condition you handle. Error = a
+    programming bug you should fix, not catch.
+
+Q2. What does `finally` guarantee?
+A.  It runs no matter what (normal, caught, or propagating) — used for cleanup.
+
+Q3. [GOTCHA] rethrow vs `throw e`?
+A.  rethrow preserves the original stack trace; `throw e` resets it to the
+    current line, losing the origin.
+
+===============================================================================
+ SECTION 9 — ENUMS
+===============================================================================
+
+NOTES
+-----
+- A fixed set of named constants: `enum Status { loading, success, error }`.
+- Members: `.name` (string), `.index` (int), `Status.values` (all),
+  `Status.values.byName('success')` (parse from string).
+- Pairs perfectly with `switch` (exhaustive — compiler warns on a missed case).
+- ENHANCED enums (Dart 2.17+): can have FIELDS, a const constructor, GETTERS,
+  and METHODS — e.g. each value carries data and behavior.
+
+INTERVIEW Q&A
+-------------
+Q1. Why use an enum over String/int constants?
+A.  Type safety + a finite, self-documenting set + exhaustive switch checking.
+    No invalid values, and refactors are caught at compile time.
+
+Q2. What is an enhanced enum?
+A.  An enum (2.17+) with fields, a const constructor, and methods/getters, so
+    each constant can carry data and the enum can have behavior.
+
+Q3. How does this map to Flutter?
+A.  State machines (loading/success/error), and many framework enums
+    (TextAlign, MainAxisAlignment, etc.).
+
+===============================================================================
+ PRACTICE PROJECT — STUDENT MANAGEMENT SYSTEM
+===============================================================================
+File: 10_student_management.dart  (run it and read top-to-bottom)
+
+Ties Day 3 together:
+  - CLASS         : immutable Student model (id, name, marks) + grade getter.
+  - ENUM          : enhanced Grade enum (label + range) with fromMarks().
+  - GENERICS      : Repository<T> base reused by StudentManager (Student store).
+  - LIST + MAP    : private List<Student> storage; groupByGrade -> Map<Grade,List>.
+  - FUNCTIONS     : add, remove, search, topper, averageMarks, groupByGrade.
+  - ENCAPSULATION : the list is private; access only via the public API.
+  - EXCEPTIONS    : topper() throws StateError on an empty manager.
+
+Try extending it yourself:
+  - sort students by marks (descending).
+  - add a `Map<int, Student>` index for O(1) search by id.
+  - add a `gradeDistribution()` returning Map<Grade,int> counts.
+
+===============================================================================
+ ONE-LINE MEMORY HOOKS (revise before the interview)
+===============================================================================
+- default = primary ; named = extra variants ; factory = controls return (no this).
+- factory fromJson(map) = how Flutter parses API JSON.
+- _underscore = library-private ; getter = read/derived ; setter = validated write.
+- abstract = contract + shared code, can't instantiate (extend it).
+- implements = contract only, reimplement all ; extends = inherit code (one parent).
+- mixin = reuse via `with` (capability, many) ; on = constrain the host type.
+- extension = add methods to types you don't own (static, not virtual).
+- generics = type-safe reuse ; <T>, <K,V>, <T extends X> ; reified at runtime.
+- Exception = catch/recover ; Error = bug/fix ; rethrow keeps the stack.
+- enum = fixed named set ; enhanced enum carries fields + methods ; switch is exhaustive.
+===============================================================================
