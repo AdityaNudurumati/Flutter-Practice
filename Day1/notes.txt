@@ -173,6 +173,57 @@ FLOW ANALYSIS / TYPE PROMOTION [GOTCHA]
   change them). Use a local variable or `!` for those:
       final v = obj.field; if (v != null) { v.use(); }
 
+MEMORY TRICK
+------------
+  ?  = "maybe null"            (declare a type as nullable)
+  ?. = "use it only if not null"  (else the whole expression is null)
+  ?? = "or this default"       (fallback when the left side is null)
+  !  = "definitely not null — trust me"  (THROWS if you're wrong)
+
+DANGER OF `!`  [GOTCHA]
+-----------------------
+  String? name = null;
+  print(name!.length);   // Runtime error: Null check operator used on a null value
+Using `!` on a value that IS null throws immediately — you "lied" to Dart, so the
+compile-time guarantee you bypassed turns into a runtime crash.
+
+WHY DOES `!` EVEN EXIST?  (the real production reason) [GOTCHA]
+--------------------------------------------------------------
+If `?.` is safe and `!` can crash, why use `!` at all? Because `!` is NOT a tool
+for handling null — it's a tool for ASSERTING AN INVARIANT the compiler can't
+prove. It means: "I know something you don't: this cannot be null here."
+
+There are exactly two situations, and they pick the operator for you:
+
+  1) NULL IS EXPECTED / VALID  ->  use ?. , ?? , or `if (x != null)`
+       user?.profileImage          // some users have no photo — that's normal
+       token ?? 'guest'            // missing token has a sensible default
+     Null is part of normal app flow; handle it gracefully.
+
+  2) NULL WOULD MEAN A BUG  ->  use `!`
+       FirebaseAuth.instance.currentUser!.uid   // we just signed in
+       ModalRoute.of(context)!.settings         // this screen needs a route
+     If it IS null, your app state is already broken. You WANT it to crash
+     loudly and immediately (fail-fast) so you find the bug — instead of `?.`
+     silently swallowing it and corrupting state further downstream.
+
+So `!` turns a hidden, silent logic error into a visible, instant one. That is a
+feature, not a risk — when the assumption is genuinely guaranteed elsewhere.
+
+Two places `!` is legitimately needed:
+  - Instance fields that won't promote: you checked it, but the compiler can't
+    trust the field stayed non-null across a call ->
+        if (user.name != null) { doStuff(); print(user.name!.length); }
+    (cleaner: copy to a local — `final n = user.name; if (n != null) n.length;`)
+  - Enforcing an invariant a layer above guarantees ->
+        HomeScreen(user: currentUser!)   // login screen guarantees a user exists
+
+Senior-dev rule of thumb:
+  - "Can null happen during normal usage?"  -> YES -> ?. / ?? / null-check.
+  - "Would null mean my app is broken?"     -> YES -> `!` (fail fast on purpose).
+Never sprinkle `!` to silence the analyzer; put it only AFTER the value is truly
+guaranteed (post-login, required constructor arg, validated input).
+
 INTERVIEW Q&A
 -------------
 Q1. What does sound null safety mean?
@@ -235,6 +286,132 @@ NOTES
 - typedef: a named alias for a function signature, e.g.
       typedef IntTransform = int Function(int);
   Used heavily in Flutter (VoidCallback, ValueChanged<T>, etc.).
+
+WORKED EXAMPLE — makeAdder (closure + typedef, see 02_functions.dart)
+---------------------------------------------------------------------
+Problem: writing addFive / addTen / addTwenty is the same code repeated.
+Idea: write ONE function that BUILDS adder functions for us.
+
+  typedef IntTransform = int Function(int value);  // "takes an int, returns an int"
+
+  IntTransform makeAdder(int amount) {
+    return (int value) => value + amount;   // returns a FUNCTION
+  }
+  // beginner-friendly equivalent of the body:
+  //   int add(int value) => value + amount;
+  //   return add;
+
+Trace it:
+  final addTen = makeAdder(10);   // amount = 10, returns (value) => value + 10
+  addTen(5);                      // value = 5  ->  5 + 10  =  15
+
+  final addTwenty = makeAdder(20);// amount = 20, returns (value) => value + 20
+  addTwenty(5);                   // 5 + 20  =  25
+
+Why does addTen still know amount = 10 after makeAdder finished?
+  Normally a function's locals vanish when it returns. But the returned function
+  STILL USES `amount`, so Dart keeps it alive. That captured-and-remembered
+  variable is a CLOSURE. Each adder remembers its OWN amount:
+        addTen    -> remembers amount = 10
+        addTwenty -> remembers amount = 20
+
+Analogy: makeAdder(10) is a machine pre-configured to "+10"; feed it 5, get 15.
+makeAdder(20) is a different machine ("+20"); each remembers how it was built.
+
+WORKED EXAMPLE — makeCounter (a closure over MUTABLE state, see 02_functions.dart #9)
+-------------------------------------------------------------------------------------
+makeAdder remembered a FIXED value; makeCounter remembers a variable it keeps
+CHANGING. This is the clearest proof that the captured variable lives on.
+
+  int Function() makeCounter() {
+    int count = 0;                 // local to makeCounter
+    return () => ++count;          // returned closure captures `count`
+  }
+
+  final counter = makeCounter();
+  print(counter());   // 1
+  print(counter());   // 2
+  print(counter());   // 3
+
+Trace: each call runs `++count` (increment THEN return) on the SAME count:
+  call 1: count 0 -> 1, returns 1
+  call 2: count 1 -> 2, returns 2
+  call 3: count 2 -> 3, returns 3
+
+"Why doesn't count reset to 0 each call?"
+  Normally a function's locals vanish when it returns, so you'd expect count to
+  be gone. But the returned closure STILL USES count, so Dart keeps that one
+  variable alive across calls — it is NOT recreated. The closure reads and
+  writes the same `count` every time, so it accumulates: 1, 2, 3, ...
+  Analogy: makeCounter() hands you a notebook starting at 0; each counter() call
+  reads it, adds 1, writes it back, and returns the new number.
+
+[GOTCHA] Each call to makeCounter() makes a NEW, independent count:
+  final a = makeCounter(); final b = makeCounter();
+  a(); a();   // 1, 2
+  b();        // 1  — b has its OWN count, unaffected by a.
+
+FIRST-CLASS FUNCTION vs CLOSURE (two different concepts, often confused)
+-----------------------------------------------------------------------
+makeAdder shows BOTH at once — but they are NOT the same thing:
+
+FIRST-CLASS FUNCTION = the language treats functions like ordinary values.
+  In Dart a function can be:
+    - stored in a variable :  var op = add;        op(2, 3);
+    - passed as an argument:  list.forEach(print); execute(sayHello);
+    - returned from a function: makeAdder(...) returns a function
+  Because functions can be used anywhere a value can, they are "first-class
+  citizens". This is a property of the LANGUAGE.
+
+CLOSURE = a returned/inner function that REMEMBERS variables from the scope
+  where it was created, even after that outer scope has finished.
+    final addTen = makeAdder(10);  // addTen keeps `amount = 10` alive
+  This is a property of a specific FUNCTION VALUE (its captured state).
+
+How they combine in makeAdder:
+    final addTen = makeAdder(10);
+  - FIRST-CLASS: makeAdder can return a function and we store it in addTen.
+  - CLOSURE    : that returned function still remembers amount = 10.
+  First-class makes "return/store a function" legal; closure is WHY the stored
+  function still knows `amount`. You can have first-class functions without a
+  closure (e.g. `var op = add;` captures nothing).
+
+One-line interview answers:
+  First-class function -> "Functions can be stored in variables, passed as
+                           arguments, and returned from other functions."
+  Closure              -> "A function that remembers and can access variables
+                           from its outer scope even after that scope has
+                           finished executing."
+
+CALLING WITH `()` vs WITHOUT `()`  (reference vs invocation) [GOTCHA]
+--------------------------------------------------------------------
+  fn      -> the FUNCTION ITSELF (a value you can store/pass). Does NOT run.
+  fn()    -> CALLS/EXECUTES the function (and you get its return value).
+
+  void sayHello() => print('Hello');
+  var x = sayHello;    // x now HOLDS the function (nothing printed yet)
+  x();                 // NOW it runs -> Hello
+  sayHello();          // runs -> Hello
+
+When you PASS a function, pass the reference (no ()): the receiver calls it later.
+  void execute(Function fn) => fn();
+  execute(sayHello);   // correct: hand over the function, execute() runs it
+  execute(sayHello()); // WRONG: runs sayHello() FIRST, then passes its result
+                       // (here null) into execute -> bug / type error.
+
+Quick table:
+  sayHello             function itself (reference)
+  sayHello()           execute it
+  var x = sayHello     store the function
+  var x = sayHello()   store the RETURNED VALUE
+  onPressed: sayHello  pass the function (Flutter calls it on tap)  ✅
+  onPressed: sayHello()runs immediately while BUILDING the UI       ❌
+
+FLUTTER [GOTCHA]: callbacks like onPressed / onTap / onChanged / builder /
+itemBuilder expect a function REFERENCE (myFunction), NOT a call (myFunction()).
+Writing `onPressed: myFunction()` runs it during build instead of on the event —
+one of the most common beginner mistakes.
+  Ask: "Run it NOW?" -> use ()   |   "Pass/store for LATER?" -> no ()
 
 [GOTCHA] You CANNOT mix optional positional [ ] and named { } in the same fn.
 
