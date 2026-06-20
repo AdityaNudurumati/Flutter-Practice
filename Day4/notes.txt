@@ -1,0 +1,236 @@
+===============================================================================
+ DAY 4 — ASYNC PROGRAMMING : NOTES + INTERVIEW Q&A
+ (Flutter interview prep — 3 years experience, technical round)
+===============================================================================
+
+Why this is the most important day: Flutter apps spend most of their time
+calling APIs, reading Firebase, querying databases, and doing file I/O — ALL of
+which are async. async/await, Futures, and Streams appear constantly in Flutter,
+Firebase, Riverpod, Bloc, and API integration work.
+
+How to use this file:
+  - Read a section's NOTES, then cover the answers and try the Q&A out loud.
+  - Anything marked [GOTCHA] is a common trap interviewers use.
+  - Code references live in the .dart files in this same folder.
+  - Finish with 05_capstone_store.dart — it revises Days 1–4 in one program.
+
+===============================================================================
+ SECTION 1 — FUTURES, async, await, Future.delayed
+===============================================================================
+
+NOTES
+-----
+- Dart is single-threaded with an EVENT LOOP. async code does NOT spawn a thread.
+  At `await` it SUSPENDS, lets the loop run other work, and RESUMES when ready.
+- A FUTURE = ONE value available later. 3 states: uncompleted ->
+  completed-with-value OR completed-with-error.
+- `async` makes a function return a Future automatically; `return x` completes
+  it, a `throw` completes it with an error. `await` is only legal inside async.
+- Future.delayed(duration, [computation]) -> schedule a value/work later (fake
+  latency in demos; real timers in apps).
+- Future.value(x) / Future.error(e) -> already-completed futures.
+- SEQUENTIAL awaits run one after another -> total time = SUM of each.
+
+INTERVIEW Q&A
+-------------
+Q1. Does async/await use a separate thread?
+A.  No. Dart is single-threaded per isolate. await gives CONCURRENCY by
+    suspending/resuming on the event loop, not parallelism. True parallelism
+    needs an Isolate.
+
+Q2. What are the states of a Future?
+A.  Uncompleted, then either completed with a value or completed with an error.
+
+Q3. What does an async function return if you `return 5`?
+A.  A Future<int> that completes with 5. async functions ALWAYS return a Future.
+
+Q4. [GOTCHA] What does awaiting a non-Future value do?
+A.  It wraps it in an already-completed Future, so you just get the value (after
+    a microtask hop). `await 5` -> 5.
+
+Q5. Where can you use `await`?
+A.  Only inside a function marked `async` (or `async*`), or at the top level in
+    contexts that allow it. Otherwise it's a compile error.
+
+===============================================================================
+ SECTION 2 — Future.wait (PARALLEL) + ERROR HANDLING
+===============================================================================
+
+NOTES
+-----
+- PARALLEL: start futures without awaiting, then `await Future.wait([...])`.
+  Total time = the SLOWEST future, not the sum. Use it to load several
+  independent pieces of a screen at once.
+- ERROR HANDLING:
+    try/catch around `await`            -> synchronous-looking handling.
+    .then(onValue).catchError(onErr)    -> callback style.
+    .whenComplete(fn)                   -> runs regardless (≈ finally).
+    .timeout(duration)                  -> throws TimeoutException if too slow.
+- A throw inside an async function surfaces as a Future ERROR (not a sync throw).
+
+INTERVIEW Q&A
+-------------
+Q1. How do you run multiple async calls in parallel?
+A.  Kick them off together and `await Future.wait([f1, f2, f3])`. Awaiting each
+    on its own line runs them sequentially (slower).
+
+Q2. [GOTCHA] What happens if one future in Future.wait fails?
+A.  The combined Future completes with an error (fails fast) and you lose the
+    other results unless you add per-future .catchError() or use eagerError.
+
+Q3. try/catch vs .catchError()?
+A.  Same effect, different style: try/catch wraps `await` and reads like sync
+    code; .catchError() handles the error in the callback chain.
+
+Q4. How do you stop waiting on a slow call?
+A.  future.timeout(Duration(...)) — completes with a TimeoutException if the
+    original doesn't finish in time. Optionally provide onTimeout.
+
+Q5. What is whenComplete?
+A.  A callback that runs whether the future succeeded or failed — the Future
+    equivalent of `finally` (cleanup).
+
+===============================================================================
+ SECTION 3 — STREAMS
+===============================================================================
+
+NOTES
+-----
+- A Stream = a SEQUENCE of async values over time (0..N). Future = one value.
+- Consume with `await for (x in stream)` or `.listen(onData, onError:, onDone:)`.
+- Types:
+    SINGLE-SUBSCRIPTION (default): exactly ONE listener, consumed once
+      (file read, HTTP body).
+    BROADCAST: many simultaneous listeners (UI events, sockets) — make with
+      .asBroadcastStream() or StreamController.broadcast().
+- async* + `yield` builds a stream (generator). `yield*` delegates to another
+  stream. Transformations (map/where/take/expand) are LAZY & chainable.
+  Reducers (fold/length/first/toList) return a Future.
+
+INTERVIEW Q&A
+-------------
+Q1. Future vs Stream?
+A.  Future = a single async value (one shot). Stream = many async values over
+    time. Future ~ a function return; Stream ~ a pipe.
+
+Q2. Single-subscription vs broadcast stream?
+A.  Single-subscription allows ONE listener and is consumed once. Broadcast
+    supports MANY concurrent listeners. Default is single-subscription.
+
+Q3. await for vs .listen()?
+A.  `await for` consumes sequentially inside an async function and pauses your
+    code per event. `.listen()` is non-blocking, gives onData/onError/onDone,
+    and returns a StreamSubscription you can pause/cancel.
+
+Q4. How do you create a stream?
+A.  async* generator (yield), a StreamController (manual .add), or factories
+    like Stream.fromIterable / Stream.periodic.
+
+Q5. [GOTCHA] What happens to broadcast events with no current listener?
+A.  They're dropped — broadcast streams don't buffer. Single-subscription
+    streams pause/buffer until a listener attaches.
+
+===============================================================================
+ SECTION 4 — StreamController
+===============================================================================
+
+NOTES
+-----
+- A MANUAL stream you push events into:
+    .add(value)       -> emit a data event
+    .addError(err)    -> emit an error event (stream continues)
+    .stream           -> expose to listeners
+    .sink             -> the input side (what you pass around to producers)
+    .close()          -> fire `done` and release resources. ALWAYS close.
+- StreamController() is single-subscription; StreamController.broadcast() allows
+  many listeners.
+- This is the engine of BLoC/Cubit: UI listens to .stream; business logic adds
+  new state to .sink. In Flutter, close it in State.dispose() to avoid leaks.
+
+INTERVIEW Q&A
+-------------
+Q1. What is a StreamController used for?
+A.  To create and feed a stream manually — emit events with .add()/.addError()
+    from your own code and let listeners subscribe via .stream.
+
+Q2. [GOTCHA] What happens if you don't close a StreamController?
+A.  The stream never emits `done`, listeners stay subscribed, and you leak
+    memory. Cancel subscriptions / close controllers in dispose().
+
+Q3. How does this relate to BLoC?
+A.  BLoC/Cubit expose state as a stream backed by a controller; the UI rebuilds
+    on each emitted state (StreamBuilder), and events are pushed to the sink.
+
+Q4. sink vs stream?
+A.  sink = the WRITE side (add events in). stream = the READ side (listen out).
+    Separating them lets you hand producers a sink and consumers a stream.
+
+===============================================================================
+ CAPSTONE 2 — PERSONAL EXPENSE TRACKER (06_capstone_expense_tracker.dart)
+===============================================================================
+A menu-driven console app (Add/View/Delete/Search/Total/Category/Monthly/Exit).
+Run the scripted demo by default, or the real stdin menu with `-i`.
+
+  Concept -> where it shows up:
+    enum (enhanced)        -> ExpenseCategory (label getter + parse())
+    constructors           -> Expense() named-params, Expense.today (redirecting
+                              named ctor), Expense.fromMap (factory)
+    inheritance / abstract -> Entity base + Expense/RecurringExpense (super, override)
+    interface              -> ExpenseRepository (implements)
+    mixin                  -> LoggerMixin (log)
+    generics               -> Storage<T>, firstOrNullWhere<T>
+    encapsulation          -> private _storage, monthlyBudget getter/setter (validates)
+    extension              -> double.toCurrency() (₹)
+    typedef                -> ExpenseFilter for search
+    collections+functional -> where/map/fold/any/every/firstWhere/sort, Map, Set
+    exceptions             -> ExpenseNotFoundException, try/catch, ArgumentError
+    async / Future         -> every repository method awaits simulated I/O
+
+  Bonus features included: category report (Map<ExpenseCategory,double>), top
+  category (reduce), monthly report (group by YYYY-MM), search (where + contains).
+
+===============================================================================
+ CAPSTONE 1 — MINI STORE (05_capstone_store.dart)
+===============================================================================
+A single program tying Days 1–4 together. Concept -> where it shows up:
+
+  Data types / null safety -> Product fields, T? lookups, ?? fallback, ! none needed
+  var / final / const      -> throughout; const CartItem, const JSON payload
+  Functions                -> percentOff() closure, applyDiscount() higher-order,
+                              typedef DiscountRule, named/required params on exceptions
+  Collections + functional -> where/map (lazy), toSet (unique categories),
+                              fold (group-by + totals), reduce (cheapest)
+  Encapsulation            -> Product._stock private, getters, reduceStock/restock
+  Abstract + interface     -> PaymentMethod (abstract), Identifiable (interface)
+  Inheritance + polymorph. -> CreditCard extends, Wallet implements; checkout takes
+                              any PaymentMethod
+  Mixin                    -> Logger mixed into StoreApi & OrderService
+  Constructors             -> default + init list, const, factory Product.fromJson
+  Generics                 -> Repository<T extends Identifiable>
+  Enums                    -> enhanced Category & OrderStatus (label field)
+  Extensions               -> num.asPrice, String.capitalized
+  Exceptions               -> OutOfStock/PaymentFailed, try/catch/on/finally
+  Async                    -> async/await, Future.delayed, Future.wait (parallel load)
+  Streams                  -> OrderService broadcast status feed, listen + cancel
+
+Stretch goals:
+  - add a search() that filters catalog by name (where + contains).
+  - make checkout emit progress as a Stream<double> (0.0 -> 1.0).
+  - add a coupon system: List<DiscountRule> applied in sequence with fold.
+  - persist orders in a Repository<Order> and print an order history report.
+
+===============================================================================
+ ONE-LINE MEMORY HOOKS (revise before the interview)
+===============================================================================
+- Future = one async value ; Stream = many async values over time.
+- async/await = concurrency on ONE thread (suspend/resume), NOT parallelism.
+- async fn always returns a Future ; throw inside -> Future error.
+- Future.delayed = schedule later ; Future.wait = run in parallel (time = max).
+- Future.wait fails fast if any errors ; guard with per-future catchError.
+- try/catch around await ≈ .then().catchError() ; whenComplete ≈ finally.
+- .timeout() bounds slow calls (TimeoutException).
+- await for / .listen() consume streams ; map/where lazy, fold/first/toList = Future.
+- single-subscription = 1 listener ; broadcast = many (no buffering).
+- StreamController: .add/.addError -> .stream ; ALWAYS .close() (dispose()).
+- StreamController is the BLoC/Cubit engine: sink in, stream out.
+===============================================================================
