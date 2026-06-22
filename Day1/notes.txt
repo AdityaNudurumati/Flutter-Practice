@@ -351,6 +351,50 @@ Trace: each call runs `++count` (increment THEN return) on the SAME count:
   a(); a();   // 1, 2
   b();        // 1  — b has its OWN count, unaffected by a.
 
+PASSING A FUNCTION AS AN ARGUMENT — how the lambda "connects" [common confusion]
+--------------------------------------------------------------------------------
+The thing that confuses everyone about groupBy(people, (p) => p.city):
+HOW does `(p) => p.city` connect to the parameter `String Function(Person) getKey`
+and to the later call `getKey(person)`? Forget groupBy and build it up:
+
+  1) A function CALL just substitutes the argument:
+        void greet(String name) => print('Hello $name');
+        greet('Aditya');     // name = 'Aditya' -> Hello Aditya
+
+  2) A function is a VALUE you can store (no () = the function itself):
+        String getCity(Person p) => p.city;
+        var fn = getCity;            // fn now POINTS to getCity
+        fn(alice);                   // identical to getCity(alice)
+
+  3) So you can PASS a function into another function. The parameter's type just
+     describes the shape of the function it accepts:
+        void execute(String Function(String) f) => print(f('Aditya'));
+        String shout(String s) => s.toUpperCase();
+        execute(shout);              // f = shout; f('Aditya') -> 'ADITYA'
+     `String Function(String)` reads as "a function taking a String, returning a
+     String". (Pass the reference `shout`, NOT `shout()` — see the () gotcha below.)
+
+  4) Now groupBy's 2nd parameter `String Function(Person) getKey` is the SAME idea
+     — "a function taking a Person, returning a String." When you call:
+        groupBy(people, getCity);          // getKey = getCity
+     then inside groupBy `final key = getKey(person);` is literally `getCity(person)`.
+
+  5) The lambda is just an unnamed version of that function. These two are equal:
+        groupBy(people, getCity);
+        groupBy(people, (p) => p.city);    // getKey = (p) => p.city
+     Tracing one iteration with the lambda:
+        item = alice
+        key  = getKey(item)
+             = ((p) => p.city)(alice)      // substitute p = alice
+             = alice.city
+             = 'Mumbai'
+
+MENTAL MODEL — the callback is a "remote control": groupBy doesn't know whether to
+group by city, age, or department. It asks the function YOU handed it, once per
+item: "which bucket does this go in?" Whatever that function returns becomes the
+map key. This is the essence of a higher-order function — and the same mechanism
+behind map, where, sort's compare, fold, forEach, and every Flutter callback.
+
 FIRST-CLASS FUNCTION vs CLOSURE (two different concepts, often confused)
 -----------------------------------------------------------------------
 makeAdder shows BOTH at once — but they are NOT the same thing:
@@ -482,6 +526,279 @@ ITERABLE METHODS (know these COLD):
 COLLECTION-IF / COLLECTION-FOR / SPREAD (very common in Flutter widget trees):
   [a, ...other, if (cond) b, for (var x in xs) x*2]
 
+reduce() vs fold() — DEEP DIVE
+------------------------------
+Both COMBINE all elements of a collection into a SINGLE value. The difference is
+WHERE the accumulation starts.
+
+reduce(f)
+  final product = nums.reduce((acc, n) => acc + n);
+  - Uses the FIRST element of the list as the initial accumulator (acc).
+  - Starts iterating from the SECOND element.
+  - CANNOT be used on an empty list (throws a Bad state / No element error).
+
+  List<int> nums = [10, 20, 30];
+  final sum = nums.reduce((acc, n) => acc + n);
+  // Step 1: acc = 10, n = 20 -> 30
+  // Step 2: acc = 30, n = 30 -> 60
+  print(sum); // 60
+
+fold(seed, f)
+  final sum = nums.fold(0, (acc, n) => acc + n);
+  - YOU provide the initial value (the seed, 0 here).
+  - Iteration starts from the FIRST element.
+  - Works even on an EMPTY list (returns the seed).
+
+  List<int> nums = [10, 20, 30];
+  final sum = nums.fold(0, (acc, n) => acc + n);
+  // Step 1: acc = 0,  n = 10 -> 10
+  // Step 2: acc = 10, n = 20 -> 30
+  // Step 3: acc = 30, n = 30 -> 60
+  print(sum); // 60
+
+EMPTY-LIST BEHAVIOR [GOTCHA]
+  List<int> nums = [];
+  nums.reduce((acc, n) => acc + n);        // ERROR (no first element to seed)
+  final sum = nums.fold(0, (acc, n) => acc + n);
+  print(sum);                              // 0  (just the seed)
+
+fold() CAN RETURN A DIFFERENT TYPE (reduce CANNOT)
+  reduce's accumulator IS an element, so the result type must match the element
+  type. fold's accumulator is the seed, so it can be ANY type.
+
+  List<int> nums = [1, 2, 3];
+  String result = nums.fold('Numbers:', (acc, n) => '$acc $n');
+  print(result);   // Numbers: 1 2 3
+  // element type = int, result type = String
+
+WHEN TO USE WHICH
+  Combine elements into the SAME type ........... reduce()
+  Need an explicit initial value ................ fold()
+  List MIGHT be empty ........................... fold()
+  Result type DIFFERS from element type ......... fold()
+
+QUICK EXAMPLES
+  nums.fold(0, (acc, n) => acc + n);        // sum
+  nums.fold(1, (acc, n) => acc * n);        // product
+  nums.reduce((a, b) => a > b ? a : b);     // maximum
+  nums.fold('', (acc, n) => '$acc$n ');     // build a String
+
+RULE OF THUMB: reduce() = fold() without an explicit initial value. If unsure,
+fold() is the safer, more flexible choice (empty-safe + any result type).
+
+FINDING MAXIMUM — reduce() vs fold() SIDE BY SIDE
+-------------------------------------------------
+With reduce() (first element is a natural starting point):
+  List<int> nums = [5, 2, 8, 3, 6];
+  final max = nums.reduce((a, b) => a > b ? a : b);
+  print(max); // 8
+
+With fold() seeding from the first element:
+  List<int> nums = [5, 2, 8, 3, 6];
+  final max = nums.fold(nums.first, (a, b) => a > b ? a : b);
+  print(max); // 8
+
+  Trace (acc starts at 5):
+    5 vs 5 -> 5
+    5 vs 2 -> 5
+    5 vs 8 -> 8
+    8 vs 3 -> 8
+    8 vs 6 -> 8
+  Result: 8
+
+A better fold() seed — if you know a floor value, seed with it instead:
+  final max = nums.fold(-999999, (a, b) => a > b ? a : b);
+
+  // cleanest with dart:math:
+  import 'dart:math';
+  final max = nums.fold(-double.infinity, (a, b) => max(a, b));
+
+So why use reduce() here at all?
+  When you combine elements of the SAME type and the first element is a natural
+  starting value, reduce() is cleaner — no seed to invent:
+    nums.reduce((a, b) => a > b ? a : b);          // clean
+    nums.fold(nums.first, (a, b) => a > b ? a : b); // same result, more noise
+
+RULE OF THUMB (max/min flavour):
+  - First element can act as the start -> reduce().
+  - Need a custom start value or a different result type -> fold().
+
+  // Sum
+  nums.reduce((a, b) => a + b);
+  nums.fold(0, (a, b) => a + b);
+  // Max
+  nums.reduce((a, b) => a > b ? a : b);
+  nums.fold(nums.first, (a, b) => a > b ? a : b);
+  // List -> String  (IMPOSSIBLE with reduce: result type String != element int)
+  nums.fold('', (a, b) => '$a$b');
+
+GROUP BY A KEY — putIfAbsent DEEP DIVE (see 04_problems.dart #3)
+---------------------------------------------------------------
+Goal: turn a flat list into a Map<Key, List<Value>> (a "bucket per key"). This
+is THE classic interview pattern and the engine behind package:collection groupBy.
+
+  Map<K, List<T>> groupBy<T, K>(Iterable<T> items, K Function(T) keyOf) {
+    final result = <K, List<T>>{};
+    for (final item in items) {
+      final key = keyOf(item);
+      result.putIfAbsent(key, () => <T>[]).add(item);   // <- does all the work
+    }
+    return result;
+  }
+
+  final byCity = groupBy(people, (p) => p.city);  // K=String, T=Person
+  // {Mumbai: [Alice, Carol], Delhi: [Bob, Dan], Pune: [Eve]}
+
+The one line that matters:
+  result.putIfAbsent(key, () => <T>[]).add(item);
+  = "get the bucket list for this key (creating an empty one if it's the first
+     time we've seen the key), then append item to it."
+  Verbose equivalent:
+    if (!result.containsKey(key)) result[key] = <T>[];
+    result[key]!.add(item);
+
+Two subtle points interviewers probe [GOTCHA]:
+  1) The 2nd arg is a FUNCTION `() => <T>[]`, not a value `<T>[]`. It's LAZY —
+     the empty list is built ONLY when the key is missing. Passing a plain
+     `<T>[]` would allocate a throwaway list on every iteration.
+  2) putIfAbsent RETURNS the value either way: the new list on a fresh key, the
+     existing list on a repeat key. That's why one line handles both the
+     "Mumbai first time" and "Mumbai again" cases with no if-statement.
+  Note: `result[key]!` needs `!` because a map lookup is typed `List<T>?`
+  (lookups can be null) — the containsKey check above guarantees it's non-null.
+
+  BEGINNER MENTAL MODEL (ignore the generics <T,K> at first):
+    Think of it like sorting students into classrooms by city. Walk the list one
+    person at a time; the city is the classroom name. If that classroom doesn't
+    exist yet, open an empty one; then put the person inside it.
+      Map<String, List<Person>> result = {};
+      for (var person in people) {
+        String city = person.city;
+        if (!result.containsKey(city)) result[city] = [];   // open classroom
+        result[city]!.add(person);                          // seat the person
+      }
+    The generic version is the SAME four steps — take a person, get the key, make
+    the bucket if missing, add to it — just written to work for ANY type, not only
+    Person/String. Get comfy with this loop first; then putIfAbsent reads as the
+    short form of the if-check + add.
+
+  READING THE SIGNATURE — what <T, K> and `K Function(T)` mean:
+    Map<K, List<T>> groupBy<T, K>(Iterable<T> items, K Function(T) keyOf)
+    - <T, K> are TYPE PLACEHOLDERS filled in per call (like function args, but for
+      types). T = type of each item; K = type of the grouping key.
+    - Dart INFERS them from the arguments — you rarely write them at the call site:
+        groupBy(people,  (p) => p.city)    // T=Person, K=String -> Map<String, List<Person>>
+        groupBy(numbers, (n) => n.isEven)  // T=int,    K=bool   -> Map<bool,   List<int>>
+        // {true: [2,4], false: [1,3,5]}
+        groupBy(fruits,  (f) => f[0])      // T=String, K=String -> Map<String, List<String>>
+        // {A: [Apple, Avocado], B: [Banana, Berry]}
+    - `K Function(T) keyOf` is a FUNCTION-TYPE parameter: "a function that takes a T
+      and returns a K." For people that's `String Function(Person)`. The lambda
+      `(p) => p.city` IS such a function — shorthand for:
+          String getCity(Person p) => p.city;
+      so groupBy(people, (p) => p.city) == groupBy(people, getCity).
+    - keyOf answers ONE question per item: "which bucket does this go into?"
+    This is why ONE generic function replaces a separate group-people-by-city,
+    group-numbers-by-even, group-fruits-by-letter, etc. (links to Section 3's
+    first-class functions + typedef.)
+
+  [GOTCHA] You MUST declare T/K with <...> before you use them. If a type name
+  like T or K appears anywhere in a signature, it has to be introduced by a
+  <...> clause first — otherwise the compiler doesn't know what it means.
+    correct:  Map<K, List<T>> groupBy<T, K>(Iterable<T> items, K Function(T) keyOf)
+    wrong:    Map<K, List<T>> groupBy(Iterable<T> items, K Function(T) keyOf)
+              // ERROR: 'T'/'K' undefined — never declared.
+    Same idea as ordinary variables: `print(x)` fails if x was never declared;
+    `Map<K, List<T>>` fails if <T, K> was never declared.
+    Where the <...> goes:
+      - function/method:  T identity<T>(T value) => value;   // identity<int>(10)
+      - class:            class Box<T> { T value; ... }
+      - bound (optional): <T extends num>  // T must be a num subtype
+    Escape hatch: if you DON'T need it reusable, drop generics and use concrete
+    types — then no <...> is needed because nothing is a placeholder:
+        Map<String, List<Person>> groupBy(
+            List<Person> people, String Function(Person) getKey) { ... }
+    Trade-off: that version works ONLY for Person/String; the generic one works
+    for any item+key type. Generics buy reuse at the cost of the <...> ceremony.
+
+  [GOTCHA] The buckets hold the FULL items, not the key-derived display value:
+    final byCity = groupBy(people, (p) => p.city);
+    // byCity['Mumbai'] is [Person(Alice), Person(Carol)] — whole Person objects,
+    // NOT ['Alice','Carol']. Type is Map<String, List<Person>>.
+    You only see names in the printout because of the .map at print time:
+        print('$city: ${group.map((p) => p.name).toList()}');  // List<Person> -> List<String>
+    That transform is just for DISPLAY; the map still stores complete Person objects.
+    - print('$city: $group') without the .map shows: [Instance of 'Person', ...]
+      because Person has no toString(). Add one to see real details:
+          @override
+          String toString() => 'Person(name: $name, city: $city)';
+    (Same idea as Section 1: a class prints as "Instance of 'X'" until you override
+    toString().)
+
+  HOW THIS FUNCTION EVOLVES (5 stages — how a dev grows into the generic version):
+    Stage 1 — Hardcoded logic, inline in main(). Just solve it:
+        Map<String, List<Person>> result = {};
+        for (var p in people) {
+          if (!result.containsKey(p.city)) result[p.city] = [];
+          result[p.city]!.add(p);
+        }
+    Stage 2 — Extract into a function (input -> output, reusable call site):
+        Map<String, List<Person>> groupPeopleByCity(List<Person> people) { ...same... }
+    Stage 3 — Replace the if-check with putIfAbsent (cleaner):
+        result.putIfAbsent(p.city, () => []);
+        result[p.city]!.add(p);
+    Stage 4 — Pass the KEY rule as a parameter, so it's not locked to city:
+        Map<String, List<Person>> groupBy(
+            List<Person> people, String Function(Person) getKey) { ... }
+        groupBy(people, (p) => p.city);   // today city, tomorrow p.age, etc.
+      (still Person-only; the only new idea is "behavior as a parameter".)
+    Stage 5 — Make item AND key types generic, so it works for ANY collection:
+        Map<K, List<T>> groupBy<T, K>(Iterable<T> items, K Function(T) keyOf) { ... }
+        groupBy(people, (p) => p.city)     // Map<String, List<Person>>
+        groupBy(nums,   (n) => n.isEven)   // Map<bool,   List<int>>
+        groupBy(words,  (w) => w[0])       // Map<String, List<String>>
+    The arc: hardcoded -> function -> cleaner -> behavior-as-parameter -> generic.
+    Each stage changes ONE thing; the loop's core idea never changes.
+
+REVERSE A STRING — split('').reversed.join() DEEP DIVE (see 04_problems.dart #1)
+-------------------------------------------------------------------------------
+Goal: reverse a string. Dart strings are immutable and not directly indexable as
+a list, so the idiomatic move is: chars -> reverse -> rejoin.
+
+  void reversedString(String val) {
+    print(val.split('').reversed.join());
+  }
+  reversedString("hello");   // olleh
+
+Step by step (with the TYPE at each stage — interviewers love this):
+  Expression                       Result                   Type
+  "hello"                          "hello"                  String
+  .split('')                       [h, e, l, l, o]          List<String>
+  .reversed                        (o, l, l, e, h)          Iterable<String>  <- NOT a List!
+  .join()                          "olleh"                  String
+
+  - split('')  : breaks the string into a list of single-character strings.
+  - reversed   : returns a LAZY Iterable in reverse order (no new list built yet).
+  - join()     : concatenates all elements into one String. join('-') inserts a
+                 separator -> "o-l-l-e-h".
+
+Verbose equivalent (same thing, named locals):
+  void reversedString(String val) {
+    List<String> chars        = val.split('');
+    Iterable<String> reversed = chars.reversed;
+    String result             = reversed.join();
+    print(result);
+  }
+
+[GOTCHA] split('') is NOT Unicode-correct. It splits by UTF-16 code units, so
+emoji and combined characters (e.g. flags, skin-tone emoji, accented letters made
+of base+combining marks) get torn apart and reversed wrongly.
+  - ASCII / simple text  -> split('').reversed.join()  is the expected answer.
+  - Unicode-safe         -> use runes, or `characters` from package:characters:
+        import 'package:characters/characters.dart';
+        final r = text.characters.toList().reversed.join();  // grapheme-safe
+Mention this caveat in an interview — it shows you know strings aren't just bytes.
+
 INTERVIEW Q&A
 -------------
 Q1. Difference between List, Set and Map?
@@ -565,6 +882,111 @@ INITIALIZER LIST ORDER [GOTCHA]:
   2) then super constructor,
   3) then the constructor body.
   You cannot use `this` in the initializer list (object not built yet).
+
+WORKED EXAMPLE — BankAccount -> SavingsAccount (see 05_oop_bank_account.dart)
+----------------------------------------------------------------------------
+ONE example that hits ~70-80% of OOP interview topics: class/object, fields,
+encapsulation, constructor, initializer list, assert, getter, methods,
+exceptions, inheritance, super, override, polymorphism, toString.
+
+  CLASS = blueprint ; OBJECT = a thing built from it.
+    final acc = BankAccount(owner: 'Aditya', openingBalance: 1000);  // acc is the object
+
+  FIELDS + ENCAPSULATION:
+    final String owner;   // public, set once
+    double _balance;      // _ = library-private -> outside code CANNOT do acc._balance = 9
+    Balance changes ONLY through deposit()/withdraw(), so it can't go inconsistent.
+
+  CONSTRUCTOR + INITIALIZER LIST + ASSERT:
+    BankAccount({required this.owner, double openingBalance = 0})
+        : assert(openingBalance >= 0, 'Opening balance cannot be negative'),
+          _balance = openingBalance;
+    - `required this.owner` assigns the field straight from the named arg.
+    - the part after `:` is the INITIALIZER LIST — runs BEFORE the body. assert
+      blocks a negative opening balance; `_balance = openingBalance` seeds balance.
+      (final fields like this MUST be set here or inline, not in the body.)
+
+  GETTER (read-only public window onto a private field):
+    double get balance => _balance;
+    acc.balance;        // reads fine -> 1000
+    acc.balance = 5000; // COMPILE ERROR — no setter, so it's read-only
+
+  METHODS mutate through guarded entry points:
+    deposit(500)  -> _balance += amount   (throws ArgumentError if amount <= 0)
+    withdraw(200) -> _balance -= amount   (throws if amount<=0 or amount>balance)
+
+  EXCEPTIONS + try/catch (fail loudly instead of corrupting state):
+    withdraw(99999) -> throw InsufficientFundsException(...)
+    try { acc.withdraw(99999); }
+    on InsufficientFundsException catch (e) { print('Caught: $e'); }  // no crash
+    (Custom type `implements Exception` -> a meaningful domain error, not a generic one.)
+
+  INHERITANCE (`extends`) — SavingsAccount IS-A BankAccount:
+    class SavingsAccount extends BankAccount { ... }
+    It gets owner, balance, deposit(), withdraw() FOR FREE — no rewrite.
+    Constructor forwards to the parent with `super.`:
+        SavingsAccount({required super.owner, super.openingBalance,
+                        required this.annualInterestRate});
+    New behavior of its own:
+        void applyMonthlyInterest() {            // balance 1500 @6%/yr
+          deposit(balance * annualInterestRate / 12);  // +7.50 -> reuses parent deposit
+        }
+
+  OVERRIDE + super (tighten a rule, then defer to the parent):
+    @override
+    void withdraw(double amount) {
+      if (balance - amount < minimumBalance)         // savings-only rule (keep >= 100)
+        throw InsufficientFundsException(...);
+      super.withdraw(amount);                        // then run base validation + debit
+    }
+    Base rule: withdraw if money exists. Savings rule: must keep >= 100. super.withdraw
+    avoids duplicating the base checks. (static const minimumBalance = 100 -> shared by
+    the class, not per-instance.)
+
+  POLYMORPHISM — a base-typed list holding subclass instances:
+    final List<BankAccount> portfolio = [acc, savings];  // SavingsAccount IS-A BankAccount
+    final total = portfolio.fold<double>(0, (sum, a) => sum + a.balance);  // 1300 + 1507.50
+    Treat both uniformly through the BankAccount type; the right toString()/withdraw()
+    still runs per actual subtype (dynamic dispatch). (Like List<Animal> holding Dog & Cat.)
+
+  toString() — without it `print(acc)` shows "Instance of 'BankAccount'"; overriding
+  gives "BankAccount(Aditya): balance=1300.00". (Same Instance-of point as Section 1.)
+
+  MAP OF CONCEPTS -> WHERE THEY LIVE HERE:
+    Class/Object -> BankAccount / acc        Encapsulation -> private _balance
+    Getter -> balance                        Inheritance   -> SavingsAccount extends BankAccount
+    Override -> SavingsAccount.withdraw       Polymorphism  -> List<BankAccount> holds SavingsAccount
+    Exception -> InsufficientFundsException   super -> forwards ctor + reuses withdraw
+
+assert() — DEV-TIME SANITY CHECK (used in the BankAccount constructor above)
+----------------------------------------------------------------------------
+assert(condition[, message]) checks an assumption WHILE DEVELOPING:
+  - condition true  -> nothing happens, program continues.
+  - condition false -> throws AssertionError (with your message, if given) and halts,
+    so you find the bug immediately.
+    assert(age >= 18);                         // 15 -> AssertionError
+    assert(age >= 18, 'Age must be at least 18'); // -> AssertionError: Age must be at least 18
+
+In the constructor:
+  BankAccount({required this.owner, double openingBalance = 0})
+      : assert(openingBalance >= 0, 'Opening balance cannot be negative'), _balance = ...
+  openingBalance: 1000 -> 1000 >= 0 true -> account created.
+  openingBalance: -1000 -> false -> AssertionError, object never built.
+
+[GOTCHA] assert is DEBUG-ONLY — it is STRIPPED from production (release / AOT)
+builds and does nothing there. So NEVER use it to validate real user input or
+guard security/business rules — those checks vanish in the shipped app.
+  - assert  -> "this can only be false if I (the programmer) made a mistake."
+               Catches MY bugs during development. Dev-only.
+  - if + throw -> "this CAN happen at runtime from real input." Runs in production.
+        if (amount <= 0) throw ArgumentError('must be positive');  // user-facing, always runs
+  That's exactly why BankAccount uses assert for the programmer-invariant
+  (openingBalance >= 0 at construction) but `if (...) throw` inside deposit/withdraw
+  for real runtime amounts. (Ties to Section 1: assert = compile/dev-time guard,
+  thrown exceptions = run-time and reach the user.)
+  Common spots: constructors, Flutter widget invariants, validating internal
+  assumptions. Rule: "must ALWAYS be true or it's a bug" -> assert; "might be false
+  from real input" -> if + throw.
 
 INTERVIEW Q&A
 -------------
