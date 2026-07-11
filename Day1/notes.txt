@@ -988,6 +988,71 @@ guard security/business rules — those checks vanish in the shipped app.
   assumptions. Rule: "must ALWAYS be true or it's a bug" -> assert; "might be false
   from real input" -> if + throw.
 
+throw -> catch -> toString(): WHERE THE ERROR MESSAGE ACTUALLY COMES FROM
+-------------------------------------------------------------------------
+Key idea: `throw` only SENDS AN OBJECT; it does NOT create the readable text. The
+nice message comes later, from the exception's toString() when you print it.
+
+Trace (savings.withdraw(1500), balance 1507.50, minimumBalance 100):
+  1) throw builds and sends an OBJECT (an exception is just a normal object):
+        throw InsufficientFundsException(
+          requested: 1500, available: 1407.50,
+          reason: 'must keep minimum balance of 100.0');
+     The constructor `{required this.requested, ...}` stores those fields, then
+     `throw` immediately STOPS the method and propagates the object up.
+  2) catch binds that same object to `e`:
+        try { savings.withdraw(1500); }
+        on InsufficientFundsException catch (e) { print('Caught: $e'); }
+     `on Type catch (e)` catches only that type; e IS the thrown object.
+  3) `'$e'` needs a String, but e is an object -> Dart AUTO-CALLS e.toString().
+     That's the whole trick — string interpolation calls toString() for you.
+  4) Your override builds the text from the fields:
+        @override String toString() {
+          final base = 'InsufficientFunds: requested ${requested.toStringAsFixed(2)}, '
+                       'available ${available.toStringAsFixed(2)}';
+          return reason == null ? base : '$base ($reason)';
+        }
+     -> "InsufficientFunds: requested 1500.00, available 1407.50 (must keep minimum balance of 100.0)"
+  Final: Caught: InsufficientFunds: requested 1500.00, available 1407.50 (must keep minimum balance of 100.0)
+
+[GOTCHA] No toString() override -> printing an exception shows "Instance of
+'InsufficientFundsException'" (useless). The readable message is NOT magic from
+throw — it's entirely from your toString(). (Same Instance-of rule as any class;
+see Section 1 and the BankAccount toString above.)
+
+Mental model:
+  throw object -> caught as e -> print('$e') -> e.toString() -> your message -> shown
+  - throw    = "stop and send this object up."
+  - catch    = "receive that object as e."
+  - toString = "turn the object into human-readable text" (called automatically by $e).
+
+WHY `implements Exception` ON A CUSTOM EXCEPTION (see InsufficientFundsException)
+--------------------------------------------------------------------------------
+  class InsufficientFundsException implements Exception { ... }
+`implements X` = "I promise to provide X's contract (its members), with NO code
+reused from X." (vs `extends` = inherit X's code; see the extends/implements/with
+gotcha earlier in this section — not repeated here.)
+
+For exceptions the twist: Dart's `Exception` is basically an EMPTY MARKER type — it
+has no methods to implement. So `implements Exception` adds NO required code; it's
+a LABEL announcing intent: "this class is meant to be thrown and caught."
+
+[GOTCHA] It's not even mandatory — Dart lets you throw ANY object:
+    class InsufficientFundsException { final String message; ... }  // no 'implements'
+    throw InsufficientFundsException('Not enough balance');          // still works
+  So why bother? Two reasons:
+    1) Intent/readability — `implements Exception` documents "this is an error type,"
+       and tooling/linters treat it as one.
+    2) Type-safe catching — lets `on InsufficientFundsException catch (e)` (and
+       `on Exception`) target it precisely instead of a bare `catch (e)`.
+  Minimal custom exception template:
+    class AgeException implements Exception {
+      final String message;
+      AgeException(this.message);
+      @override String toString() => message;   // so print(e) shows the text (see above)
+    }
+    throw AgeException('Age must be at least 18');
+
 INTERVIEW Q&A
 -------------
 Q1. How is privacy implemented in Dart?
