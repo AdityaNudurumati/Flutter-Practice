@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Motion communicates state, hierarchy, and continuity. Flutter's animation system is built on `Animation`/`AnimationController`/`Tween`/`Curve`, driven per-frame by the scheduler ([Module 09](../09%20Rendering%20Pipeline/scheduler_and_vsync.md)). This module covers implicit animations, explicit control, staggered/choreographed sequences, physics/gesture-driven motion, and animation performance.
+Motion communicates state, hierarchy, and continuity. Flutter's animation system is built on `Animation`/`AnimationController`/`Tween`/`Curve`, driven per-frame by the scheduler ([Module 09](../09%20Rendering%20Pipeline/07_scheduler_and_vsync.md)). This module covers implicit animations, explicit control, staggered/choreographed sequences, physics/gesture-driven motion, and animation performance.
 
 ## Why this module exists
 
@@ -12,18 +12,18 @@ Good motion elevates UX; bad motion janks or distracts. Knowing when to use the 
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [animation_fundamentals.md](animation_fundamentals.md) | `Animation`/`AnimationController`/`Tween`/`Curve` | 🔵 |
-| 2 | [implicit_animations.md](implicit_animations.md) | `AnimatedFoo`/`TweenAnimationBuilder` | 🟢 |
-| 3 | [explicit_animations.md](explicit_animations.md) | Controllers, `AnimatedBuilder`, transitions | 🔵 |
-| 4 | [staggered_and_choreographed.md](staggered_and_choreographed.md) | `Interval`, sequences, `AnimatedList` | 🔴 |
-| 5 | [physics_and_gesture_driven.md](physics_and_gesture_driven.md) | Springs/physics, gesture-driven motion | 🔴 |
-| 6 | [animation_performance.md](animation_performance.md) | Keeping animations smooth | 🔴 |
+| 1 | [01_animation_fundamentals.md](01_animation_fundamentals.md) | `Animation`/`AnimationController`/`Tween`/`Curve` | 🔵 |
+| 2 | [02_implicit_animations.md](02_implicit_animations.md) | `AnimatedFoo`/`TweenAnimationBuilder` | 🟢 |
+| 3 | [03_explicit_animations.md](03_explicit_animations.md) | Controllers, `AnimatedBuilder`, transitions | 🔵 |
+| 4 | [04_staggered_and_choreographed.md](04_staggered_and_choreographed.md) | `Interval`, sequences, `AnimatedList` | 🔴 |
+| 5 | [05_physics_and_gesture_driven.md](05_physics_and_gesture_driven.md) | Springs/physics, gesture-driven motion | 🔴 |
+| 6 | [06_animation_performance.md](06_animation_performance.md) | Keeping animations smooth | 🔴 |
 
-> **Cross-references:** Scheduler/`Ticker`/vsync: [09 · scheduler_and_vsync](../09%20Rendering%20Pipeline/scheduler_and_vsync.md). Raster/repaint isolation: [09 · compositing](../09%20Rendering%20Pipeline/compositing_and_repaint_boundaries.md), [21 · jank_and_raster](../21%20Performance/jank_and_raster.md). Dispose controllers: [08 · dispose_and_leaks](../08%20Widget%20Lifecycle/dispose_and_leaks.md). Hero/route transitions: [12 · route_transitions](../12%20Navigation/route_transitions.md). Custom painting: [Module 23](../23%20Custom%20Painting/README.md).
+> **Cross-references:** Scheduler/`Ticker`/vsync: [09 · scheduler_and_vsync](../09%20Rendering%20Pipeline/07_scheduler_and_vsync.md). Raster/repaint isolation: [09 · compositing](../09%20Rendering%20Pipeline/05_compositing_and_repaint_boundaries.md), [21 · jank_and_raster](../21%20Performance/03_jank_and_raster.md). Dispose controllers: [08 · dispose_and_leaks](../08%20Widget%20Lifecycle/05_dispose_and_leaks.md). Hero/route transitions: [12 · route_transitions](../12%20Navigation/06_route_transitions.md). Custom painting: [Module 23](../23%20Custom%20Painting/README.md).
 
 ## Prerequisites
 
-[08 Widget Lifecycle](../08%20Widget%20Lifecycle/README.md), [09 · scheduler_and_vsync](../09%20Rendering%20Pipeline/scheduler_and_vsync.md), [21 · jank_and_raster](../21%20Performance/jank_and_raster.md).
+[08 Widget Lifecycle](../08%20Widget%20Lifecycle/README.md), [09 · scheduler_and_vsync](../09%20Rendering%20Pipeline/07_scheduler_and_vsync.md), [21 · jank_and_raster](../21%20Performance/03_jank_and_raster.md).
 
 ## What you'll be able to do after this module
 

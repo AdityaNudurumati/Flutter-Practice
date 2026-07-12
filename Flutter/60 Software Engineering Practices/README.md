@@ -28,12 +28,12 @@ Where a topic already has a tool-level module in this handbook (CI/CD, Monitorin
 
 | # | File | Practice focus | Pairs with (mechanics) |
 |---|------|----------------|------------------------|
-| 1 | [`version_control_git.md`](version_control_git.md) | Git object model, branching, PRs, rebase vs merge, GitHub/GitLab flow, monorepo vs polyrepo | [45 Modular · monorepo & melos](../45%20Modular%20Architecture/monorepo_and_melos.md) |
-| 2 | [`agile_and_collaboration.md`](agile_and_collaboration.md) | Agile/Scrum/Kanban, estimation, ceremonies, code ownership, working in a team | [58 Senior Architect Notes · leadership](../58%20Senior%20Architect%20Notes/leadership_and_mentorship.md) |
-| 3 | [`code_quality_and_review.md`](code_quality_and_review.md) | Clean code, refactoring, code review, linters, engineering best practices | [04 SOLID](../04%20SOLID%20Principles/README.md), [49 Testing](../49%20Testing/README.md) |
-| 4 | [`documentation_and_design_docs.md`](documentation_and_design_docs.md) | READMEs, RFCs / design docs, ADRs, diagrams, writing for engineers | [58 · decision frameworks & ADRs](../58%20Senior%20Architect%20Notes/decision_frameworks_and_tradeoffs.md) |
-| 5 | [`delivery_and_release.md`](delivery_and_release.md) | CI/CD as practice, feature flags, canary/blue-green/staged rollout, store publishing | [50 CI CD](../50%20CI%20CD/README.md), [51 Deployment](../51%20Deployment/README.md) |
-| 6 | [`observability_as_practice.md`](observability_as_practice.md) | Logs/metrics/traces, SLI/SLO/SLA, alerting, on-call, incident response | [52 Monitoring](../52%20Monitoring/README.md), [39 Logging](../39%20Logging/README.md) |
+| 1 | [`01_version_control_git.md`](01_version_control_git.md) | Git object model, branching, PRs, rebase vs merge, GitHub/GitLab flow, monorepo vs polyrepo | [45 Modular · monorepo & melos](../45%20Modular%20Architecture/02_monorepo_and_melos.md) |
+| 2 | [`02_agile_and_collaboration.md`](02_agile_and_collaboration.md) | Agile/Scrum/Kanban, estimation, ceremonies, code ownership, working in a team | [58 Senior Architect Notes · leadership](../58%20Senior%20Architect%20Notes/03_leadership_and_mentorship.md) |
+| 3 | [`03_code_quality_and_review.md`](03_code_quality_and_review.md) | Clean code, refactoring, code review, linters, engineering best practices | [04 SOLID](../04%20SOLID%20Principles/README.md), [49 Testing](../49%20Testing/README.md) |
+| 4 | [`04_documentation_and_design_docs.md`](04_documentation_and_design_docs.md) | READMEs, RFCs / design docs, ADRs, diagrams, writing for engineers | [58 · decision frameworks & ADRs](../58%20Senior%20Architect%20Notes/02_decision_frameworks_and_tradeoffs.md) |
+| 5 | [`05_delivery_and_release.md`](05_delivery_and_release.md) | CI/CD as practice, feature flags, canary/blue-green/staged rollout, store publishing | [50 CI CD](../50%20CI%20CD/README.md), [51 Deployment](../51%20Deployment/README.md) |
+| 6 | [`06_observability_as_practice.md`](06_observability_as_practice.md) | Logs/metrics/traces, SLI/SLO/SLA, alerting, on-call, incident response | [52 Monitoring](../52%20Monitoring/README.md), [39 Logging](../39%20Logging/README.md) |
 
 ## How this module relates to the rest of the handbook
 

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Authentication proves *who* a user is and maintains their *session*. This module covers auth fundamentals, token-based auth (JWT + access/refresh), OAuth 2.0 / social login, biometrics, and secure session management — integrating secure storage ([15](../15%20Local%20Storage/secure_storage.md)), interceptors ([16](../16%20Networking/rest_client_and_interceptors.md)), and route guards ([13](../13%20Routing/guards_and_redirects.md)).
+Authentication proves *who* a user is and maintains their *session*. This module covers auth fundamentals, token-based auth (JWT + access/refresh), OAuth 2.0 / social login, biometrics, and secure session management — integrating secure storage ([15](../15%20Local%20Storage/03_secure_storage.md)), interceptors ([16](../16%20Networking/02_rest_client_and_interceptors.md)), and route guards ([13](../13%20Routing/03_guards_and_redirects.md)).
 
 ## Why this module exists
 
@@ -12,13 +12,13 @@ Auth is security-critical and error-prone: tokens leaking to prefs/logs, no refr
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [auth_fundamentals.md](auth_fundamentals.md) | AuthN vs AuthZ, session models | 🔵 |
-| 2 | [token_auth_jwt.md](token_auth_jwt.md) | JWT, access/refresh, auto-refresh | 🔴 |
-| 3 | [oauth_and_social_login.md](oauth_and_social_login.md) | OAuth 2.0, PKCE, Google/Apple sign-in | 🔴 |
-| 4 | [biometric_auth.md](biometric_auth.md) | `local_auth`, fingerprint/face | 🔵 |
-| 5 | [session_management.md](session_management.md) | Token storage, guards, logout, lifecycle | 🔴 |
+| 1 | [01_auth_fundamentals.md](01_auth_fundamentals.md) | AuthN vs AuthZ, session models | 🔵 |
+| 2 | [02_token_auth_jwt.md](02_token_auth_jwt.md) | JWT, access/refresh, auto-refresh | 🔴 |
+| 3 | [03_oauth_and_social_login.md](03_oauth_and_social_login.md) | OAuth 2.0, PKCE, Google/Apple sign-in | 🔴 |
+| 4 | [04_biometric_auth.md](04_biometric_auth.md) | `local_auth`, fingerprint/face | 🔵 |
+| 5 | [05_session_management.md](05_session_management.md) | Token storage, guards, logout, lifecycle | 🔴 |
 
-> **Cross-references:** Secure storage: [15 · secure_storage](../15%20Local%20Storage/secure_storage.md). Interceptors/refresh: [16 · rest_client_and_interceptors](../16%20Networking/rest_client_and_interceptors.md). Route guards: [13 · guards_and_redirects](../13%20Routing/guards_and_redirects.md). Firebase Auth: [Module 18](../18%20Firebase/README.md). Security/threat model: [Module 37](../37%20Security/README.md). State (auth state): [Module 11](../11%20State%20Management/README.md).
+> **Cross-references:** Secure storage: [15 · secure_storage](../15%20Local%20Storage/03_secure_storage.md). Interceptors/refresh: [16 · rest_client_and_interceptors](../16%20Networking/02_rest_client_and_interceptors.md). Route guards: [13 · guards_and_redirects](../13%20Routing/03_guards_and_redirects.md). Firebase Auth: [Module 18](../18%20Firebase/README.md). Security/threat model: [Module 37](../37%20Security/README.md). State (auth state): [Module 11](../11%20State%20Management/README.md).
 
 ## Prerequisites
 

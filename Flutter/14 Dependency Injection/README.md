@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This module covers **how to do DI in Flutter apps** — the practical tooling that realizes the DI *pattern* from [Module 05](../05%20Design%20Patterns/dependency_injection.md). It compares `get_it`/`injectable`, Provider/Riverpod as DI, and `InheritedWidget`-based DI, plus scopes/lifetimes and testing with injected fakes.
+This module covers **how to do DI in Flutter apps** — the practical tooling that realizes the DI *pattern* from [Module 05](../05%20Design%20Patterns/21_dependency_injection.md). It compares `get_it`/`injectable`, Provider/Riverpod as DI, and `InheritedWidget`-based DI, plus scopes/lifetimes and testing with injected fakes.
 
 ## Why this module exists
 
@@ -12,17 +12,17 @@ Every non-trivial app must wire repositories, services, clients, and view models
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [di_fundamentals.md](di_fundamentals.md) | Composition root, DI vs service locator, in Flutter | 🔵 |
-| 2 | [get_it_and_injectable.md](get_it_and_injectable.md) | `get_it` service locator + `injectable` codegen | 🔵 |
-| 3 | [provider_riverpod_as_di.md](provider_riverpod_as_di.md) | Provider/Riverpod as DI containers | 🔵 |
-| 4 | [scopes_and_lifetimes.md](scopes_and_lifetimes.md) | Singleton/factory/lazy/scoped + disposal | 🔴 |
-| 5 | [testing_with_di.md](testing_with_di.md) | Injecting fakes/mocks, overrides | 🔴 |
+| 1 | [01_di_fundamentals.md](01_di_fundamentals.md) | Composition root, DI vs service locator, in Flutter | 🔵 |
+| 2 | [02_get_it_and_injectable.md](02_get_it_and_injectable.md) | `get_it` service locator + `injectable` codegen | 🔵 |
+| 3 | [03_provider_riverpod_as_di.md](03_provider_riverpod_as_di.md) | Provider/Riverpod as DI containers | 🔵 |
+| 4 | [04_scopes_and_lifetimes.md](04_scopes_and_lifetimes.md) | Singleton/factory/lazy/scoped + disposal | 🔴 |
+| 5 | [05_testing_with_di.md](05_testing_with_di.md) | Injecting fakes/mocks, overrides | 🔴 |
 
-> **Cross-references:** DI pattern + DIP: [05 · dependency_injection](../05%20Design%20Patterns/dependency_injection.md), [04 · DIP](../04%20SOLID%20Principles/dip_dependency_inversion.md). Providers as state: [Module 11](../11%20State%20Management/README.md). Singletons: [05 · singleton](../05%20Design%20Patterns/singleton.md). App entry/composition root: [06 · app_entry_point](../06%20Flutter%20Fundamentals/app_entry_point.md), [10 · embedder_and_startup](../10%20Flutter%20Architecture/embedder_and_startup.md). Testing: [Module 49](../49%20Testing/README.md).
+> **Cross-references:** DI pattern + DIP: [05 · dependency_injection](../05%20Design%20Patterns/21_dependency_injection.md), [04 · DIP](../04%20SOLID%20Principles/05_dip_dependency_inversion.md). Providers as state: [Module 11](../11%20State%20Management/README.md). Singletons: [05 · singleton](../05%20Design%20Patterns/03_singleton.md). App entry/composition root: [06 · app_entry_point](../06%20Flutter%20Fundamentals/07_app_entry_point.md), [10 · embedder_and_startup](../10%20Flutter%20Architecture/05_embedder_and_startup.md). Testing: [Module 49](../49%20Testing/README.md).
 
 ## Prerequisites
 
-[04 SOLID (DIP)](../04%20SOLID%20Principles/dip_dependency_inversion.md), [05 Design Patterns (DI/Singleton)](../05%20Design%20Patterns/dependency_injection.md), [11 State Management](../11%20State%20Management/README.md).
+[04 SOLID (DIP)](../04%20SOLID%20Principles/05_dip_dependency_inversion.md), [05 Design Patterns (DI/Singleton)](../05%20Design%20Patterns/21_dependency_injection.md), [11 State Management](../11%20State%20Management/README.md).
 
 ## What you'll be able to do after this module
 

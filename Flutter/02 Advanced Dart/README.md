@@ -12,20 +12,20 @@ Every jank bug, every "why didn't my `await` block the UI," every "how do I pars
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [event_loop.md](event_loop.md) | Event loop, microtask vs event queue, scheduling | 🟢 |
-| 2 | [async_futures.md](async_futures.md) | `Future`, `async`/`await`, error handling, `Completer` | 🟢 |
-| 3 | [streams.md](streams.md) | `Stream`, controllers, `async*`, transformers, broadcast | 🟢 |
-| 4 | [isolates.md](isolates.md) | Isolates, `Isolate.run`, `compute`, ports, true parallelism | 🔵 |
-| 5 | [generics.md](generics.md) | Generic classes/methods, bounds, variance, advanced generics | 🔵 |
-| 6 | [mixins.md](mixins.md) | `mixin`, `on`, linearization, diamond resolution | 🔵 |
-| 7 | [extension_methods.md](extension_methods.md) | Add methods to existing types | 🟢 |
-| 8 | [extension_types.md](extension_types.md) | Zero-cost wrappers (Dart 3.3+) | 🔵 |
-| 9 | [constructors_and_singletons.md](constructors_and_singletons.md) | Factory/named/private constructors, singletons, callable classes | 🔵 |
-| 10 | [immutability.md](immutability.md) | Immutable objects, `copyWith`, value equality | 🔵 |
-| 11 | [libraries_and_packages.md](libraries_and_packages.md) | `library`/`part`/`import`/`export`, pub packages | 🟢 |
-| 12 | [json_and_serialization.md](json_and_serialization.md) | `jsonEncode`/`Decode`, manual + codegen, annotations | 🟢 |
-| 13 | [memory_and_gc.md](memory_and_gc.md) | Memory model, generational GC, leaks | 🔴 |
-| 14 | [dart_compilation.md](dart_compilation.md) | Dart VM, JIT, AOT, snapshots, tree shaking | 🔴 |
+| 1 | [01_event_loop.md](01_event_loop.md) | Event loop, microtask vs event queue, scheduling | 🟢 |
+| 2 | [02_async_futures.md](02_async_futures.md) | `Future`, `async`/`await`, error handling, `Completer` | 🟢 |
+| 3 | [03_streams.md](03_streams.md) | `Stream`, controllers, `async*`, transformers, broadcast | 🟢 |
+| 4 | [04_isolates.md](04_isolates.md) | Isolates, `Isolate.run`, `compute`, ports, true parallelism | 🔵 |
+| 5 | [05_generics.md](05_generics.md) | Generic classes/methods, bounds, variance, advanced generics | 🔵 |
+| 6 | [06_mixins.md](06_mixins.md) | `mixin`, `on`, linearization, diamond resolution | 🔵 |
+| 7 | [07_extension_methods.md](07_extension_methods.md) | Add methods to existing types | 🟢 |
+| 8 | [08_extension_types.md](08_extension_types.md) | Zero-cost wrappers (Dart 3.3+) | 🔵 |
+| 9 | [09_constructors_and_singletons.md](09_constructors_and_singletons.md) | Factory/named/private constructors, singletons, callable classes | 🔵 |
+| 10 | [10_immutability.md](10_immutability.md) | Immutable objects, `copyWith`, value equality | 🔵 |
+| 11 | [11_libraries_and_packages.md](11_libraries_and_packages.md) | `library`/`part`/`import`/`export`, pub packages | 🟢 |
+| 12 | [12_json_and_serialization.md](12_json_and_serialization.md) | `jsonEncode`/`Decode`, manual + codegen, annotations | 🟢 |
+| 13 | [13_memory_and_gc.md](13_memory_and_gc.md) | Memory model, generational GC, leaks | 🔴 |
+| 14 | [14_dart_compilation.md](14_dart_compilation.md) | Dart VM, JIT, AOT, snapshots, tree shaking | 🔴 |
 
 ## Prerequisites
 

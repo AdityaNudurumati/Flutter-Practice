@@ -12,13 +12,13 @@ This module covers running Flutter on the **web**: the **rendering model** (HTML
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [web_fundamentals_and_renderers.md](web_fundamentals_and_renderers.md) | Renderers (HTML/CanvasKit/WASM), how it works, when Flutter Web fits | 🔴 |
-| 2 | [web_specific_concerns.md](web_specific_concerns.md) | URL strategy, routing/deep links, SEO, PWA, browser APIs, platform differences | 🔴 |
-| 3 | [web_performance_and_loading.md](web_performance_and_loading.md) | Initial load size, deferred loading, caching, first paint, optimization | 🔴 |
-| 4 | [responsive_and_web_ux.md](responsive_and_web_ux.md) | Responsive web, mouse/keyboard/hover, text selection, accessibility, conventions | 🟡 |
-| 5 | [web_integration.md](web_integration.md) | Capstone: a production-ready Flutter Web app | 🔴 |
+| 1 | [01_web_fundamentals_and_renderers.md](01_web_fundamentals_and_renderers.md) | Renderers (HTML/CanvasKit/WASM), how it works, when Flutter Web fits | 🔴 |
+| 2 | [02_web_specific_concerns.md](02_web_specific_concerns.md) | URL strategy, routing/deep links, SEO, PWA, browser APIs, platform differences | 🔴 |
+| 3 | [03_web_performance_and_loading.md](03_web_performance_and_loading.md) | Initial load size, deferred loading, caching, first paint, optimization | 🔴 |
+| 4 | [04_responsive_and_web_ux.md](04_responsive_and_web_ux.md) | Responsive web, mouse/keyboard/hover, text selection, accessibility, conventions | 🟡 |
+| 5 | [05_web_integration.md](05_web_integration.md) | Capstone: a production-ready Flutter Web app | 🔴 |
 
-> **Cross-references:** Responsive/adaptive UI: [Module 24](../24%20Responsive%20UI/README.md)/[Module 25](../25%20Adaptive%20UI/README.md). Performance/app size: [Module 21](../21%20Performance/README.md)/[51 · app_size](../51%20Deployment/app_size_and_build_optimization.md). Routing/deep links: [Module 13](../13%20Routing/README.md). Platform channels (web has none — JS interop): [Module 26](../26%20Platform%20Channels/README.md). Desktop (sibling target): [Module 54](../54%20Flutter%20Desktop/README.md). Rendering pipeline: [Module 09](../09%20Rendering%20Pipeline/README.md).
+> **Cross-references:** Responsive/adaptive UI: [Module 24](../24%20Responsive%20UI/README.md)/[Module 25](../25%20Adaptive%20UI/README.md). Performance/app size: [Module 21](../21%20Performance/README.md)/[51 · app_size](../51%20Deployment/04_app_size_and_build_optimization.md). Routing/deep links: [Module 13](../13%20Routing/README.md). Platform channels (web has none — JS interop): [Module 26](../26%20Platform%20Channels/README.md). Desktop (sibling target): [Module 54](../54%20Flutter%20Desktop/README.md). Rendering pipeline: [Module 09](../09%20Rendering%20Pipeline/README.md).
 
 ## Prerequisites
 

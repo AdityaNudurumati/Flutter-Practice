@@ -12,19 +12,19 @@ You can't reason about jank, repaint cost, `RepaintBoundary`, or shader compilat
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [pipeline_overview.md](pipeline_overview.md) | The full frame: build→layout→paint→composite→raster | 🔵 |
-| 2 | [build_phase.md](build_phase.md) | Dirty tracking, `BuildOwner`, rebuild scope | 🔵 |
-| 3 | [layout_phase.md](layout_phase.md) | `RenderObject.layout`, constraints/sizes, relayout boundaries | 🔴 |
-| 4 | [paint_phase.md](paint_phase.md) | Painting, `PaintingContext`, paint order | 🔵 |
-| 5 | [compositing_and_repaint_boundaries.md](compositing_and_repaint_boundaries.md) | Layers, `RepaintBoundary`, compositing | 🔴 |
-| 6 | [rasterization_skia_impeller.md](rasterization_skia_impeller.md) | GPU rasterization, Skia vs Impeller, shader jank | 🔴 |
-| 7 | [scheduler_and_vsync.md](scheduler_and_vsync.md) | `SchedulerBinding`, vsync, frame phases, threads | 🔴 |
+| 1 | [01_pipeline_overview.md](01_pipeline_overview.md) | The full frame: build→layout→paint→composite→raster | 🔵 |
+| 2 | [02_build_phase.md](02_build_phase.md) | Dirty tracking, `BuildOwner`, rebuild scope | 🔵 |
+| 3 | [03_layout_phase.md](03_layout_phase.md) | `RenderObject.layout`, constraints/sizes, relayout boundaries | 🔴 |
+| 4 | [04_paint_phase.md](04_paint_phase.md) | Painting, `PaintingContext`, paint order | 🔵 |
+| 5 | [05_compositing_and_repaint_boundaries.md](05_compositing_and_repaint_boundaries.md) | Layers, `RepaintBoundary`, compositing | 🔴 |
+| 6 | [06_rasterization_skia_impeller.md](06_rasterization_skia_impeller.md) | GPU rasterization, Skia vs Impeller, shader jank | 🔴 |
+| 7 | [07_scheduler_and_vsync.md](07_scheduler_and_vsync.md) | `SchedulerBinding`, vsync, frame phases, threads | 🔴 |
 
-> **Cross-references:** Widget/element/render trees: [06](../06%20Flutter%20Fundamentals/widgets_elements_render_objects.md). Constraints (widget usage): [07 · constraints_and_sizing](../07%20Widgets/constraints_and_sizing.md). Optimization techniques: [Module 21 Performance](../21%20Performance/README.md). Custom painting: [Module 23](../23%20Custom%20Painting/README.md). Threads/engine: [Module 10](../10%20Flutter%20Architecture/README.md).
+> **Cross-references:** Widget/element/render trees: [06](../06%20Flutter%20Fundamentals/04_widgets_elements_render_objects.md). Constraints (widget usage): [07 · constraints_and_sizing](../07%20Widgets/03_constraints_and_sizing.md). Optimization techniques: [Module 21 Performance](../21%20Performance/README.md). Custom painting: [Module 23](../23%20Custom%20Painting/README.md). Threads/engine: [Module 10](../10%20Flutter%20Architecture/README.md).
 
 ## Prerequisites
 
-[06 Flutter Fundamentals](../06%20Flutter%20Fundamentals/README.md) (three trees) and [07 Widgets](../07%20Widgets/constraints_and_sizing.md) (constraints).
+[06 Flutter Fundamentals](../06%20Flutter%20Fundamentals/README.md) (three trees) and [07 Widgets](../07%20Widgets/03_constraints_and_sizing.md) (constraints).
 
 ## What you'll be able to do after this module
 

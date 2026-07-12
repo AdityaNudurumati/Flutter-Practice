@@ -12,16 +12,16 @@ You cannot reason about Flutter performance, rebuilds, or memory without underst
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [variables_and_mutability.md](variables_and_mutability.md) | `var` / `final` / `const` / `late`, type inference | 🟢 |
-| 2 | [data_types.md](data_types.md) | `num`/`int`/`double`, `String`, `bool`, `dynamic`, `Object?` | 🟢 |
-| 3 | [operators.md](operators.md) | Arithmetic, logical, null-aware, cascade, spread | 🟢 |
-| 4 | [control_flow.md](control_flow.md) | `if`/`for`/`while`/`switch`, collection-if/for | 🟢 |
-| 5 | [functions.md](functions.md) | Params, arrow, closures, higher-order, `typedef` | 🟢 |
-| 6 | [collections.md](collections.md) | `List`/`Set`/`Map`/`Iterable`/`Queue`, lazy ops | 🟢 |
-| 7 | [null_safety.md](null_safety.md) | `?`/`!`/`??`/`??=`/`late`, sound null safety, flow analysis | 🟢 |
-| 8 | [enums.md](enums.md) | Basic & enhanced enums | 🟢 |
-| 9 | [records_and_patterns.md](records_and_patterns.md) | Records, pattern matching, destructuring (Dart 3) | 🟢 |
-| 10 | [exception_handling.md](exception_handling.md) | `throw`/`try`/`catch`/`on`/`finally`, custom exceptions | 🟢 |
+| 1 | [01_variables_and_mutability.md](01_variables_and_mutability.md) | `var` / `final` / `const` / `late`, type inference | 🟢 |
+| 2 | [02_data_types.md](02_data_types.md) | `num`/`int`/`double`, `String`, `bool`, `dynamic`, `Object?` | 🟢 |
+| 3 | [03_operators.md](03_operators.md) | Arithmetic, logical, null-aware, cascade, spread | 🟢 |
+| 4 | [04_control_flow.md](04_control_flow.md) | `if`/`for`/`while`/`switch`, collection-if/for | 🟢 |
+| 5 | [05_functions.md](05_functions.md) | Params, arrow, closures, higher-order, `typedef` | 🟢 |
+| 6 | [06_collections.md](06_collections.md) | `List`/`Set`/`Map`/`Iterable`/`Queue`, lazy ops | 🟢 |
+| 7 | [07_null_safety.md](07_null_safety.md) | `?`/`!`/`??`/`??=`/`late`, sound null safety, flow analysis | 🟢 |
+| 8 | [08_enums.md](08_enums.md) | Basic & enhanced enums | 🟢 |
+| 9 | [09_records_and_patterns.md](09_records_and_patterns.md) | Records, pattern matching, destructuring (Dart 3) | 🟢 |
+| 10 | [10_exception_handling.md](10_exception_handling.md) | `throw`/`try`/`catch`/`on`/`finally`, custom exceptions | 🟢 |
 
 > Async, `Future`, `Stream`, the event loop, isolates, generics-in-depth, mixins, extensions, and the Dart VM/AOT/JIT pipeline are covered in **[02 Advanced Dart](../02%20Advanced%20Dart/README.md)** and **[03 OOP](../03%20Object%20Oriented%20Programming/README.md)**.
 

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This module covers running work when your app **isn't in the foreground**: the **background execution model** (why the OS restricts it, background isolates, platform differences), **`workmanager`** for deferrable/periodic tasks with constraints, **Android foreground services** for user-visible ongoing work (location tracking, playback) with a persistent notification, **iOS background execution** (`BGTaskScheduler`, background fetch/processing, silent push — all strictly metered), and a capstone tying them behind a service. It builds on isolates ([Module 02](../02%20Advanced%20Dart/isolates_and_concurrency.md)), notifications ([Module 32](../32%20Notifications/README.md)), and native setup ([27](../27%20Native%20Android/README.md)/[28](../28%20Native%20iOS/README.md)).
+This module covers running work when your app **isn't in the foreground**: the **background execution model** (why the OS restricts it, background isolates, platform differences), **`workmanager`** for deferrable/periodic tasks with constraints, **Android foreground services** for user-visible ongoing work (location tracking, playback) with a persistent notification, **iOS background execution** (`BGTaskScheduler`, background fetch/processing, silent push — all strictly metered), and a capstone tying them behind a service. It builds on isolates ([Module 02](../02%20Advanced%20Dart/04_isolates.md)), notifications ([Module 32](../32%20Notifications/README.md)), and native setup ([27](../27%20Native%20Android/README.md)/[28](../28%20Native%20iOS/README.md)).
 
 ## Why this module exists
 
@@ -12,13 +12,13 @@ Sync, uploads, geofencing, and periodic refresh need to run without the UI open 
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [background_execution_model.md](background_execution_model.md) | Why background is restricted, background isolates, platform model | 🔴 |
-| 2 | [workmanager_and_periodic_tasks.md](workmanager_and_periodic_tasks.md) | `workmanager`: one-off/periodic tasks, constraints, retries | 🔴 |
-| 3 | [foreground_services_android.md](foreground_services_android.md) | Android foreground services, persistent notification, live tracking | 🔴 |
-| 4 | [ios_background_execution.md](ios_background_execution.md) | `BGTaskScheduler`, background fetch/processing, silent push, limits | 🔴 |
-| 5 | [background_integration.md](background_integration.md) | Capstone: background sync behind a service, cross-platform strategy | 🔴 |
+| 1 | [01_background_execution_model.md](01_background_execution_model.md) | Why background is restricted, background isolates, platform model | 🔴 |
+| 2 | [02_workmanager_and_periodic_tasks.md](02_workmanager_and_periodic_tasks.md) | `workmanager`: one-off/periodic tasks, constraints, retries | 🔴 |
+| 3 | [03_foreground_services_android.md](03_foreground_services_android.md) | Android foreground services, persistent notification, live tracking | 🔴 |
+| 4 | [04_ios_background_execution.md](04_ios_background_execution.md) | `BGTaskScheduler`, background fetch/processing, silent push, limits | 🔴 |
+| 5 | [05_background_integration.md](05_background_integration.md) | Capstone: background sync behind a service, cross-platform strategy | 🔴 |
 
-> **Cross-references:** Isolates: [02 · isolates](../02%20Advanced%20Dart/isolates_and_concurrency.md). Notifications (required for foreground services): [Module 32](../32%20Notifications/README.md). iOS capabilities/background modes: [28 · ios_integration](../28%20Native%20iOS/ios_integration.md). Android permissions/manifest: [27 · permissions](../27%20Native%20Android/permissions_and_manifest.md). Offline-first sync (the main use case): [Module 19](../19%20Offline%20First/README.md). Location: [29 · geolocation](../29%20Device%20Features/geolocation.md).
+> **Cross-references:** Isolates: [02 · isolates](../02%20Advanced%20Dart/04_isolates.md). Notifications (required for foreground services): [Module 32](../32%20Notifications/README.md). iOS capabilities/background modes: [28 · ios_integration](../28%20Native%20iOS/05_ios_integration.md). Android permissions/manifest: [27 · permissions](../27%20Native%20Android/04_permissions_and_manifest.md). Offline-first sync (the main use case): [Module 19](../19%20Offline%20First/README.md). Location: [29 · geolocation](../29%20Device%20Features/02_geolocation.md).
 
 ## Prerequisites
 

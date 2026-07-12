@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This module covers notifications in Flutter: **local notifications** (`flutter_local_notifications` — scheduled/immediate, channels, actions), **push via Firebase Cloud Messaging** (FCM — tokens, the foreground/background/terminated delivery model), **message types & targeting** (notification vs data messages, topics, device tokens), and **handling taps + deep links** (routing a tapped notification to the right screen), tied together in a capstone. It builds on Firebase ([Module 18](../18%20Firebase/README.md)), permissions ([27](../27%20Native%20Android/permissions_and_manifest.md)/[28](../28%20Native%20iOS/infoplist_and_permissions.md)), and deep linking ([Module 13](../13%20Routing/README.md)).
+This module covers notifications in Flutter: **local notifications** (`flutter_local_notifications` — scheduled/immediate, channels, actions), **push via Firebase Cloud Messaging** (FCM — tokens, the foreground/background/terminated delivery model), **message types & targeting** (notification vs data messages, topics, device tokens), and **handling taps + deep links** (routing a tapped notification to the right screen), tied together in a capstone. It builds on Firebase ([Module 18](../18%20Firebase/README.md)), permissions ([27](../27%20Native%20Android/04_permissions_and_manifest.md)/[28](../28%20Native%20iOS/04_infoplist_and_permissions.md)), and deep linking ([Module 13](../13%20Routing/README.md)).
 
 ## Why this module exists
 
@@ -12,13 +12,13 @@ Notifications drive re-engagement and deliver time-sensitive info, but they're d
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [local_notifications.md](local_notifications.md) | `flutter_local_notifications`: immediate/scheduled, channels, actions | 🔵 |
-| 2 | [fcm_push.md](fcm_push.md) | FCM setup, tokens, foreground/background/terminated delivery | 🔴 |
-| 3 | [message_types_and_targeting.md](message_types_and_targeting.md) | Notification vs data messages, topics, token/segment targeting | 🔴 |
-| 4 | [handling_and_deeplinks.md](handling_and_deeplinks.md) | Tap handling, cold-start routing, deep links, foreground display | 🔴 |
-| 5 | [notifications_integration.md](notifications_integration.md) | Capstone: FCM + local + deep-link routing behind a service | 🔴 |
+| 1 | [01_local_notifications.md](01_local_notifications.md) | `flutter_local_notifications`: immediate/scheduled, channels, actions | 🔵 |
+| 2 | [02_fcm_push.md](02_fcm_push.md) | FCM setup, tokens, foreground/background/terminated delivery | 🔴 |
+| 3 | [03_message_types_and_targeting.md](03_message_types_and_targeting.md) | Notification vs data messages, topics, token/segment targeting | 🔴 |
+| 4 | [04_handling_and_deeplinks.md](04_handling_and_deeplinks.md) | Tap handling, cold-start routing, deep links, foreground display | 🔴 |
+| 5 | [05_notifications_integration.md](05_notifications_integration.md) | Capstone: FCM + local + deep-link routing behind a service | 🔴 |
 
-> **Cross-references:** Firebase project/setup: [Module 18](../18%20Firebase/README.md). Permissions: [27 · permissions](../27%20Native%20Android/permissions_and_manifest.md), [28 · infoplist](../28%20Native%20iOS/infoplist_and_permissions.md), [28 · ios_integration](../28%20Native%20iOS/ios_integration.md) (APNs/background modes). Deep linking/routing: [Module 13](../13%20Routing/README.md). Background execution: [Module 33](../33%20Background%20Services/README.md). Backend send: [Module 16](../16%20Networking/README.md).
+> **Cross-references:** Firebase project/setup: [Module 18](../18%20Firebase/README.md). Permissions: [27 · permissions](../27%20Native%20Android/04_permissions_and_manifest.md), [28 · infoplist](../28%20Native%20iOS/04_infoplist_and_permissions.md), [28 · ios_integration](../28%20Native%20iOS/05_ios_integration.md) (APNs/background modes). Deep linking/routing: [Module 13](../13%20Routing/README.md). Background execution: [Module 33](../33%20Background%20Services/README.md). Backend send: [Module 16](../16%20Networking/README.md).
 
 ## Prerequisites
 

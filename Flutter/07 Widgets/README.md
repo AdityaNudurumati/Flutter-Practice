@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Widgets are Flutter's building blocks — *everything* is a widget: layout, styling, gestures, even the app itself. This module is the practical catalog: how to lay out, size, scroll, style, and compose widgets, and how to build your own. It builds directly on the three-trees model from [Module 06](../06%20Flutter%20Fundamentals/widgets_elements_render_objects.md).
+Widgets are Flutter's building blocks — *everything* is a widget: layout, styling, gestures, even the app itself. This module is the practical catalog: how to lay out, size, scroll, style, and compose widgets, and how to build your own. It builds directly on the three-trees model from [Module 06](../06%20Flutter%20Fundamentals/04_widgets_elements_render_objects.md).
 
 ## Why this module exists
 
@@ -12,15 +12,15 @@ Knowing *what widget to reach for* and *how layout/constraints work* is the day-
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [widget_categories.md](widget_categories.md) | The kinds of widgets and how to navigate the catalog | 🟢 |
-| 2 | [layout_flex.md](layout_flex.md) | `Row`/`Column`/`Flex`/`Expanded`/`Flexible`/`Spacer`, alignment | 🟢 |
-| 3 | [constraints_and_sizing.md](constraints_and_sizing.md) | Constraints go down, sizes go up; `Container`/`SizedBox`/`ConstrainedBox` | 🔵 |
-| 4 | [stack_and_positioning.md](stack_and_positioning.md) | `Stack`/`Positioned`/`Align`/`Alignment` (overlap layout) | 🟢 |
-| 5 | [scrolling_and_slivers.md](scrolling_and_slivers.md) | `ListView`/`GridView`/`CustomScrollView`/slivers | 🔵 |
-| 6 | [text_and_theming.md](text_and_theming.md) | `Text`/`TextStyle`/`Theme`/`TextTheme` | 🟢 |
-| 7 | [images_and_assets.md](images_and_assets.md) | `Image`, assets, network, caching, `pubspec` | 🟢 |
-| 8 | [input_and_forms.md](input_and_forms.md) | `TextField`/`Form`/validation/buttons/gestures | 🔵 |
-| 9 | [custom_composite_widgets.md](custom_composite_widgets.md) | Building your own widgets by composition | 🔵 |
+| 1 | [01_widget_categories.md](01_widget_categories.md) | The kinds of widgets and how to navigate the catalog | 🟢 |
+| 2 | [02_layout_flex.md](02_layout_flex.md) | `Row`/`Column`/`Flex`/`Expanded`/`Flexible`/`Spacer`, alignment | 🟢 |
+| 3 | [03_constraints_and_sizing.md](03_constraints_and_sizing.md) | Constraints go down, sizes go up; `Container`/`SizedBox`/`ConstrainedBox` | 🔵 |
+| 4 | [04_stack_and_positioning.md](04_stack_and_positioning.md) | `Stack`/`Positioned`/`Align`/`Alignment` (overlap layout) | 🟢 |
+| 5 | [05_scrolling_and_slivers.md](05_scrolling_and_slivers.md) | `ListView`/`GridView`/`CustomScrollView`/slivers | 🔵 |
+| 6 | [06_text_and_theming.md](06_text_and_theming.md) | `Text`/`TextStyle`/`Theme`/`TextTheme` | 🟢 |
+| 7 | [07_images_and_assets.md](07_images_and_assets.md) | `Image`, assets, network, caching, `pubspec` | 🟢 |
+| 8 | [08_input_and_forms.md](08_input_and_forms.md) | `TextField`/`Form`/validation/buttons/gestures | 🔵 |
+| 9 | [09_custom_composite_widgets.md](09_custom_composite_widgets.md) | Building your own widgets by composition | 🔵 |
 
 > **Cross-references:** The layout *pipeline* (constraints/layout/paint internals) is [Module 09](../09%20Rendering%20Pipeline/README.md). Custom drawing is [Module 23](../23%20Custom%20Painting/README.md). Responsive/adaptive layout are Modules [24](../24%20Responsive%20UI/README.md)/[25](../25%20Adaptive%20UI/README.md). Animations are [Module 22](../22%20Animations/README.md).
 

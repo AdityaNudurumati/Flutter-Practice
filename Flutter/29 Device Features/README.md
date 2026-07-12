@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This module covers accessing **native device capabilities** from Flutter through plugins: the **camera & gallery** (capture/pick images/video), **geolocation** (GPS position, streams, geocoding), **device sensors** (accelerometer/gyroscope/magnetometer + battery/connectivity/device info), and **connectivity** (network reachability). It shows how to wrap each behind a repository, handle permissions ([Module 27](../27%20Native%20Android/permissions_and_manifest.md) / [Module 28](../28%20Native%20iOS/infoplist_and_permissions.md)), and stream results reactively.
+This module covers accessing **native device capabilities** from Flutter through plugins: the **camera & gallery** (capture/pick images/video), **geolocation** (GPS position, streams, geocoding), **device sensors** (accelerometer/gyroscope/magnetometer + battery/connectivity/device info), and **connectivity** (network reachability). It shows how to wrap each behind a repository, handle permissions ([Module 27](../27%20Native%20Android/04_permissions_and_manifest.md) / [Module 28](../28%20Native%20iOS/04_infoplist_and_permissions.md)), and stream results reactively.
 
 ## Why this module exists
 
@@ -12,13 +12,13 @@ Most real apps read the physical device: scan/attach photos, locate the user, re
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [camera_and_gallery.md](camera_and_gallery.md) | Capture photos/video, pick from gallery (`camera`/`image_picker`) | 🔵 |
-| 2 | [geolocation.md](geolocation.md) | GPS position, location streams, accuracy, geocoding (`geolocator`) | 🔴 |
-| 3 | [sensors_and_device_info.md](sensors_and_device_info.md) | Accelerometer/gyroscope, battery, device info (`sensors_plus` family) | 🔵 |
-| 4 | [connectivity.md](connectivity.md) | Network reachability + streams, offline handling (`connectivity_plus`) | 🔵 |
-| 5 | [device_integration.md](device_integration.md) | Capstone: features behind repositories, permissions, streams | 🔴 |
+| 1 | [01_camera_and_gallery.md](01_camera_and_gallery.md) | Capture photos/video, pick from gallery (`camera`/`image_picker`) | 🔵 |
+| 2 | [02_geolocation.md](02_geolocation.md) | GPS position, location streams, accuracy, geocoding (`geolocator`) | 🔴 |
+| 3 | [03_sensors_and_device_info.md](03_sensors_and_device_info.md) | Accelerometer/gyroscope, battery, device info (`sensors_plus` family) | 🔵 |
+| 4 | [04_connectivity.md](04_connectivity.md) | Network reachability + streams, offline handling (`connectivity_plus`) | 🔵 |
+| 5 | [05_device_integration.md](05_device_integration.md) | Capstone: features behind repositories, permissions, streams | 🔴 |
 
-> **Cross-references:** Permissions: [27 · permissions_and_manifest](../27%20Native%20Android/permissions_and_manifest.md), [28 · infoplist_and_permissions](../28%20Native%20iOS/infoplist_and_permissions.md). Platform channels (how plugins work): [Module 26](../26%20Platform%20Channels/README.md). Maps: [Module 30](../30%20Google%20Maps/README.md). Streams: [02 · streams](../02%20Advanced%20Dart/streams_and_async.md). Offline-first: [Module 19](../19%20Offline%20First/README.md). File handling: [Module 34](../34%20File%20Handling/README.md).
+> **Cross-references:** Permissions: [27 · permissions_and_manifest](../27%20Native%20Android/04_permissions_and_manifest.md), [28 · infoplist_and_permissions](../28%20Native%20iOS/04_infoplist_and_permissions.md). Platform channels (how plugins work): [Module 26](../26%20Platform%20Channels/README.md). Maps: [Module 30](../30%20Google%20Maps/README.md). Streams: [02 · streams](../02%20Advanced%20Dart/03_streams.md). Offline-first: [Module 19](../19%20Offline%20First/README.md). File handling: [Module 34](../34%20File%20Handling/README.md).
 
 ## Prerequisites
 

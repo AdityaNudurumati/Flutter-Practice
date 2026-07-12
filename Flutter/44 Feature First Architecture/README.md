@@ -12,11 +12,11 @@ As apps grow, **layer-first** folders (all models together, all views together) 
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [feature_first_fundamentals.md](feature_first_fundamentals.md) | Feature vs layer organization, cohesion, why it scales | 🔵 |
-| 2 | [structuring_features_and_core.md](structuring_features_and_core.md) | Feature-slice internals + shared `core`/`shared` module | 🟡 |
-| 3 | [feature_boundaries_and_dependencies.md](feature_boundaries_and_dependencies.md) | Boundaries, cross-feature dependencies, avoiding coupling | 🔴 |
-| 4 | [scaling_and_migration.md](scaling_and_migration.md) | Scaling to many features; migrating from layer-first; packages | 🔴 |
-| 5 | [feature_first_integration.md](feature_first_integration.md) | Capstone: a feature-first app skeleton | 🟡 |
+| 1 | [01_feature_first_fundamentals.md](01_feature_first_fundamentals.md) | Feature vs layer organization, cohesion, why it scales | 🔵 |
+| 2 | [02_structuring_features_and_core.md](02_structuring_features_and_core.md) | Feature-slice internals + shared `core`/`shared` module | 🟡 |
+| 3 | [03_feature_boundaries_and_dependencies.md](03_feature_boundaries_and_dependencies.md) | Boundaries, cross-feature dependencies, avoiding coupling | 🔴 |
+| 4 | [04_scaling_and_migration.md](04_scaling_and_migration.md) | Scaling to many features; migrating from layer-first; packages | 🔴 |
+| 5 | [05_feature_first_integration.md](05_feature_first_integration.md) | Capstone: a feature-first app skeleton | 🟡 |
 
 > **Cross-references:** Clean Architecture (each slice's layers): [Module 40](../40%20Clean%20Architecture/README.md). MVVM (presentation per feature): [Module 43](../43%20MVVM/README.md). Modular architecture (features as packages): [Module 45](../45%20Modular%20Architecture/README.md). DI (per-feature wiring): [Module 14](../14%20Dependency%20Injection/README.md). Routing (per-feature routes): [Module 13](../13%20Routing/README.md). DDD (domain per bounded context): [Module 46](../46%20Domain%20Driven%20Design/README.md).
 

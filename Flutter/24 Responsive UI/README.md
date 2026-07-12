@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Responsive UI adapts a **single layout** to any screen size/orientation — phone, tablet, desktop, web, split-screen — using the constraints model, `MediaQuery`/`LayoutBuilder`, flexible widgets, and breakpoints. This module builds directly on the constraints system ([07 · constraints_and_sizing](../07%20Widgets/constraints_and_sizing.md)).
+Responsive UI adapts a **single layout** to any screen size/orientation — phone, tablet, desktop, web, split-screen — using the constraints model, `MediaQuery`/`LayoutBuilder`, flexible widgets, and breakpoints. This module builds directly on the constraints system ([07 · constraints_and_sizing](../07%20Widgets/03_constraints_and_sizing.md)).
 
 ## Why this module exists
 
@@ -12,13 +12,13 @@ Flutter runs everywhere; a phone-only layout breaks on tablets/desktop/web. Resp
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [responsive_fundamentals.md](responsive_fundamentals.md) | Principles, breakpoints, mobile→desktop | 🟢 |
-| 2 | [mediaquery_vs_layoutbuilder.md](mediaquery_vs_layoutbuilder.md) | Global vs local size/constraints | 🔵 |
-| 3 | [responsive_layout_widgets.md](responsive_layout_widgets.md) | `Flexible`/`Wrap`/`AspectRatio`/`FractionallySizedBox` | 🔵 |
-| 4 | [adaptive_grids_and_split_views.md](adaptive_grids_and_split_views.md) | Responsive grids, master-detail/split views | 🔴 |
-| 5 | [responsive_typography_and_orientation.md](responsive_typography_and_orientation.md) | Text scaling, spacing, orientation, safe areas | 🔵 |
+| 1 | [01_responsive_fundamentals.md](01_responsive_fundamentals.md) | Principles, breakpoints, mobile→desktop | 🟢 |
+| 2 | [02_mediaquery_vs_layoutbuilder.md](02_mediaquery_vs_layoutbuilder.md) | Global vs local size/constraints | 🔵 |
+| 3 | [03_responsive_layout_widgets.md](03_responsive_layout_widgets.md) | `Flexible`/`Wrap`/`AspectRatio`/`FractionallySizedBox` | 🔵 |
+| 4 | [04_adaptive_grids_and_split_views.md](04_adaptive_grids_and_split_views.md) | Responsive grids, master-detail/split views | 🔴 |
+| 5 | [05_responsive_typography_and_orientation.md](05_responsive_typography_and_orientation.md) | Text scaling, spacing, orientation, safe areas | 🔵 |
 
-> **Cross-references:** Constraints model: [07 · constraints_and_sizing](../07%20Widgets/constraints_and_sizing.md). Flex layout: [07 · layout_flex](../07%20Widgets/layout_flex.md). Adaptive (platform) UI: [Module 25](../25%20Adaptive%20UI/README.md). Web/desktop: [Modules 53](../53%20Flutter%20Web/README.md)/[54](../54%20Flutter%20Desktop/README.md). Theming: [07 · text_and_theming](../07%20Widgets/text_and_theming.md).
+> **Cross-references:** Constraints model: [07 · constraints_and_sizing](../07%20Widgets/03_constraints_and_sizing.md). Flex layout: [07 · layout_flex](../07%20Widgets/02_layout_flex.md). Adaptive (platform) UI: [Module 25](../25%20Adaptive%20UI/README.md). Web/desktop: [Modules 53](../53%20Flutter%20Web/README.md)/[54](../54%20Flutter%20Desktop/README.md). Theming: [07 · text_and_theming](../07%20Widgets/06_text_and_theming.md).
 
 ## Prerequisites
 

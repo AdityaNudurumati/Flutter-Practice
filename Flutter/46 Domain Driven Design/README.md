@@ -12,17 +12,17 @@ Most apps have simple domains where CRUD + basic entities suffice — but **comp
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [ddd_fundamentals.md](ddd_fundamentals.md) | Ubiquitous language, bounded contexts, context mapping, when DDD pays | 🔴 |
-| 2 | [tactical_building_blocks.md](tactical_building_blocks.md) | Entities, value objects, domain services, factories | 🔴 |
-| 3 | [aggregates_and_invariants.md](aggregates_and_invariants.md) | Aggregates, aggregate roots, consistency boundaries, invariants | 🔴 |
-| 4 | [repositories_and_domain_events.md](repositories_and_domain_events.md) | DDD repositories, domain events, application services | 🔴 |
-| 5 | [ddd_integration.md](ddd_integration.md) | Capstone: model one bounded context | 🔴 |
+| 1 | [01_ddd_fundamentals.md](01_ddd_fundamentals.md) | Ubiquitous language, bounded contexts, context mapping, when DDD pays | 🔴 |
+| 2 | [02_tactical_building_blocks.md](02_tactical_building_blocks.md) | Entities, value objects, domain services, factories | 🔴 |
+| 3 | [03_aggregates_and_invariants.md](03_aggregates_and_invariants.md) | Aggregates, aggregate roots, consistency boundaries, invariants | 🔴 |
+| 4 | [04_repositories_and_domain_events.md](04_repositories_and_domain_events.md) | DDD repositories, domain events, application services | 🔴 |
+| 5 | [05_ddd_integration.md](05_ddd_integration.md) | Capstone: model one bounded context | 🔴 |
 
-> **Cross-references:** Clean Architecture (domain layer): [Module 40](../40%20Clean%20Architecture/README.md). Feature-first / modular (context = feature/module): [Module 44](../44%20Feature%20First%20Architecture/README.md)/[Module 45](../45%20Modular%20Architecture/README.md). OOP (entities/objects): [Module 03](../03%20OOP/README.md). Error handling (`Result`/invariants): [Module 38](../38%20Error%20Handling/README.md). Immutability/value objects: [Module 02](../02%20Advanced%20Dart/README.md).
+> **Cross-references:** Clean Architecture (domain layer): [Module 40](../40%20Clean%20Architecture/README.md). Feature-first / modular (context = feature/module): [Module 44](../44%20Feature%20First%20Architecture/README.md)/[Module 45](../45%20Modular%20Architecture/README.md). OOP (entities/objects): [Module 03](../03%20Object%20Oriented%20Programming/README.md). Error handling (`Result`/invariants): [Module 38](../38%20Error%20Handling/README.md). Immutability/value objects: [Module 02](../02%20Advanced%20Dart/README.md).
 
 ## Prerequisites
 
-[40 Clean Architecture](../40%20Clean%20Architecture/README.md) (domain layer), [03 OOP](../03%20OOP/README.md), [02 Advanced Dart](../02%20Advanced%20Dart/README.md) (immutability), [38 Error Handling](../38%20Error%20Handling/README.md) (`Result`), [44/45](../44%20Feature%20First%20Architecture/README.md) (contexts as features/modules).
+[40 Clean Architecture](../40%20Clean%20Architecture/README.md) (domain layer), [03 OOP](../03%20Object%20Oriented%20Programming/README.md), [02 Advanced Dart](../02%20Advanced%20Dart/README.md) (immutability), [38 Error Handling](../38%20Error%20Handling/README.md) (`Result`), [44/45](../44%20Feature%20First%20Architecture/README.md) (contexts as features/modules).
 
 ## What you'll be able to do after this module
 

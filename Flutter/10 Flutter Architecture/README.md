@@ -12,13 +12,13 @@ Senior/staff interviews and hard performance/integration problems demand a preci
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [layered_architecture.md](layered_architecture.md) | Framework / Engine / Embedder in depth | 🔵 |
-| 2 | [framework_stack.md](framework_stack.md) | foundation→rendering→widgets→Material + bindings | 🔴 |
-| 3 | [threading_model.md](threading_model.md) | Platform / UI / Raster / IO task runners | 🔴 |
-| 4 | [engine_internals.md](engine_internals.md) | Engine (C++): Dart runtime, Skia/Impeller, text, channels | 🔴 |
-| 5 | [embedder_and_startup.md](embedder_and_startup.md) | Embedder responsibilities + app boot sequence | 🔴 |
+| 1 | [01_layered_architecture.md](01_layered_architecture.md) | Framework / Engine / Embedder in depth | 🔵 |
+| 2 | [02_framework_stack.md](02_framework_stack.md) | foundation→rendering→widgets→Material + bindings | 🔴 |
+| 3 | [03_threading_model.md](03_threading_model.md) | Platform / UI / Raster / IO task runners | 🔴 |
+| 4 | [04_engine_internals.md](04_engine_internals.md) | Engine (C++): Dart runtime, Skia/Impeller, text, channels | 🔴 |
+| 5 | [05_embedder_and_startup.md](05_embedder_and_startup.md) | Embedder responsibilities + app boot sequence | 🔴 |
 
-> **Cross-references:** Overview: [06 · architecture_overview](../06%20Flutter%20Fundamentals/architecture_overview.md). Rendering phases/threads: [09](../09%20Rendering%20Pipeline/README.md). Isolates/event loop: [02](../02%20Advanced%20Dart/README.md). Platform channels: [Module 26](../26%20Platform%20Channels/README.md). Performance: [Module 21](../21%20Performance/README.md).
+> **Cross-references:** Overview: [06 · architecture_overview](../06%20Flutter%20Fundamentals/02_architecture_overview.md). Rendering phases/threads: [09](../09%20Rendering%20Pipeline/README.md). Isolates/event loop: [02](../02%20Advanced%20Dart/README.md). Platform channels: [Module 26](../26%20Platform%20Channels/README.md). Performance: [Module 21](../21%20Performance/README.md).
 
 ## Prerequisites
 

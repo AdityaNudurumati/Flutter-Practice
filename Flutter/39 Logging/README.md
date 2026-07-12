@@ -12,11 +12,11 @@ You can't fix what you can't see. Logging is how you understand behavior in dev 
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [logging_fundamentals.md](logging_fundamentals.md) | Why log, log levels, structured logging, `print`/`log`/package | 🔵 |
-| 2 | [logger_package_and_setup.md](logger_package_and_setup.md) | `logger` package, formatting, filters, dev-vs-prod behind an abstraction | 🟡 |
-| 3 | [production_logging_and_redaction.md](production_logging_and_redaction.md) | PII/secret redaction, what not to log, sampling, performance, security | 🔴 |
-| 4 | [remote_logging_and_observability.md](remote_logging_and_observability.md) | Remote sinks, crash-report integration, correlation ids, breadcrumbs/tracing | 🔴 |
-| 5 | [logging_integration.md](logging_integration.md) | Capstone: a logging facade across environments | 🔴 |
+| 1 | [01_logging_fundamentals.md](01_logging_fundamentals.md) | Why log, log levels, structured logging, `print`/`log`/package | 🔵 |
+| 2 | [02_logger_package_and_setup.md](02_logger_package_and_setup.md) | `logger` package, formatting, filters, dev-vs-prod behind an abstraction | 🟡 |
+| 3 | [03_production_logging_and_redaction.md](03_production_logging_and_redaction.md) | PII/secret redaction, what not to log, sampling, performance, security | 🔴 |
+| 4 | [04_remote_logging_and_observability.md](04_remote_logging_and_observability.md) | Remote sinks, crash-report integration, correlation ids, breadcrumbs/tracing | 🔴 |
+| 5 | [05_logging_integration.md](05_logging_integration.md) | Capstone: a logging facade across environments | 🔴 |
 
 > **Cross-references:** Error handling (log on failure): [Module 38](../38%20Error%20Handling/README.md). Monitoring/crash reporting: [Module 52](../52%20Monitoring/README.md). Security (never log secrets): [Module 37](../37%20Security/README.md). Networking (request/response logging): [Module 16](../16%20Networking/README.md). DI (inject the logger): [Module 14](../14%20Dependency%20Injection/README.md). App size/perf (strip logs): [Module 21](../21%20Performance/README.md).
 

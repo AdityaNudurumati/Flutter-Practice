@@ -12,11 +12,11 @@ Seniority isn't knowing more APIs — it's **judgment**: choosing the right appr
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [architectural_judgment.md](architectural_judgment.md) | Judgment over dogma, right-sizing, "it depends" + factors | 🔴 |
-| 2 | [decision_frameworks_and_tradeoffs.md](decision_frameworks_and_tradeoffs.md) | Reversibility, cost of change, ADRs, evaluating trade-offs | 🔴 |
-| 3 | [leadership_and_mentorship.md](leadership_and_mentorship.md) | Technical leadership, mentorship, communication, influence | 🟡 |
-| 4 | [staying_current_and_growth.md](staying_current_and_growth.md) | Continuous learning, evaluating tech, avoiding hype, growth | 🟡 |
-| 5 | [senior_architect_synthesis.md](senior_architect_synthesis.md) | Capstone: the whole handbook synthesized into a mindset | 🔴 |
+| 1 | [01_architectural_judgment.md](01_architectural_judgment.md) | Judgment over dogma, right-sizing, "it depends" + factors | 🔴 |
+| 2 | [02_decision_frameworks_and_tradeoffs.md](02_decision_frameworks_and_tradeoffs.md) | Reversibility, cost of change, ADRs, evaluating trade-offs | 🔴 |
+| 3 | [03_leadership_and_mentorship.md](03_leadership_and_mentorship.md) | Technical leadership, mentorship, communication, influence | 🟡 |
+| 4 | [04_staying_current_and_growth.md](04_staying_current_and_growth.md) | Continuous learning, evaluating tech, avoiding hype, growth | 🟡 |
+| 5 | [05_senior_architect_synthesis.md](05_senior_architect_synthesis.md) | Capstone: the whole handbook synthesized into a mindset | 🔴 |
 
 > **Cross-references:** This module reflects on the **entire handbook** — especially the architecture band ([40](../40%20Clean%20Architecture/README.md)–[48](../48%20System%20Design/README.md)), scalable apps ([Module 47](../47%20Scalable%20Applications/README.md)), and enterprise ([Module 57](../57%20Enterprise%20Projects/README.md)) — and the repository guide ([Module 00](../00%20Repository%20Guide/README.md)).
 

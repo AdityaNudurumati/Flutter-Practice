@@ -12,17 +12,17 @@ When data is structured, queryable, relational, or large, you need a real on-dev
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [database_options.md](database_options.md) | SQL vs NoSQL; choosing an engine | 🔵 |
-| 2 | [sqlite_sqflite.md](sqlite_sqflite.md) | Raw SQLite via `sqflite` | 🔵 |
-| 3 | [drift.md](drift.md) | Typed, reactive SQL (compile-safe) | 🔴 |
-| 4 | [isar_hive.md](isar_hive.md) | NoSQL/object stores | 🔵 |
-| 5 | [modeling_migrations_performance.md](modeling_migrations_performance.md) | Schema, migrations, indexing, performance | 🔴 |
+| 1 | [01_database_options.md](01_database_options.md) | SQL vs NoSQL; choosing an engine | 🔵 |
+| 2 | [02_sqlite_sqflite.md](02_sqlite_sqflite.md) | Raw SQLite via `sqflite` | 🔵 |
+| 3 | [03_drift.md](03_drift.md) | Typed, reactive SQL (compile-safe) | 🔴 |
+| 4 | [04_isar_hive.md](04_isar_hive.md) | NoSQL/object stores | 🔵 |
+| 5 | [05_modeling_migrations_performance.md](05_modeling_migrations_performance.md) | Schema, migrations, indexing, performance | 🔴 |
 
-> **Cross-references:** Storage decision framework: [15 · storage_options_overview](../15%20Local%20Storage/storage_options_overview.md). Offline-first (uses the DB as source of truth): [Module 19](../19%20Offline%20First/README.md). Repository boundary/DTO mapping: [05 · repository](../05%20Design%20Patterns/repository.md). Streams (reactive reads): [02 · streams](../02%20Advanced%20Dart/streams.md). Isolates (heavy queries): [02 · isolates](../02%20Advanced%20Dart/isolates.md). Firestore (cloud NoSQL): [18 · firestore](../18%20Firebase/firestore.md).
+> **Cross-references:** Storage decision framework: [15 · storage_options_overview](../15%20Local%20Storage/01_storage_options_overview.md). Offline-first (uses the DB as source of truth): [Module 19](../19%20Offline%20First/README.md). Repository boundary/DTO mapping: [05 · repository](../05%20Design%20Patterns/20_repository.md). Streams (reactive reads): [02 · streams](../02%20Advanced%20Dart/03_streams.md). Isolates (heavy queries): [02 · isolates](../02%20Advanced%20Dart/04_isolates.md). Firestore (cloud NoSQL): [18 · firestore](../18%20Firebase/03_firestore.md).
 
 ## Prerequisites
 
-[15 Local Storage](../15%20Local%20Storage/README.md), [05 · repository](../05%20Design%20Patterns/repository.md), [02 · streams](../02%20Advanced%20Dart/streams.md).
+[15 Local Storage](../15%20Local%20Storage/README.md), [05 · repository](../05%20Design%20Patterns/20_repository.md), [02 · streams](../02%20Advanced%20Dart/03_streams.md).
 
 ## What you'll be able to do after this module
 

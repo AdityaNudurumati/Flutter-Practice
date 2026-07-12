@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This module covers Clean Architecture in Flutter: the **layered design** (presentation / domain / data) governed by the **dependency rule** (dependencies point **inward**, toward the domain), the **domain layer** (entities, use cases, repository *interfaces*), the **data layer** (repository *implementations*, data sources, DTOs, mapping), the **presentation layer** (state management + view state, mapping domain → UI), and how they **wire together** via DI — with a capstone building a full vertical slice. It's the synthesis of SOLID ([Module 04](../04%20SOLID/README.md)), design patterns ([Module 05](../05%20Design%20Patterns/README.md)), DI ([Module 14](../14%20Dependency%20Injection/README.md)), state ([Module 11](../11%20State%20Management/README.md)), and error handling ([Module 38](../38%20Error%20Handling/README.md)).
+This module covers Clean Architecture in Flutter: the **layered design** (presentation / domain / data) governed by the **dependency rule** (dependencies point **inward**, toward the domain), the **domain layer** (entities, use cases, repository *interfaces*), the **data layer** (repository *implementations*, data sources, DTOs, mapping), the **presentation layer** (state management + view state, mapping domain → UI), and how they **wire together** via DI — with a capstone building a full vertical slice. It's the synthesis of SOLID ([Module 04](../04%20SOLID%20Principles/README.md)), design patterns ([Module 05](../05%20Design%20Patterns/README.md)), DI ([Module 14](../14%20Dependency%20Injection/README.md)), state ([Module 11](../11%20State%20Management/README.md)), and error handling ([Module 38](../38%20Error%20Handling/README.md)).
 
 ## Why this module exists
 
@@ -12,17 +12,17 @@ As apps grow, "put everything in the widget" collapses under change — business
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [clean_architecture_overview.md](clean_architecture_overview.md) | Layers, the dependency rule, why boundaries, tradeoffs | 🔴 |
-| 2 | [domain_layer.md](domain_layer.md) | Entities, use cases, repository interfaces (the pure core) | 🔴 |
-| 3 | [data_layer.md](data_layer.md) | Repository impls, data sources, DTOs, mapping, `Result` | 🔴 |
-| 4 | [presentation_layer.md](presentation_layer.md) | State/view models, calling use cases, domain→UI mapping | 🟡 |
-| 5 | [clean_architecture_integration.md](clean_architecture_integration.md) | Capstone: a full vertical slice wired via DI | 🔴 |
+| 1 | [01_clean_architecture_overview.md](01_clean_architecture_overview.md) | Layers, the dependency rule, why boundaries, tradeoffs | 🔴 |
+| 2 | [02_domain_layer.md](02_domain_layer.md) | Entities, use cases, repository interfaces (the pure core) | 🔴 |
+| 3 | [03_data_layer.md](03_data_layer.md) | Repository impls, data sources, DTOs, mapping, `Result` | 🔴 |
+| 4 | [04_presentation_layer.md](04_presentation_layer.md) | State/view models, calling use cases, domain→UI mapping | 🟡 |
+| 5 | [05_clean_architecture_integration.md](05_clean_architecture_integration.md) | Capstone: a full vertical slice wired via DI | 🔴 |
 
-> **Cross-references:** SOLID (DIP underpins the dependency rule): [Module 04](../04%20SOLID/README.md). Patterns (Repository/Adapter): [Module 05](../05%20Design%20Patterns/README.md). DI (wiring): [Module 14](../14%20Dependency%20Injection/README.md). State management: [Module 11](../11%20State%20Management/README.md). Error handling (`Result`/failures): [Module 38](../38%20Error%20Handling/README.md). Testing: [Module 49](../49%20Testing/README.md). Compared with MVC/MVP/MVVM: [41](../41%20MVC/README.md)/[42](../42%20MVP/README.md)/[43](../43%20MVVM/README.md); feature-first/DDD: [44](../44%20Feature%20First%20Architecture/README.md)/[46](../46%20Domain%20Driven%20Design/README.md).
+> **Cross-references:** SOLID (DIP underpins the dependency rule): [Module 04](../04%20SOLID%20Principles/README.md). Patterns (Repository/Adapter): [Module 05](../05%20Design%20Patterns/README.md). DI (wiring): [Module 14](../14%20Dependency%20Injection/README.md). State management: [Module 11](../11%20State%20Management/README.md). Error handling (`Result`/failures): [Module 38](../38%20Error%20Handling/README.md). Testing: [Module 49](../49%20Testing/README.md). Compared with MVC/MVP/MVVM: [41](../41%20MVC/README.md)/[42](../42%20MVP/README.md)/[43](../43%20MVVM/README.md); feature-first/DDD: [44](../44%20Feature%20First%20Architecture/README.md)/[46](../46%20Domain%20Driven%20Design/README.md).
 
 ## Prerequisites
 
-[04 SOLID](../04%20SOLID/README.md) (esp. DIP), [05 Design Patterns](../05%20Design%20Patterns/README.md) (Repository), [14 Dependency Injection](../14%20Dependency%20Injection/README.md), [11 State Management](../11%20State%20Management/README.md), [38 Error Handling](../38%20Error%20Handling/README.md).
+[04 SOLID](../04%20SOLID%20Principles/README.md) (esp. DIP), [05 Design Patterns](../05%20Design%20Patterns/README.md) (Repository), [14 Dependency Injection](../14%20Dependency%20Injection/README.md), [11 State Management](../11%20State%20Management/README.md), [38 Error Handling](../38%20Error%20Handling/README.md).
 
 ## What you'll be able to do after this module
 

@@ -12,20 +12,20 @@ Most Flutter confusion — "why did my widget rebuild?", "what is `context`?", "
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [what_is_flutter.md](what_is_flutter.md) | What Flutter is; how it renders; vs native/React Native | 🟢 |
-| 2 | [architecture_overview.md](architecture_overview.md) | Framework / Engine / Embedder layers | 🔵 |
-| 3 | [declarative_ui.md](declarative_ui.md) | Declarative vs imperative UI (UI = f(state)) | 🟢 |
-| 4 | [widgets_elements_render_objects.md](widgets_elements_render_objects.md) | The three trees and how they relate | 🔵 |
-| 5 | [stateless_vs_stateful.md](stateless_vs_stateful.md) | `StatelessWidget` vs `StatefulWidget` + `setState` | 🟢 |
-| 6 | [build_context.md](build_context.md) | What `BuildContext` actually is; `.of(context)` | 🔵 |
-| 7 | [app_entry_point.md](app_entry_point.md) | `main` / `runApp` / `MaterialApp` / `Scaffold` | 🟢 |
-| 8 | [hot_reload.md](hot_reload.md) | Hot reload vs restart; how it works | 🟢 |
+| 1 | [01_what_is_flutter.md](01_what_is_flutter.md) | What Flutter is; how it renders; vs native/React Native | 🟢 |
+| 2 | [02_architecture_overview.md](02_architecture_overview.md) | Framework / Engine / Embedder layers | 🔵 |
+| 3 | [03_declarative_ui.md](03_declarative_ui.md) | Declarative vs imperative UI (UI = f(state)) | 🟢 |
+| 4 | [04_widgets_elements_render_objects.md](04_widgets_elements_render_objects.md) | The three trees and how they relate | 🔵 |
+| 5 | [05_stateless_vs_stateful.md](05_stateless_vs_stateful.md) | `StatelessWidget` vs `StatefulWidget` + `setState` | 🟢 |
+| 6 | [06_build_context.md](06_build_context.md) | What `BuildContext` actually is; `.of(context)` | 🔵 |
+| 7 | [07_app_entry_point.md](07_app_entry_point.md) | `main` / `runApp` / `MaterialApp` / `Scaffold` | 🟢 |
+| 8 | [08_hot_reload.md](08_hot_reload.md) | Hot reload vs restart; how it works | 🟢 |
 
-> **Cross-references:** The deep **rendering pipeline** (build→layout→paint→composite→raster) is [Module 09](../09%20Rendering%20Pipeline/README.md). Deep **architecture** (engine internals, threads, Skia/Impeller) is [Module 10](../10%20Flutter%20Architecture/README.md). **Widget lifecycle** (`initState`→`dispose`) is [Module 08](../08%20Widget%20Lifecycle/README.md). The JIT/AOT basis of hot reload is in [02 · dart_compilation](../02%20Advanced%20Dart/dart_compilation.md).
+> **Cross-references:** The deep **rendering pipeline** (build→layout→paint→composite→raster) is [Module 09](../09%20Rendering%20Pipeline/README.md). Deep **architecture** (engine internals, threads, Skia/Impeller) is [Module 10](../10%20Flutter%20Architecture/README.md). **Widget lifecycle** (`initState`→`dispose`) is [Module 08](../08%20Widget%20Lifecycle/README.md). The JIT/AOT basis of hot reload is in [02 · dart_compilation](../02%20Advanced%20Dart/14_dart_compilation.md).
 
 ## Prerequisites
 
-[01 Dart Fundamentals](../01%20Dart%20Fundamentals/README.md) + [03 OOP](../03%20Object%20Oriented%20Programming/README.md). Composition ([03](../03%20Object%20Oriented%20Programming/composition_and_relationships.md)) especially — Flutter is composition-first.
+[01 Dart Fundamentals](../01%20Dart%20Fundamentals/README.md) + [03 OOP](../03%20Object%20Oriented%20Programming/README.md). Composition ([03](../03%20Object%20Oriented%20Programming/06_composition_and_relationships.md)) especially — Flutter is composition-first.
 
 ## What you'll be able to do after this module
 

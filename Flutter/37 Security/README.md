@@ -12,11 +12,11 @@ Mobile apps run on **devices you don't control** — attackers can inspect stora
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [security_model_and_owasp.md](security_model_and_owasp.md) | Threat model, untrusted client, defense-in-depth, OWASP MASVS | 🔴 |
-| 2 | [secure_storage_and_encryption.md](secure_storage_and_encryption.md) | `flutter_secure_storage`, Keychain/Keystore, encryption at rest, crypto | 🔴 |
-| 3 | [network_security_and_pinning.md](network_security_and_pinning.md) | TLS, certificate pinning, secrets/API-key management | 🔴 |
-| 4 | [code_hardening_and_integrity.md](code_hardening_and_integrity.md) | Obfuscation, root/jailbreak & tamper detection, anti-reversing | 🔴 |
-| 5 | [security_integration.md](security_integration.md) | Capstone: layered security behind services, threat-driven | 🔴 |
+| 1 | [01_security_model_and_owasp.md](01_security_model_and_owasp.md) | Threat model, untrusted client, defense-in-depth, OWASP MASVS | 🔴 |
+| 2 | [02_secure_storage_and_encryption.md](02_secure_storage_and_encryption.md) | `flutter_secure_storage`, Keychain/Keystore, encryption at rest, crypto | 🔴 |
+| 3 | [03_network_security_and_pinning.md](03_network_security_and_pinning.md) | TLS, certificate pinning, secrets/API-key management | 🔴 |
+| 4 | [04_code_hardening_and_integrity.md](04_code_hardening_and_integrity.md) | Obfuscation, root/jailbreak & tamper detection, anti-reversing | 🔴 |
+| 5 | [05_security_integration.md](05_security_integration.md) | Capstone: layered security behind services, threat-driven | 🔴 |
 
 > **Cross-references:** Auth/tokens: [Module 17](../17%20Authentication/README.md). Secure storage basics: [15 · secure_storage](../15%20Local%20Storage/README.md). Networking/interceptors: [Module 16](../16%20Networking/README.md). Payments trust rules (server-as-truth): [Module 31](../31%20Payments/README.md). Native config (keystore/entitlements): [27](../27%20Native%20Android/README.md)/[28](../28%20Native%20iOS/README.md). App size/obfuscation build flags: [21 · startup_and_app_size](../21%20Performance/README.md).
 

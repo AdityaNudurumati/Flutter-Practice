@@ -12,11 +12,11 @@ Patterns that work at 5 screens break at 500: a codebase becomes unnavigable, a 
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [scaling_dimensions.md](scaling_dimensions.md) | The four dimensions of scale; right-sizing | 🔴 |
-| 2 | [codebase_and_team_scaling.md](codebase_and_team_scaling.md) | Organization, conventions, governance, ownership, design systems | 🔴 |
-| 3 | [performance_and_runtime_scaling.md](performance_and_runtime_scaling.md) | Startup, memory, frame budget, deferred loading at scale | 🔴 |
-| 4 | [technical_debt_and_evolution.md](technical_debt_and_evolution.md) | Managing debt, refactoring, deprecation, migration at scale | 🟡 |
-| 5 | [scalable_integration.md](scalable_integration.md) | Capstone: a scaling playbook | 🔴 |
+| 1 | [01_scaling_dimensions.md](01_scaling_dimensions.md) | The four dimensions of scale; right-sizing | 🔴 |
+| 2 | [02_codebase_and_team_scaling.md](02_codebase_and_team_scaling.md) | Organization, conventions, governance, ownership, design systems | 🔴 |
+| 3 | [03_performance_and_runtime_scaling.md](03_performance_and_runtime_scaling.md) | Startup, memory, frame budget, deferred loading at scale | 🔴 |
+| 4 | [04_technical_debt_and_evolution.md](04_technical_debt_and_evolution.md) | Managing debt, refactoring, deprecation, migration at scale | 🟡 |
+| 5 | [05_scalable_integration.md](05_scalable_integration.md) | Capstone: a scaling playbook | 🔴 |
 
 > **Cross-references:** Architecture backbone: [40](../40%20Clean%20Architecture/README.md)/[43](../43%20MVVM/README.md)/[44](../44%20Feature%20First%20Architecture/README.md)/[45](../45%20Modular%20Architecture/README.md)/[46](../46%20Domain%20Driven%20Design/README.md). Performance: [Module 21](../21%20Performance/README.md). Design systems: [Module 25](../25%20Adaptive%20UI/README.md). CI/CD: [Module 50](../50%20CI%20CD/README.md). Monitoring: [Module 52](../52%20Monitoring/README.md). Testing: [Module 49](../49%20Testing/README.md). System design: [Module 48](../48%20System%20Design/README.md).
 

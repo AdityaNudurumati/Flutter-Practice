@@ -12,17 +12,17 @@ MVP's contribution is **maximum testability via an explicit view contract**: the
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [mvp_fundamentals.md](mvp_fundamentals.md) | Roles, passive view, presenter, data flow | 🔵 |
-| 2 | [presenter_and_view_contract.md](presenter_and_view_contract.md) | The view interface/contract (MVP's core), presenter driving the view | 🟡 |
-| 3 | [mvp_testability.md](mvp_testability.md) | Mock the view, test the presenter — MVP's standout strength | 🟡 |
-| 4 | [mvp_in_flutter_and_comparison.md](mvp_in_flutter_and_comparison.md) | Flutter fit/friction; MVP vs MVC/MVVM | 🔴 |
-| 5 | [mvp_integration.md](mvp_integration.md) | Capstone: an MVP feature with a mocked-view test | 🟡 |
+| 1 | [01_mvp_fundamentals.md](01_mvp_fundamentals.md) | Roles, passive view, presenter, data flow | 🔵 |
+| 2 | [02_presenter_and_view_contract.md](02_presenter_and_view_contract.md) | The view interface/contract (MVP's core), presenter driving the view | 🟡 |
+| 3 | [03_mvp_testability.md](03_mvp_testability.md) | Mock the view, test the presenter — MVP's standout strength | 🟡 |
+| 4 | [04_mvp_in_flutter_and_comparison.md](04_mvp_in_flutter_and_comparison.md) | Flutter fit/friction; MVP vs MVC/MVVM | 🔴 |
+| 5 | [05_mvp_integration.md](05_mvp_integration.md) | Capstone: an MVP feature with a mocked-view test | 🟡 |
 
-> **Cross-references:** MVC: [Module 41](../41%20MVC/README.md). MVVM (reactive fit): [Module 43](../43%20MVVM/README.md). Clean Architecture: [Module 40](../40%20Clean%20Architecture/README.md). Testing (mocking): [Module 49](../49%20Testing/README.md). SOLID (DIP/interfaces): [Module 04](../04%20SOLID/README.md). State management: [Module 11](../11%20State%20Management/README.md).
+> **Cross-references:** MVC: [Module 41](../41%20MVC/README.md). MVVM (reactive fit): [Module 43](../43%20MVVM/README.md). Clean Architecture: [Module 40](../40%20Clean%20Architecture/README.md). Testing (mocking): [Module 49](../49%20Testing/README.md). SOLID (DIP/interfaces): [Module 04](../04%20SOLID%20Principles/README.md). State management: [Module 11](../11%20State%20Management/README.md).
 
 ## Prerequisites
 
-[41 MVC](../41%20MVC/README.md), [04 SOLID](../04%20SOLID/README.md) (interfaces/DIP), [40 Clean Architecture](../40%20Clean%20Architecture/README.md), [49 Testing](../49%20Testing/README.md) (mocking).
+[41 MVC](../41%20MVC/README.md), [04 SOLID](../04%20SOLID%20Principles/README.md) (interfaces/DIP), [40 Clean Architecture](../40%20Clean%20Architecture/README.md), [49 Testing](../49%20Testing/README.md) (mocking).
 
 ## What you'll be able to do after this module
 

@@ -12,17 +12,17 @@ Mobile networks are unreliable. Apps that block on the network feel slow and bre
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [offline_first_fundamentals.md](offline_first_fundamentals.md) | Principles + local-source-of-truth architecture | 🔴 |
-| 2 | [sync_engine.md](sync_engine.md) | Pull/push, delta sync, sync state | 🔴 |
-| 3 | [conflict_resolution.md](conflict_resolution.md) | LWW, versioning, merge, CRDTs | 🔴 |
-| 4 | [connectivity_and_outbox.md](connectivity_and_outbox.md) | Connectivity handling, queued mutations (outbox) | 🔴 |
-| 5 | [optimistic_ui.md](optimistic_ui.md) | Optimistic updates + rollback | 🔵 |
+| 1 | [01_offline_first_fundamentals.md](01_offline_first_fundamentals.md) | Principles + local-source-of-truth architecture | 🔴 |
+| 2 | [02_sync_engine.md](02_sync_engine.md) | Pull/push, delta sync, sync state | 🔴 |
+| 3 | [03_conflict_resolution.md](03_conflict_resolution.md) | LWW, versioning, merge, CRDTs | 🔴 |
+| 4 | [04_connectivity_and_outbox.md](04_connectivity_and_outbox.md) | Connectivity handling, queued mutations (outbox) | 🔴 |
+| 5 | [05_optimistic_ui.md](05_optimistic_ui.md) | Optimistic updates + rollback | 🔵 |
 
-> **Cross-references:** Caching/TTL: [15 · caching_strategies](../15%20Local%20Storage/caching_strategies.md). Database (local store): [Module 20](../20%20Database/README.md). Networking: [Module 16](../16%20Networking/README.md). Repository boundary: [05 · repository](../05%20Design%20Patterns/repository.md). Background sync: [Module 33](../33%20Background%20Services/README.md). Firestore offline: [18 · firestore](../18%20Firebase/firestore.md). State/streams: [Modules 11](../11%20State%20Management/README.md), [02 · streams](../02%20Advanced%20Dart/streams.md).
+> **Cross-references:** Caching/TTL: [15 · caching_strategies](../15%20Local%20Storage/05_caching_strategies.md). Database (local store): [Module 20](../20%20Database/README.md). Networking: [Module 16](../16%20Networking/README.md). Repository boundary: [05 · repository](../05%20Design%20Patterns/20_repository.md). Background sync: [Module 33](../33%20Background%20Services/README.md). Firestore offline: [18 · firestore](../18%20Firebase/03_firestore.md). State/streams: [Modules 11](../11%20State%20Management/README.md), [02 · streams](../02%20Advanced%20Dart/03_streams.md).
 
 ## Prerequisites
 
-[15 Local Storage](../15%20Local%20Storage/README.md), [16 Networking](../16%20Networking/README.md), [05 · repository](../05%20Design%20Patterns/repository.md), [02 · streams](../02%20Advanced%20Dart/streams.md).
+[15 Local Storage](../15%20Local%20Storage/README.md), [16 Networking](../16%20Networking/README.md), [05 · repository](../05%20Design%20Patterns/20_repository.md), [02 · streams](../02%20Advanced%20Dart/03_streams.md).
 
 ## What you'll be able to do after this module
 

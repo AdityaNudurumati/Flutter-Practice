@@ -23,13 +23,13 @@ It is deliberately **language- and framework-neutral**. Where a topic also has a
 
 | # | File | Topic focus | Pairs with |
 |---|------|-------------|------------|
-| 1 | [`operating_systems_and_concurrency.md`](operating_systems_and_concurrency.md) | Processes, threads, scheduling, context switches, multithreading, deadlock | [02 Advanced Dart · isolates](../02%20Advanced%20Dart/isolates.md), [33 Background Services](../33%20Background%20Services/README.md) |
-| 2 | [`memory_and_processors.md`](memory_and_processors.md) | Virtual memory, stack/heap, paging, cache hierarchy, CPU vs GPU, hardware rendering | [02 Advanced Dart · memory & GC](../02%20Advanced%20Dart/memory_and_gc.md), [09 Rendering Pipeline](../09%20Rendering%20Pipeline/README.md) |
-| 3 | [`networking_and_dns.md`](networking_and_dns.md) | OSI/TCP-IP model, IP, TCP vs UDP, sockets, ports, DNS resolution | [16 Networking](../16%20Networking/README.md) |
-| 4 | [`http_and_tls.md`](http_and_tls.md) | HTTP/1.1/2/3, methods, status, caching headers, TLS handshake, certificates, pinning | [16 Networking · HTTP](../16%20Networking/http_fundamentals.md), [37 Security · pinning](../37%20Security/network_security_and_pinning.md) |
-| 5 | [`databases_and_caching.md`](databases_and_caching.md) | Relational vs NoSQL, ACID, indexing, B-trees, transactions, caching & eviction | [20 Database](../20%20Database/README.md), [15 Local Storage · caching](../15%20Local%20Storage/caching_strategies.md) |
-| 6 | [`compression_and_serialization.md`](compression_and_serialization.md) | Encodings, JSON/Protobuf/FlatBuffers, gzip/Brotli/zstd, tradeoffs | [02 Advanced Dart · JSON & serialization](../02%20Advanced%20Dart/json_and_serialization.md) |
-| 7 | [`security_foundations.md`](security_foundations.md) | Hashing, symmetric/asymmetric crypto, key exchange, threat modeling, CIA triad | [37 Security](../37%20Security/README.md), [17 Authentication](../17%20Authentication/README.md) |
+| 1 | [`01_operating_systems_and_concurrency.md`](01_operating_systems_and_concurrency.md) | Processes, threads, scheduling, context switches, multithreading, deadlock | [02 Advanced Dart · isolates](../02%20Advanced%20Dart/04_isolates.md), [33 Background Services](../33%20Background%20Services/README.md) |
+| 2 | [`02_memory_and_processors.md`](02_memory_and_processors.md) | Virtual memory, stack/heap, paging, cache hierarchy, CPU vs GPU, hardware rendering | [02 Advanced Dart · memory & GC](../02%20Advanced%20Dart/13_memory_and_gc.md), [09 Rendering Pipeline](../09%20Rendering%20Pipeline/README.md) |
+| 3 | [`03_networking_and_dns.md`](03_networking_and_dns.md) | OSI/TCP-IP model, IP, TCP vs UDP, sockets, ports, DNS resolution | [16 Networking](../16%20Networking/README.md) |
+| 4 | [`04_http_and_tls.md`](04_http_and_tls.md) | HTTP/1.1/2/3, methods, status, caching headers, TLS handshake, certificates, pinning | [16 Networking · HTTP](../16%20Networking/01_http_fundamentals.md), [37 Security · pinning](../37%20Security/03_network_security_and_pinning.md) |
+| 5 | [`05_databases_and_caching.md`](05_databases_and_caching.md) | Relational vs NoSQL, ACID, indexing, B-trees, transactions, caching & eviction | [20 Database](../20%20Database/README.md), [15 Local Storage · caching](../15%20Local%20Storage/05_caching_strategies.md) |
+| 6 | [`06_compression_and_serialization.md`](06_compression_and_serialization.md) | Encodings, JSON/Protobuf/FlatBuffers, gzip/Brotli/zstd, tradeoffs | [02 Advanced Dart · JSON & serialization](../02%20Advanced%20Dart/12_json_and_serialization.md) |
+| 7 | [`07_security_foundations.md`](07_security_foundations.md) | Hashing, symmetric/asymmetric crypto, key exchange, threat modeling, CIA triad | [37 Security](../37%20Security/README.md), [17 Authentication](../17%20Authentication/README.md) |
 
 ## How to read it
 

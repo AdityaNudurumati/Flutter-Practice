@@ -12,15 +12,15 @@ Interviewers probe OOP because it reveals whether you can structure code that sc
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [classes_and_objects.md](classes_and_objects.md) | Classes, objects, fields, methods, `static`, `this`, lifecycle, memory layout | 🟢 |
-| 2 | [encapsulation.md](encapsulation.md) | Privacy (`_`), getters/setters, protecting invariants | 🟢 |
-| 3 | [inheritance.md](inheritance.md) | `extends`, `super`, `@override`, abstract base classes | 🔵 |
-| 4 | [polymorphism.md](polymorphism.md) | Dynamic dispatch, method overriding, Liskov substitution | 🔵 |
-| 5 | [abstraction_and_interfaces.md](abstraction_and_interfaces.md) | Abstract classes, implicit interfaces, `implements`, `sealed` | 🔵 |
-| 6 | [composition_and_relationships.md](composition_and_relationships.md) | Composition vs inheritance, aggregation, association, mixin-vs-composition | 🔵 |
-| 7 | [equality_and_copying.md](equality_and_copying.md) | `==`/`hashCode`, identity, deep vs shallow copy | 🔵 |
+| 1 | [01_classes_and_objects.md](01_classes_and_objects.md) | Classes, objects, fields, methods, `static`, `this`, lifecycle, memory layout | 🟢 |
+| 2 | [02_encapsulation.md](02_encapsulation.md) | Privacy (`_`), getters/setters, protecting invariants | 🟢 |
+| 3 | [03_inheritance.md](03_inheritance.md) | `extends`, `super`, `@override`, abstract base classes | 🔵 |
+| 4 | [04_polymorphism.md](04_polymorphism.md) | Dynamic dispatch, method overriding, Liskov substitution | 🔵 |
+| 5 | [05_abstraction_and_interfaces.md](05_abstraction_and_interfaces.md) | Abstract classes, implicit interfaces, `implements`, `sealed` | 🔵 |
+| 6 | [06_composition_and_relationships.md](06_composition_and_relationships.md) | Composition vs inheritance, aggregation, association, mixin-vs-composition | 🔵 |
+| 7 | [07_equality_and_copying.md](07_equality_and_copying.md) | `==`/`hashCode`, identity, deep vs shallow copy | 🔵 |
 
-> **Cross-references:** Constructors (named/factory/private/`const`) and **mixins** are covered in depth in [02 Advanced Dart](../02%20Advanced%20Dart/README.md) ([constructors_and_singletons.md](../02%20Advanced%20Dart/constructors_and_singletons.md), [mixins.md](../02%20Advanced%20Dart/mixins.md)). Dependency Injection has its own module ([14](../14%20Dependency%20Injection/README.md)). Immutability/value equality tooling is in [immutability.md](../02%20Advanced%20Dart/immutability.md).
+> **Cross-references:** Constructors (named/factory/private/`const`) and **mixins** are covered in depth in [02 Advanced Dart](../02%20Advanced%20Dart/README.md) ([09_constructors_and_singletons.md](../02%20Advanced%20Dart/09_constructors_and_singletons.md), [06_mixins.md](../02%20Advanced%20Dart/06_mixins.md)). Dependency Injection has its own module ([14](../14%20Dependency%20Injection/README.md)). Immutability/value equality tooling is in [10_immutability.md](../02%20Advanced%20Dart/10_immutability.md).
 
 ## Prerequisites
 

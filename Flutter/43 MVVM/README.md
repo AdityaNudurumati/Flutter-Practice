@@ -12,11 +12,11 @@ MVVM is what Flutter's declarative, reactive UI naturally produces — most "Pro
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [mvvm_fundamentals.md](mvvm_fundamentals.md) | Roles, observable state, data binding, reactive fit | 🔵 |
-| 2 | [viewmodel_design.md](viewmodel_design.md) | ViewModel responsibilities: state, commands, over use cases | 🔴 |
-| 3 | [data_binding_and_state.md](data_binding_and_state.md) | Binding in Flutter (ChangeNotifier/Provider/Riverpod/Bloc), scoped rebuilds | 🔴 |
-| 4 | [mvvm_testing_and_comparison.md](mvvm_testing_and_comparison.md) | State-sequence testing; MVVM vs MVC/MVP; + Clean | 🟡 |
-| 5 | [mvvm_integration.md](mvvm_integration.md) | Capstone: MVVM feature + Clean layering + state test | 🔴 |
+| 1 | [01_mvvm_fundamentals.md](01_mvvm_fundamentals.md) | Roles, observable state, data binding, reactive fit | 🔵 |
+| 2 | [02_viewmodel_design.md](02_viewmodel_design.md) | ViewModel responsibilities: state, commands, over use cases | 🔴 |
+| 3 | [03_data_binding_and_state.md](03_data_binding_and_state.md) | Binding in Flutter (ChangeNotifier/Provider/Riverpod/Bloc), scoped rebuilds | 🔴 |
+| 4 | [04_mvvm_testing_and_comparison.md](04_mvvm_testing_and_comparison.md) | State-sequence testing; MVVM vs MVC/MVP; + Clean | 🟡 |
+| 5 | [05_mvvm_integration.md](05_mvvm_integration.md) | Capstone: MVVM feature + Clean layering + state test | 🔴 |
 
 > **Cross-references:** MVC/MVP: [Module 41](../41%20MVC/README.md)/[Module 42](../42%20MVP/README.md). Clean Architecture (presentation layer): [Module 40](../40%20Clean%20Architecture/README.md). State management: [Module 11](../11%20State%20Management/README.md). Error handling (Result→state): [Module 38](../38%20Error%20Handling/README.md). Performance (scoped rebuilds): [Module 21](../21%20Performance/README.md). Testing (state-sequence): [Module 49](../49%20Testing/README.md).
 

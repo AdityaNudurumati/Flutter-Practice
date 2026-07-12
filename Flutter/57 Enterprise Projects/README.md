@@ -12,11 +12,11 @@ Enterprise apps differ from consumer apps in **kind, not just size**: many teams
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [enterprise_fundamentals.md](enterprise_fundamentals.md) | What makes a project enterprise; constraints & requirements | 🔴 |
-| 2 | [enterprise_architecture_and_structure.md](enterprise_architecture_and_structure.md) | Large-scale structure, multi-team/module organization | 🔴 |
-| 3 | [cross_cutting_enterprise_concerns.md](cross_cutting_enterprise_concerns.md) | Auth/RBAC, audit, i18n/l10n, theming/white-label, config/feature flags | 🔴 |
-| 4 | [integration_and_case_studies.md](integration_and_case_studies.md) | Backends/SSO, legacy, third-party integration; case studies | 🔴 |
-| 5 | [enterprise_integration.md](enterprise_integration.md) | Capstone: an enterprise app architecture | 🔴 |
+| 1 | [01_enterprise_fundamentals.md](01_enterprise_fundamentals.md) | What makes a project enterprise; constraints & requirements | 🔴 |
+| 2 | [02_enterprise_architecture_and_structure.md](02_enterprise_architecture_and_structure.md) | Large-scale structure, multi-team/module organization | 🔴 |
+| 3 | [03_cross_cutting_enterprise_concerns.md](03_cross_cutting_enterprise_concerns.md) | Auth/RBAC, audit, i18n/l10n, theming/white-label, config/feature flags | 🔴 |
+| 4 | [04_integration_and_case_studies.md](04_integration_and_case_studies.md) | Backends/SSO, legacy, third-party integration; case studies | 🔴 |
+| 5 | [05_enterprise_integration.md](05_enterprise_integration.md) | Capstone: an enterprise app architecture | 🔴 |
 
 > **Cross-references:** Architecture band: [40](../40%20Clean%20Architecture/README.md)/[44](../44%20Feature%20First%20Architecture/README.md)/[45](../45%20Modular%20Architecture/README.md)/[46](../46%20Domain%20Driven%20Design/README.md)/[47](../47%20Scalable%20Applications/README.md). System design: [Module 48](../48%20System%20Design/README.md). Auth/security: [Module 17](../17%20Authentication/README.md)/[Module 37](../37%20Security/README.md). CI/CD + deployment + monitoring: [50](../50%20CI%20CD/README.md)/[51](../51%20Deployment/README.md)/[52](../52%20Monitoring/README.md). Testing: [Module 49](../49%20Testing/README.md). Adaptive UI/theming: [Module 25](../25%20Adaptive%20UI/README.md).
 

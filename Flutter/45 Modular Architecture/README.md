@@ -12,11 +12,11 @@ Feature-first folders rely on **discipline/lints** to keep boundaries — which 
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [modular_fundamentals.md](modular_fundamentals.md) | Packages as hard boundaries, why/when to modularize | 🔴 |
-| 2 | [monorepo_and_melos.md](monorepo_and_melos.md) | Monorepo layout, melos, path deps, workspace scripts | 🔴 |
-| 3 | [module_boundaries_and_contracts.md](module_boundaries_and_contracts.md) | Package exports/public API, contracts, dependency graph | 🔴 |
-| 4 | [build_versioning_and_teams.md](build_versioning_and_teams.md) | Build speed, versioning, ownership, CI | 🟡 |
-| 5 | [modular_integration.md](modular_integration.md) | Capstone: a modular monorepo skeleton | 🔴 |
+| 1 | [01_modular_fundamentals.md](01_modular_fundamentals.md) | Packages as hard boundaries, why/when to modularize | 🔴 |
+| 2 | [02_monorepo_and_melos.md](02_monorepo_and_melos.md) | Monorepo layout, melos, path deps, workspace scripts | 🔴 |
+| 3 | [03_module_boundaries_and_contracts.md](03_module_boundaries_and_contracts.md) | Package exports/public API, contracts, dependency graph | 🔴 |
+| 4 | [04_build_versioning_and_teams.md](04_build_versioning_and_teams.md) | Build speed, versioning, ownership, CI | 🟡 |
+| 5 | [05_modular_integration.md](05_modular_integration.md) | Capstone: a modular monorepo skeleton | 🔴 |
 
 > **Cross-references:** Feature-first (the precursor): [Module 44](../44%20Feature%20First%20Architecture/README.md). Clean Architecture (module internals): [Module 40](../40%20Clean%20Architecture/README.md). DI (cross-module wiring): [Module 14](../14%20Dependency%20Injection/README.md). DDD (module per bounded context): [Module 46](../46%20Domain%20Driven%20Design/README.md). Scalable apps: [Module 47](../47%20Scalable%20Applications/README.md). CI/CD: [Module 50](../50%20CI%20CD/README.md).
 

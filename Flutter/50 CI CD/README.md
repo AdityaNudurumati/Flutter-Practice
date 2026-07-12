@@ -12,11 +12,11 @@ Manual build/test/release is slow, error-prone, and doesn't scale: bugs slip in 
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [cicd_fundamentals.md](cicd_fundamentals.md) | What CI/CD is, pipeline stages, principles | 🔵 |
-| 2 | [ci_pipeline_and_automation.md](ci_pipeline_and_automation.md) | CI: analyze/test/build automation, GH Actions/Codemagic, caching, monorepo | 🔴 |
-| 3 | [build_signing_and_flavors.md](build_signing_and_flavors.md) | Code signing (keystore/certs), flavors/environments, Fastlane | 🔴 |
-| 4 | [cd_release_automation.md](cd_release_automation.md) | CD: store/track release, staged rollout, versioning | 🔴 |
-| 5 | [cicd_integration.md](cicd_integration.md) | Capstone: a full commit→store pipeline | 🔴 |
+| 1 | [01_cicd_fundamentals.md](01_cicd_fundamentals.md) | What CI/CD is, pipeline stages, principles | 🔵 |
+| 2 | [02_ci_pipeline_and_automation.md](02_ci_pipeline_and_automation.md) | CI: analyze/test/build automation, GH Actions/Codemagic, caching, monorepo | 🔴 |
+| 3 | [03_build_signing_and_flavors.md](03_build_signing_and_flavors.md) | Code signing (keystore/certs), flavors/environments, Fastlane | 🔴 |
+| 4 | [04_cd_release_automation.md](04_cd_release_automation.md) | CD: store/track release, staged rollout, versioning | 🔴 |
+| 5 | [05_cicd_integration.md](05_cicd_integration.md) | Capstone: a full commit→store pipeline | 🔴 |
 
 > **Cross-references:** Testing (what CI runs): [Module 49](../49%20Testing/README.md). Deployment/stores: [Module 51](../51%20Deployment/README.md). Monitoring (post-release): [Module 52](../52%20Monitoring/README.md). Modular/monorepo (incremental CI): [Module 45](../45%20Modular%20Architecture/README.md). Security (secrets/signing): [Module 37](../37%20Security/README.md). Native config (Android/iOS build): [Module 27](../27%20Native%20Android/README.md)/[Module 28](../28%20Native%20iOS/README.md).
 

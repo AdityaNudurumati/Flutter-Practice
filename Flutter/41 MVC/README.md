@@ -12,11 +12,11 @@ MVC is the oldest and most name-dropped UI pattern, and many Flutter apps (espec
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [mvc_fundamentals.md](mvc_fundamentals.md) | Classic MVC: three roles, data flow, origins | 🔵 |
-| 2 | [mvc_in_flutter.md](mvc_in_flutter.md) | Mapping MVC to Flutter's reactive model (and the friction) | 🟡 |
-| 3 | [controllers_and_thin_views.md](controllers_and_thin_views.md) | Controller responsibilities, thin views, change notification | 🟡 |
-| 4 | [mvc_tradeoffs_and_comparison.md](mvc_tradeoffs_and_comparison.md) | Strengths/weaknesses; MVC vs MVP/MVVM/Clean | 🔴 |
-| 5 | [mvc_integration.md](mvc_integration.md) | Capstone: a pragmatic MVC-style feature | 🟡 |
+| 1 | [01_mvc_fundamentals.md](01_mvc_fundamentals.md) | Classic MVC: three roles, data flow, origins | 🔵 |
+| 2 | [02_mvc_in_flutter.md](02_mvc_in_flutter.md) | Mapping MVC to Flutter's reactive model (and the friction) | 🟡 |
+| 3 | [03_controllers_and_thin_views.md](03_controllers_and_thin_views.md) | Controller responsibilities, thin views, change notification | 🟡 |
+| 4 | [04_mvc_tradeoffs_and_comparison.md](04_mvc_tradeoffs_and_comparison.md) | Strengths/weaknesses; MVC vs MVP/MVVM/Clean | 🔴 |
+| 5 | [05_mvc_integration.md](05_mvc_integration.md) | Capstone: a pragmatic MVC-style feature | 🟡 |
 
 > **Cross-references:** MVP: [Module 42](../42%20MVP/README.md). MVVM (the better reactive fit): [Module 43](../43%20MVVM/README.md). Clean Architecture (layering): [Module 40](../40%20Clean%20Architecture/README.md). State management: [Module 11](../11%20State%20Management/README.md). Design patterns (Observer): [Module 05](../05%20Design%20Patterns/README.md). Widget rebuilds: [Module 07](../07%20Widgets/README.md).
 

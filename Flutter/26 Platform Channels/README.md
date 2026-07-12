@@ -12,13 +12,13 @@ Some capabilities live only in native SDKs/OS APIs (sensors, native UI, platform
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [platform_channel_fundamentals.md](platform_channel_fundamentals.md) | Messaging model, codec, async, threading | 🔴 |
-| 2 | [method_channel.md](method_channel.md) | `MethodChannel` (invoke/handle/errors) | 🔵 |
-| 3 | [event_channel.md](event_channel.md) | `EventChannel` (native→Dart streams) | 🔵 |
-| 4 | [plugins_and_pigeon.md](plugins_and_pigeon.md) | Writing plugins, federated, Pigeon | 🔴 |
-| 5 | [ffi.md](ffi.md) | `dart:ffi` direct C interop | 🔴 |
+| 1 | [01_platform_channel_fundamentals.md](01_platform_channel_fundamentals.md) | Messaging model, codec, async, threading | 🔴 |
+| 2 | [02_method_channel.md](02_method_channel.md) | `MethodChannel` (invoke/handle/errors) | 🔵 |
+| 3 | [03_event_channel.md](03_event_channel.md) | `EventChannel` (native→Dart streams) | 🔵 |
+| 4 | [04_plugins_and_pigeon.md](04_plugins_and_pigeon.md) | Writing plugins, federated, Pigeon | 🔴 |
+| 5 | [05_ffi.md](05_ffi.md) | `dart:ffi` direct C interop | 🔴 |
 
-> **Cross-references:** Engine/embedder boundary + task runners: [10 · threading_model](../10%20Flutter%20Architecture/threading_model.md), [10 · engine_internals](../10%20Flutter%20Architecture/engine_internals.md). Native Android/iOS: [Modules 27](../27%20Native%20Android/README.md)/[28](../28%20Native%20iOS/README.md). Device features (via plugins): [Module 29](../29%20Device%20Features/README.md). Isolates/async: [02](../02%20Advanced%20Dart/README.md). Background isolate channels: [02 · isolates](../02%20Advanced%20Dart/isolates.md).
+> **Cross-references:** Engine/embedder boundary + task runners: [10 · threading_model](../10%20Flutter%20Architecture/03_threading_model.md), [10 · engine_internals](../10%20Flutter%20Architecture/04_engine_internals.md). Native Android/iOS: [Modules 27](../27%20Native%20Android/README.md)/[28](../28%20Native%20iOS/README.md). Device features (via plugins): [Module 29](../29%20Device%20Features/README.md). Isolates/async: [02](../02%20Advanced%20Dart/README.md). Background isolate channels: [02 · isolates](../02%20Advanced%20Dart/04_isolates.md).
 
 ## Prerequisites
 

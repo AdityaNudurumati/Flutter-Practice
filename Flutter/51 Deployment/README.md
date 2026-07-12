@@ -12,13 +12,13 @@ Getting an app *into users' hands* is a distinct discipline from building it: th
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [deployment_fundamentals.md](deployment_fundamentals.md) | Release channels, store overview, versioning, release strategy | 🔵 |
-| 2 | [store_setup_and_submission.md](store_setup_and_submission.md) | Play Console / App Store Connect setup, listing, metadata, assets, upload | 🟡 |
-| 3 | [review_process_and_compliance.md](review_process_and_compliance.md) | Review process, common rejections, privacy/policy compliance | 🔴 |
-| 4 | [app_size_and_build_optimization.md](app_size_and_build_optimization.md) | App Bundle/thinning, obfuscation, size reduction, release build | 🔴 |
-| 5 | [deployment_integration.md](deployment_integration.md) | Capstone: full release checklist + post-launch | 🟡 |
+| 1 | [01_deployment_fundamentals.md](01_deployment_fundamentals.md) | Release channels, store overview, versioning, release strategy | 🔵 |
+| 2 | [02_store_setup_and_submission.md](02_store_setup_and_submission.md) | Play Console / App Store Connect setup, listing, metadata, assets, upload | 🟡 |
+| 3 | [03_review_process_and_compliance.md](03_review_process_and_compliance.md) | Review process, common rejections, privacy/policy compliance | 🔴 |
+| 4 | [04_app_size_and_build_optimization.md](04_app_size_and_build_optimization.md) | App Bundle/thinning, obfuscation, size reduction, release build | 🔴 |
+| 5 | [05_deployment_integration.md](05_deployment_integration.md) | Capstone: full release checklist + post-launch | 🟡 |
 
-> **Cross-references:** CI/CD (automates build/upload): [Module 50](../50%20CI%20CD/README.md). Monitoring (post-launch): [Module 52](../52%20Monitoring/README.md). Signing/flavors: [50 · build_signing](../50%20CI%20CD/build_signing_and_flavors.md). App size/startup: [Module 21](../21%20Performance/README.md). Security/privacy: [Module 37](../37%20Security/README.md). Native config: [Module 27](../27%20Native%20Android/README.md)/[Module 28](../28%20Native%20iOS/README.md). Payments policy: [Module 31](../31%20Payments/README.md).
+> **Cross-references:** CI/CD (automates build/upload): [Module 50](../50%20CI%20CD/README.md). Monitoring (post-launch): [Module 52](../52%20Monitoring/README.md). Signing/flavors: [50 · build_signing](../50%20CI%20CD/03_build_signing_and_flavors.md). App size/startup: [Module 21](../21%20Performance/README.md). Security/privacy: [Module 37](../37%20Security/README.md). Native config: [Module 27](../27%20Native%20Android/README.md)/[Module 28](../28%20Native%20iOS/README.md). Payments policy: [Module 31](../31%20Payments/README.md).
 
 ## Prerequisites
 

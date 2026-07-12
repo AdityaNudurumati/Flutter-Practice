@@ -12,11 +12,11 @@ Machine coding is where strong engineers **win or lose offers**: it's not about 
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [machine_coding_fundamentals.md](machine_coding_fundamentals.md) | Format, evaluation criteria, mindset | 🔵 |
-| 2 | [approach_and_time_management.md](approach_and_time_management.md) | Scope → plan → incremental build → polish; time-boxing | 🔴 |
-| 3 | [clean_architecture_under_pressure.md](clean_architecture_under_pressure.md) | Right-sized structure, state choice, separation w/o over-engineering | 🔴 |
-| 4 | [common_problems_and_patterns.md](common_problems_and_patterns.md) | Common problems (todo/timer/search/form/list) + reusable patterns | 🟡 |
-| 5 | [machine_coding_integration.md](machine_coding_integration.md) | Capstone: a worked machine-coding round | 🔴 |
+| 1 | [01_machine_coding_fundamentals.md](01_machine_coding_fundamentals.md) | Format, evaluation criteria, mindset | 🔵 |
+| 2 | [02_approach_and_time_management.md](02_approach_and_time_management.md) | Scope → plan → incremental build → polish; time-boxing | 🔴 |
+| 3 | [03_clean_architecture_under_pressure.md](03_clean_architecture_under_pressure.md) | Right-sized structure, state choice, separation w/o over-engineering | 🔴 |
+| 4 | [04_common_problems_and_patterns.md](04_common_problems_and_patterns.md) | Common problems (todo/timer/search/form/list) + reusable patterns | 🟡 |
+| 5 | [05_machine_coding_integration.md](05_machine_coding_integration.md) | Capstone: a worked machine-coding round | 🔴 |
 
 > **Cross-references:** Interview prep (round context): [Module 55](../55%20Flutter%20Interview%20Preparation/README.md). State management: [Module 11](../11%20State%20Management/README.md). MVVM/Clean (right-sized): [Module 43](../43%20MVVM/README.md)/[Module 40](../40%20Clean%20Architecture/README.md). Testing: [Module 49](../49%20Testing/README.md). Networking (if API-backed): [Module 16](../16%20Networking/README.md). Error handling: [Module 38](../38%20Error%20Handling/README.md).
 

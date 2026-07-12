@@ -12,17 +12,17 @@ Choosing the wrong storage (tokens in plain prefs, large blobs in key-value, no 
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [storage_options_overview.md](storage_options_overview.md) | The options and how to choose | 🟢 |
-| 2 | [shared_preferences.md](shared_preferences.md) | Key-value preferences | 🟢 |
-| 3 | [secure_storage.md](secure_storage.md) | `flutter_secure_storage`, keychain/keystore | 🔴 |
-| 4 | [file_storage.md](file_storage.md) | `path_provider`, files & directories | 🔵 |
-| 5 | [caching_strategies.md](caching_strategies.md) | TTL, cache-first, invalidation | 🔴 |
+| 1 | [01_storage_options_overview.md](01_storage_options_overview.md) | The options and how to choose | 🟢 |
+| 2 | [02_shared_preferences.md](02_shared_preferences.md) | Key-value preferences | 🟢 |
+| 3 | [03_secure_storage.md](03_secure_storage.md) | `flutter_secure_storage`, keychain/keystore | 🔴 |
+| 4 | [04_file_storage.md](04_file_storage.md) | `path_provider`, files & directories | 🔵 |
+| 5 | [05_caching_strategies.md](05_caching_strategies.md) | TTL, cache-first, invalidation | 🔴 |
 
-> **Cross-references:** Databases (SQLite/Drift/Isar/Hive): [Module 20](../20%20Database/README.md). Offline-first/sync: [Module 19](../19%20Offline%20First/README.md). Security (encryption, threat model): [Module 37](../37%20Security/README.md). Networking/caching source: [Module 16](../16%20Networking/README.md). File handling (upload/download/ZIP): [Module 34](../34%20File%20Handling/README.md). Repository pattern: [05 · repository](../05%20Design%20Patterns/repository.md).
+> **Cross-references:** Databases (SQLite/Drift/Isar/Hive): [Module 20](../20%20Database/README.md). Offline-first/sync: [Module 19](../19%20Offline%20First/README.md). Security (encryption, threat model): [Module 37](../37%20Security/README.md). Networking/caching source: [Module 16](../16%20Networking/README.md). File handling (upload/download/ZIP): [Module 34](../34%20File%20Handling/README.md). Repository pattern: [05 · repository](../05%20Design%20Patterns/20_repository.md).
 
 ## Prerequisites
 
-[02 · json_and_serialization](../02%20Advanced%20Dart/json_and_serialization.md), [05 · repository](../05%20Design%20Patterns/repository.md), [14 Dependency Injection](../14%20Dependency%20Injection/README.md).
+[02 · json_and_serialization](../02%20Advanced%20Dart/12_json_and_serialization.md), [05 · repository](../05%20Design%20Patterns/20_repository.md), [14 Dependency Injection](../14%20Dependency%20Injection/README.md).
 
 ## What you'll be able to do after this module
 

@@ -12,11 +12,11 @@ Untested code can't be safely changed — every refactor, feature, or dependency
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [testing_fundamentals_and_pyramid.md](testing_fundamentals_and_pyramid.md) | Why test, the testing pyramid, test types, what to test | 🔵 |
-| 2 | [unit_and_mocking.md](unit_and_mocking.md) | Unit tests, mocks/fakes (mocktail), TDD | 🔴 |
-| 3 | [widget_and_golden_tests.md](widget_and_golden_tests.md) | Widget tests (pump/finders/interactions), golden tests | 🔴 |
-| 4 | [integration_and_e2e.md](integration_and_e2e.md) | `integration_test`, E2E, driving the app, `patrol` | 🟡 |
-| 5 | [testing_integration.md](testing_integration.md) | Capstone: test each layer + coverage + CI | 🔴 |
+| 1 | [01_testing_fundamentals_and_pyramid.md](01_testing_fundamentals_and_pyramid.md) | Why test, the testing pyramid, test types, what to test | 🔵 |
+| 2 | [02_unit_and_mocking.md](02_unit_and_mocking.md) | Unit tests, mocks/fakes (mocktail), TDD | 🔴 |
+| 3 | [03_widget_and_golden_tests.md](03_widget_and_golden_tests.md) | Widget tests (pump/finders/interactions), golden tests | 🔴 |
+| 4 | [04_integration_and_e2e.md](04_integration_and_e2e.md) | `integration_test`, E2E, driving the app, `patrol` | 🟡 |
+| 5 | [05_testing_integration.md](05_testing_integration.md) | Capstone: test each layer + coverage + CI | 🔴 |
 
 > **Cross-references:** Architecture (testable layers): [40](../40%20Clean%20Architecture/README.md)/[43](../43%20MVVM/README.md)/[44](../44%20Feature%20First%20Architecture/README.md). CI (run tests): [Module 50](../50%20CI%20CD/README.md). Error handling (test failure paths): [Module 38](../38%20Error%20Handling/README.md). Networking/storage (fakes at boundaries): [Module 16](../16%20Networking/README.md)/[Module 15](../15%20Local%20Storage/README.md). Performance (perf tests): [Module 21](../21%20Performance/README.md). Scalable apps (tests as regression safety): [Module 47](../47%20Scalable%20Applications/README.md).
 

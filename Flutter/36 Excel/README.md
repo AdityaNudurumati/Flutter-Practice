@@ -12,13 +12,13 @@ Business and data apps constantly import/export spreadsheets: users upload an XL
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [excel_basics_and_packages.md](excel_basics_and_packages.md) | Package choice (`excel`/Syncfusion/`csv`), workbook/sheet/cell model, read/write | 🔵 |
-| 2 | [cells_styles_and_formulas.md](cells_styles_and_formulas.md) | Cell types, number/date formats, styling, merged cells, formulas | 🟡 |
-| 3 | [csv_and_data_interchange.md](csv_and_data_interchange.md) | CSV read/write, quoting/locale edge cases, CSV vs XLSX | 🟡 |
-| 4 | [import_export_large_datasets.md](import_export_large_datasets.md) | Model↔row mapping, validation, memory/streaming, large files | 🔴 |
-| 5 | [excel_integration.md](excel_integration.md) | Capstone: import/export behind a service, off-UI-thread | 🔴 |
+| 1 | [01_excel_basics_and_packages.md](01_excel_basics_and_packages.md) | Package choice (`excel`/Syncfusion/`csv`), workbook/sheet/cell model, read/write | 🔵 |
+| 2 | [02_cells_styles_and_formulas.md](02_cells_styles_and_formulas.md) | Cell types, number/date formats, styling, merged cells, formulas | 🟡 |
+| 3 | [03_csv_and_data_interchange.md](03_csv_and_data_interchange.md) | CSV read/write, quoting/locale edge cases, CSV vs XLSX | 🟡 |
+| 4 | [04_import_export_large_datasets.md](04_import_export_large_datasets.md) | Model↔row mapping, validation, memory/streaming, large files | 🔴 |
+| 5 | [05_excel_integration.md](05_excel_integration.md) | Capstone: import/export behind a service, off-UI-thread | 🔴 |
 
-> **Cross-references:** File save/share/pick: [Module 34](../34%20File%20Handling/README.md). PDF (the other export format): [Module 35](../35%20PDF/README.md). Isolates (heavy parse/generate): [02 · isolates](../02%20Advanced%20Dart/isolates_and_concurrency.md). Networking (fetch export data): [Module 16](../16%20Networking/README.md). Models/serialization: [02 · json_serialization](../02%20Advanced%20Dart/json_and_serialization.md).
+> **Cross-references:** File save/share/pick: [Module 34](../34%20File%20Handling/README.md). PDF (the other export format): [Module 35](../35%20PDF/README.md). Isolates (heavy parse/generate): [02 · isolates](../02%20Advanced%20Dart/04_isolates.md). Networking (fetch export data): [Module 16](../16%20Networking/README.md). Models/serialization: [02 · json_serialization](../02%20Advanced%20Dart/12_json_and_serialization.md).
 
 ## Prerequisites
 

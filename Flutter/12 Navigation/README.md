@@ -12,14 +12,14 @@ Navigation touches every app and is a common source of bugs (lost arguments, bac
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [navigator_stack.md](navigator_stack.md) | The route stack model | 🟢 |
-| 2 | [imperative_navigation.md](imperative_navigation.md) | `push`/`pop`, `MaterialPageRoute`, args & results | 🟢 |
-| 3 | [named_routes.md](named_routes.md) | Named routes, `onGenerateRoute`, settings | 🔵 |
-| 4 | [declarative_navigation.md](declarative_navigation.md) | Navigator 2.0 / Router / `Page` API | 🔴 |
-| 5 | [nested_navigators_and_tabs.md](nested_navigators_and_tabs.md) | Nested navigators, tabs, `IndexedStack` | 🔵 |
-| 6 | [route_transitions.md](route_transitions.md) | `PageRouteBuilder`, custom transitions, `Hero` | 🔵 |
+| 1 | [01_navigator_stack.md](01_navigator_stack.md) | The route stack model | 🟢 |
+| 2 | [02_imperative_navigation.md](02_imperative_navigation.md) | `push`/`pop`, `MaterialPageRoute`, args & results | 🟢 |
+| 3 | [03_named_routes.md](03_named_routes.md) | Named routes, `onGenerateRoute`, settings | 🔵 |
+| 4 | [04_declarative_navigation.md](04_declarative_navigation.md) | Navigator 2.0 / Router / `Page` API | 🔴 |
+| 5 | [05_nested_navigators_and_tabs.md](05_nested_navigators_and_tabs.md) | Nested navigators, tabs, `IndexedStack` | 🔵 |
+| 6 | [06_route_transitions.md](06_route_transitions.md) | `PageRouteBuilder`, custom transitions, `Hero` | 🔵 |
 
-> **Cross-references:** Deep links, route guards, and `go_router` are in [Module 13 Routing](../13%20Routing/README.md). `BuildContext`/`Navigator.of`: [06 · build_context](../06%20Flutter%20Fundamentals/build_context.md). State across navigation: [Module 11](../11%20State%20Management/README.md). App shell/`MaterialApp`: [06 · app_entry_point](../06%20Flutter%20Fundamentals/app_entry_point.md).
+> **Cross-references:** Deep links, route guards, and `go_router` are in [Module 13 Routing](../13%20Routing/README.md). `BuildContext`/`Navigator.of`: [06 · build_context](../06%20Flutter%20Fundamentals/06_build_context.md). State across navigation: [Module 11](../11%20State%20Management/README.md). App shell/`MaterialApp`: [06 · app_entry_point](../06%20Flutter%20Fundamentals/07_app_entry_point.md).
 
 ## Prerequisites
 

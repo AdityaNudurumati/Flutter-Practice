@@ -12,11 +12,11 @@ Senior/architect roles require designing systems, not just implementing screens 
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [system_design_fundamentals.md](system_design_fundamentals.md) | What mobile system design is; requirements; the process | 🔴 |
-| 2 | [client_server_and_data_flow.md](client_server_and_data_flow.md) | API contracts, pagination, real-time, data flow & sync | 🔴 |
-| 3 | [caching_offline_and_scale.md](caching_offline_and_scale.md) | Caching strategy, offline-first, scalability & trade-offs | 🔴 |
-| 4 | [mobile_system_design_interview.md](mobile_system_design_interview.md) | Interview approach: frameworks, common prompts, communication | 🟡 |
-| 5 | [system_design_integration.md](system_design_integration.md) | Capstone: design a feed/chat app end-to-end | 🔴 |
+| 1 | [01_system_design_fundamentals.md](01_system_design_fundamentals.md) | What mobile system design is; requirements; the process | 🔴 |
+| 2 | [02_client_server_and_data_flow.md](02_client_server_and_data_flow.md) | API contracts, pagination, real-time, data flow & sync | 🔴 |
+| 3 | [03_caching_offline_and_scale.md](03_caching_offline_and_scale.md) | Caching strategy, offline-first, scalability & trade-offs | 🔴 |
+| 4 | [04_mobile_system_design_interview.md](04_mobile_system_design_interview.md) | Interview approach: frameworks, common prompts, communication | 🟡 |
+| 5 | [05_system_design_integration.md](05_system_design_integration.md) | Capstone: design a feed/chat app end-to-end | 🔴 |
 
 > **Cross-references:** Architecture band: [40](../40%20Clean%20Architecture/README.md)–[47](../47%20Scalable%20Applications/README.md). Networking: [Module 16](../16%20Networking/README.md). Offline-first: [Module 19](../19%20Offline%20First/README.md). Database/caching: [Module 20](../20%20Database/README.md)/[Module 34](../34%20File%20Handling/README.md). Performance: [Module 21](../21%20Performance/README.md). Security: [Module 37](../37%20Security/README.md). Notifications/real-time: [Module 32](../32%20Notifications/README.md).
 

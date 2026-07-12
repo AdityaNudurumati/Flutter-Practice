@@ -12,13 +12,13 @@ Flutter apps ship as iOS apps: you configure Xcode/CocoaPods, add capabilities a
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [ios_project_and_cocoapods.md](ios_project_and_cocoapods.md) | Xcode project, CocoaPods, build config, schemes/flavors | 🔵 |
-| 2 | [swift_plugin_code.md](swift_plugin_code.md) | Swift channels, `AppDelegate`/`FlutterViewController`, lifecycle | 🔴 |
-| 3 | [platform_views_ios.md](platform_views_ios.md) | Embedding native iOS views (`UiKitView`) | 🔴 |
-| 4 | [infoplist_and_permissions.md](infoplist_and_permissions.md) | `Info.plist`, permission usage strings, runtime flow | 🔵 |
-| 5 | [ios_integration.md](ios_integration.md) | Capabilities, background modes, universal links, App Store | 🔴 |
+| 1 | [01_ios_project_and_cocoapods.md](01_ios_project_and_cocoapods.md) | Xcode project, CocoaPods, build config, schemes/flavors | 🔵 |
+| 2 | [02_swift_plugin_code.md](02_swift_plugin_code.md) | Swift channels, `AppDelegate`/`FlutterViewController`, lifecycle | 🔴 |
+| 3 | [03_platform_views_ios.md](03_platform_views_ios.md) | Embedding native iOS views (`UiKitView`) | 🔴 |
+| 4 | [04_infoplist_and_permissions.md](04_infoplist_and_permissions.md) | `Info.plist`, permission usage strings, runtime flow | 🔵 |
+| 5 | [05_ios_integration.md](05_ios_integration.md) | Capabilities, background modes, universal links, App Store | 🔴 |
 
-> **Cross-references:** Platform channels/plugins: [Module 26](../26%20Platform%20Channels/README.md). Android counterpart: [Module 27](../27%20Native%20Android/README.md). Embedder/startup: [10 · embedder_and_startup](../10%20Flutter%20Architecture/embedder_and_startup.md). Device features: [Module 29](../29%20Device%20Features/README.md). Deep links/universal links: [13 · deep_linking](../13%20Routing/deep_linking_and_url_strategy.md). Deployment/signing: [Module 51](../51%20Deployment/README.md).
+> **Cross-references:** Platform channels/plugins: [Module 26](../26%20Platform%20Channels/README.md). Android counterpart: [Module 27](../27%20Native%20Android/README.md). Embedder/startup: [10 · embedder_and_startup](../10%20Flutter%20Architecture/05_embedder_and_startup.md). Device features: [Module 29](../29%20Device%20Features/README.md). Deep links/universal links: [13 · deep_linking](../13%20Routing/02_deep_linking_and_url_strategy.md). Deployment/signing: [Module 51](../51%20Deployment/README.md).
 
 ## Prerequisites
 

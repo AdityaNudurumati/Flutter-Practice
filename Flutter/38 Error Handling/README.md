@@ -12,11 +12,11 @@ Real apps fail constantly — networks drop, APIs 500, files vanish, inputs are 
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [errors_vs_exceptions.md](errors_vs_exceptions.md) | Dart `Error` vs `Exception`, throw/catch, custom exceptions, when to catch | 🔵 |
-| 2 | [result_and_either.md](result_and_either.md) | `Result`/`Either`/sealed classes, explicit failure in types | 🔴 |
-| 3 | [global_error_handling.md](global_error_handling.md) | `FlutterError.onError`, `PlatformDispatcher.onError`, `runZonedGuarded`, error boundaries | 🔴 |
-| 4 | [recovery_and_user_errors.md](recovery_and_user_errors.md) | Retry/backoff, graceful degradation, error→message mapping, error UX | 🟡 |
-| 5 | [error_integration.md](error_integration.md) | Capstone: an error strategy across layers | 🔴 |
+| 1 | [01_errors_vs_exceptions.md](01_errors_vs_exceptions.md) | Dart `Error` vs `Exception`, throw/catch, custom exceptions, when to catch | 🔵 |
+| 2 | [02_result_and_either.md](02_result_and_either.md) | `Result`/`Either`/sealed classes, explicit failure in types | 🔴 |
+| 3 | [03_global_error_handling.md](03_global_error_handling.md) | `FlutterError.onError`, `PlatformDispatcher.onError`, `runZonedGuarded`, error boundaries | 🔴 |
+| 4 | [04_recovery_and_user_errors.md](04_recovery_and_user_errors.md) | Retry/backoff, graceful degradation, error→message mapping, error UX | 🟡 |
+| 5 | [05_error_integration.md](05_error_integration.md) | Capstone: an error strategy across layers | 🔴 |
 
 > **Cross-references:** Networking failures/retries: [Module 16](../16%20Networking/README.md). State (error states): [Module 11](../11%20State%20Management/README.md). Monitoring/crash reporting: [Module 52](../52%20Monitoring/README.md). Logging: [Module 39](../39%20Logging/README.md). Clean architecture (where errors map): [Module 40](../40%20Clean%20Architecture/README.md). Offline (failure as normal): [Module 19](../19%20Offline%20First/README.md).
 

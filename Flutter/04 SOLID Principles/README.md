@@ -12,11 +12,11 @@ Most large codebases don't rot from bad syntax — they rot from bad *structure*
 
 | Letter | Principle | One-line intent | File |
 |--------|-----------|-----------------|------|
-| **S** | Single Responsibility | A class should have one reason to change | [srp_single_responsibility.md](srp_single_responsibility.md) |
-| **O** | Open/Closed | Open for extension, closed for modification | [ocp_open_closed.md](ocp_open_closed.md) |
-| **L** | Liskov Substitution | Subtypes must be usable as their base | [lsp_liskov_substitution.md](lsp_liskov_substitution.md) |
-| **I** | Interface Segregation | No client forced to depend on unused methods | [isp_interface_segregation.md](isp_interface_segregation.md) |
-| **D** | Dependency Inversion | Depend on abstractions, not concretions | [dip_dependency_inversion.md](dip_dependency_inversion.md) |
+| **S** | Single Responsibility | A class should have one reason to change | [01_srp_single_responsibility.md](01_srp_single_responsibility.md) |
+| **O** | Open/Closed | Open for extension, closed for modification | [02_ocp_open_closed.md](02_ocp_open_closed.md) |
+| **L** | Liskov Substitution | Subtypes must be usable as their base | [03_lsp_liskov_substitution.md](03_lsp_liskov_substitution.md) |
+| **I** | Interface Segregation | No client forced to depend on unused methods | [04_isp_interface_segregation.md](04_isp_interface_segregation.md) |
+| **D** | Dependency Inversion | Depend on abstractions, not concretions | [05_dip_dependency_inversion.md](05_dip_dependency_inversion.md) |
 
 ```mermaid
 flowchart LR
@@ -27,7 +27,7 @@ flowchart LR
     D -.enables.-> O
 ```
 
-The principles reinforce each other: DIP + polymorphism ([Module 03](../03%20Object%20Oriented%20Programming/polymorphism.md)) make OCP possible; ISP keeps LSP honest; SRP makes all of them easier.
+The principles reinforce each other: DIP + polymorphism ([Module 03](../03%20Object%20Oriented%20Programming/04_polymorphism.md)) make OCP possible; ISP keeps LSP honest; SRP makes all of them easier.
 
 ## Prerequisites
 
@@ -46,7 +46,7 @@ Beyond the standard template, every principle file includes a **❌ Violation �
 
 ## Capstone
 
-**SOLID refactor kata:** Take a deliberately bad "order service" (a God class that parses, validates, saves, emails, logs, and formats — with `if (type == ...)` branching and `new` dependencies everywhere) and refactor it to satisfy all five principles. Provided in [dip_dependency_inversion.md](dip_dependency_inversion.md#mini-project) as the culminating mini-project.
+**SOLID refactor kata:** Take a deliberately bad "order service" (a God class that parses, validates, saves, emails, logs, and formats — with `if (type == ...)` branching and `new` dependencies everywhere) and refactor it to satisfy all five principles. Provided in [05_dip_dependency_inversion.md](05_dip_dependency_inversion.md#mini-project) as the culminating mini-project.
 
 ## Summary
 

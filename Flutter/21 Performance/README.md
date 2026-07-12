@@ -12,18 +12,18 @@ Jank, memory bloat, and slow startup drive users away and fail reviews. The skil
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [profiling_and_frame_budget.md](profiling_and_frame_budget.md) | DevTools, frame budget, diagnosing by phase/thread | 🔴 |
-| 2 | [rebuild_optimization.md](rebuild_optimization.md) | `const`, scoping, selectors (build phase) | 🔵 |
-| 3 | [jank_and_raster.md](jank_and_raster.md) | Raster thread, `RepaintBoundary`, shaders/Impeller | 🔴 |
-| 4 | [memory_optimization.md](memory_optimization.md) | Leaks, image memory, GC pressure | 🔴 |
-| 5 | [list_and_scroll_performance.md](list_and_scroll_performance.md) | Lazy building, pagination, image caching | 🔵 |
-| 6 | [startup_and_app_size.md](startup_and_app_size.md) | Cold start, deferred loading, tree shaking, size | 🔴 |
+| 1 | [01_profiling_and_frame_budget.md](01_profiling_and_frame_budget.md) | DevTools, frame budget, diagnosing by phase/thread | 🔴 |
+| 2 | [02_rebuild_optimization.md](02_rebuild_optimization.md) | `const`, scoping, selectors (build phase) | 🔵 |
+| 3 | [03_jank_and_raster.md](03_jank_and_raster.md) | Raster thread, `RepaintBoundary`, shaders/Impeller | 🔴 |
+| 4 | [04_memory_optimization.md](04_memory_optimization.md) | Leaks, image memory, GC pressure | 🔴 |
+| 5 | [05_list_and_scroll_performance.md](05_list_and_scroll_performance.md) | Lazy building, pagination, image caching | 🔵 |
+| 6 | [06_startup_and_app_size.md](06_startup_and_app_size.md) | Cold start, deferred loading, tree shaking, size | 🔴 |
 
-> **Cross-references:** Rendering pipeline (mechanism): [Module 09](../09%20Rendering%20Pipeline/README.md). Build phase/rebuilds: [09 · build_phase](../09%20Rendering%20Pipeline/build_phase.md). Repaint boundaries: [09 · compositing](../09%20Rendering%20Pipeline/compositing_and_repaint_boundaries.md). Memory/GC: [02 · memory_and_gc](../02%20Advanced%20Dart/memory_and_gc.md). Isolates: [02 · isolates](../02%20Advanced%20Dart/isolates.md). Startup: [10 · embedder_and_startup](../10%20Flutter%20Architecture/embedder_and_startup.md). Images/lists: [07](../07%20Widgets/images_and_assets.md).
+> **Cross-references:** Rendering pipeline (mechanism): [Module 09](../09%20Rendering%20Pipeline/README.md). Build phase/rebuilds: [09 · build_phase](../09%20Rendering%20Pipeline/02_build_phase.md). Repaint boundaries: [09 · compositing](../09%20Rendering%20Pipeline/05_compositing_and_repaint_boundaries.md). Memory/GC: [02 · memory_and_gc](../02%20Advanced%20Dart/13_memory_and_gc.md). Isolates: [02 · isolates](../02%20Advanced%20Dart/04_isolates.md). Startup: [10 · embedder_and_startup](../10%20Flutter%20Architecture/05_embedder_and_startup.md). Images/lists: [07](../07%20Widgets/07_images_and_assets.md).
 
 ## Prerequisites
 
-[09 Rendering Pipeline](../09%20Rendering%20Pipeline/README.md), [02 Advanced Dart](../02%20Advanced%20Dart/README.md) (memory/GC, isolates), [08 · dispose_and_leaks](../08%20Widget%20Lifecycle/dispose_and_leaks.md).
+[09 Rendering Pipeline](../09%20Rendering%20Pipeline/README.md), [02 Advanced Dart](../02%20Advanced%20Dart/README.md) (memory/GC, isolates), [08 · dispose_and_leaks](../08%20Widget%20Lifecycle/05_dispose_and_leaks.md).
 
 ## What you'll be able to do after this module
 

@@ -12,12 +12,12 @@ Flutter renders one consistent UI by default, which can feel "non-native" (Mater
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [adaptive_fundamentals.md](adaptive_fundamentals.md) | Adaptive vs responsive; platform detection; when to adapt | 🔵 |
-| 2 | [material_vs_cupertino.md](material_vs_cupertino.md) | Design languages; `.adaptive` constructors; theming | 🔵 |
-| 3 | [platform_adaptive_widgets_and_navigation.md](platform_adaptive_widgets_and_navigation.md) | Adaptive widgets, dialogs, navigation, scroll/back | 🔴 |
-| 4 | [cross_platform_design_system.md](cross_platform_design_system.md) | Abstraction layer + adaptive components | 🔴 |
+| 1 | [01_adaptive_fundamentals.md](01_adaptive_fundamentals.md) | Adaptive vs responsive; platform detection; when to adapt | 🔵 |
+| 2 | [02_material_vs_cupertino.md](02_material_vs_cupertino.md) | Design languages; `.adaptive` constructors; theming | 🔵 |
+| 3 | [03_platform_adaptive_widgets_and_navigation.md](03_platform_adaptive_widgets_and_navigation.md) | Adaptive widgets, dialogs, navigation, scroll/back | 🔴 |
+| 4 | [04_cross_platform_design_system.md](04_cross_platform_design_system.md) | Abstraction layer + adaptive components | 🔴 |
 
-> **Cross-references:** Responsive (size): [Module 24](../24%20Responsive%20UI/README.md). Widgets/theming: [07 · widget_categories](../07%20Widgets/widget_categories.md), [07 · text_and_theming](../07%20Widgets/text_and_theming.md). Navigation/back: [12](../12%20Navigation/README.md). Web/desktop: [Modules 53](../53%20Flutter%20Web/README.md)/[54](../54%20Flutter%20Desktop/README.md). Platform detection: [10 · layered_architecture](../10%20Flutter%20Architecture/layered_architecture.md).
+> **Cross-references:** Responsive (size): [Module 24](../24%20Responsive%20UI/README.md). Widgets/theming: [07 · widget_categories](../07%20Widgets/01_widget_categories.md), [07 · text_and_theming](../07%20Widgets/06_text_and_theming.md). Navigation/back: [12](../12%20Navigation/README.md). Web/desktop: [Modules 53](../53%20Flutter%20Web/README.md)/[54](../54%20Flutter%20Desktop/README.md). Platform detection: [10 · layered_architecture](../10%20Flutter%20Architecture/01_layered_architecture.md).
 
 ## Prerequisites
 

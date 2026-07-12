@@ -12,13 +12,13 @@ Business apps constantly produce documents: invoices, receipts, reports, tickets
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [pdf_generation_basics.md](pdf_generation_basics.md) | `pdf` package model: `Document`/`Page`/`pw.*` widgets, text/styling | 🔵 |
-| 2 | [layouts_tables_and_assets.md](layouts_tables_and_assets.md) | Multi-page tables, images, custom fonts, headers/footers | 🟡 |
-| 3 | [viewing_and_printing.md](viewing_and_printing.md) | `printing`: preview, OS print, share, save PDFs | 🟡 |
-| 4 | [data_driven_documents.md](data_driven_documents.md) | Invoices/reports from models, reusable templates, dynamic content | 🔴 |
-| 5 | [pdf_integration.md](pdf_integration.md) | Capstone: invoice generator behind a service | 🔴 |
+| 1 | [01_pdf_generation_basics.md](01_pdf_generation_basics.md) | `pdf` package model: `Document`/`Page`/`pw.*` widgets, text/styling | 🔵 |
+| 2 | [02_layouts_tables_and_assets.md](02_layouts_tables_and_assets.md) | Multi-page tables, images, custom fonts, headers/footers | 🟡 |
+| 3 | [03_viewing_and_printing.md](03_viewing_and_printing.md) | `printing`: preview, OS print, share, save PDFs | 🟡 |
+| 4 | [04_data_driven_documents.md](04_data_driven_documents.md) | Invoices/reports from models, reusable templates, dynamic content | 🔴 |
+| 5 | [05_pdf_integration.md](05_pdf_integration.md) | Capstone: invoice generator behind a service | 🔴 |
 
-> **Cross-references:** File saving/sharing: [Module 34](../34%20File%20Handling/README.md). Isolates (heavy generation): [02 · isolates](../02%20Advanced%20Dart/isolates_and_concurrency.md). Excel/spreadsheets: [Module 36](../36%20Excel/README.md). Networking (fetch report data): [Module 16](../16%20Networking/README.md). Custom painting (for comparison): [Module 23](../23%20Custom%20Painting/README.md).
+> **Cross-references:** File saving/sharing: [Module 34](../34%20File%20Handling/README.md). Isolates (heavy generation): [02 · isolates](../02%20Advanced%20Dart/04_isolates.md). Excel/spreadsheets: [Module 36](../36%20Excel/README.md). Networking (fetch report data): [Module 16](../16%20Networking/README.md). Custom painting (for comparison): [Module 23](../23%20Custom%20Painting/README.md).
 
 ## Prerequisites
 

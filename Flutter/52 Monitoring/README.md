@@ -12,11 +12,11 @@ Once an app is live on thousands of uncontrolled devices, **you can't see what's
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [monitoring_fundamentals.md](monitoring_fundamentals.md) | Monitoring vs observability; logs/metrics/traces; the feedback loop | 🔴 |
-| 2 | [crash_reporting.md](crash_reporting.md) | Crashlytics/Sentry, crash-free rate, symbolication, breadcrumbs | 🔴 |
-| 3 | [analytics_and_metrics.md](analytics_and_metrics.md) | Product analytics, events, funnels, custom metrics, privacy | 🟡 |
-| 4 | [performance_monitoring_and_alerting.md](performance_monitoring_and_alerting.md) | Perf monitoring (startup/frames/network), SLIs/SLOs, dashboards, alerts | 🔴 |
-| 5 | [monitoring_integration.md](monitoring_integration.md) | Capstone: full observability + feedback loop | 🔴 |
+| 1 | [01_monitoring_fundamentals.md](01_monitoring_fundamentals.md) | Monitoring vs observability; logs/metrics/traces; the feedback loop | 🔴 |
+| 2 | [02_crash_reporting.md](02_crash_reporting.md) | Crashlytics/Sentry, crash-free rate, symbolication, breadcrumbs | 🔴 |
+| 3 | [03_analytics_and_metrics.md](03_analytics_and_metrics.md) | Product analytics, events, funnels, custom metrics, privacy | 🟡 |
+| 4 | [04_performance_monitoring_and_alerting.md](04_performance_monitoring_and_alerting.md) | Perf monitoring (startup/frames/network), SLIs/SLOs, dashboards, alerts | 🔴 |
+| 5 | [05_monitoring_integration.md](05_monitoring_integration.md) | Capstone: full observability + feedback loop | 🔴 |
 
 > **Cross-references:** Logging (feeds monitoring): [Module 39](../39%20Logging/README.md). Error handling (report failures): [Module 38](../38%20Error%20Handling/README.md). Deployment/staged rollout (monitored): [Module 51](../51%20Deployment/README.md). Performance budgets: [Module 21](../21%20Performance/README.md)/[Module 47](../47%20Scalable%20Applications/README.md). Firebase (Crashlytics/Analytics/Performance): [Module 18](../18%20Firebase/README.md). Security (no PII in telemetry): [Module 37](../37%20Security/README.md).
 

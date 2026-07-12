@@ -12,17 +12,17 @@ Networking is where most runtime failures live (timeouts, 4xx/5xx, offline, pars
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [http_fundamentals.md](http_fundamentals.md) | HTTP basics, `http` vs `dio` | 🟢 |
-| 2 | [rest_client_and_interceptors.md](rest_client_and_interceptors.md) | `dio` client, interceptors, typed errors, retry/timeout/cancel, DTO mapping | 🔴 |
-| 3 | [graphql.md](graphql.md) | Queries/mutations/subscriptions, caching | 🔵 |
-| 4 | [websockets_and_realtime.md](websockets_and_realtime.md) | WebSockets, SSE, Socket.IO | 🔵 |
-| 5 | [grpc.md](grpc.md) | Protobuf, gRPC, streaming | 🔵 |
+| 1 | [01_http_fundamentals.md](01_http_fundamentals.md) | HTTP basics, `http` vs `dio` | 🟢 |
+| 2 | [02_rest_client_and_interceptors.md](02_rest_client_and_interceptors.md) | `dio` client, interceptors, typed errors, retry/timeout/cancel, DTO mapping | 🔴 |
+| 3 | [03_graphql.md](03_graphql.md) | Queries/mutations/subscriptions, caching | 🔵 |
+| 4 | [04_websockets_and_realtime.md](04_websockets_and_realtime.md) | WebSockets, SSE, Socket.IO | 🔵 |
+| 5 | [05_grpc.md](05_grpc.md) | Protobuf, gRPC, streaming | 🔵 |
 
-> **Cross-references:** Serialization: [02 · json_and_serialization](../02%20Advanced%20Dart/json_and_serialization.md). Repository/DTO boundary: [05 · repository](../05%20Design%20Patterns/repository.md). Typed failures/`Result`: [Module 38](../38%20Error%20Handling/README.md). Caching/offline: [15 · caching_strategies](../15%20Local%20Storage/caching_strategies.md), [Module 19](../19%20Offline%20First/README.md). Auth tokens/refresh: [Module 17](../17%20Authentication/README.md). Isolates for heavy parsing: [02 · isolates](../02%20Advanced%20Dart/isolates.md).
+> **Cross-references:** Serialization: [02 · json_and_serialization](../02%20Advanced%20Dart/12_json_and_serialization.md). Repository/DTO boundary: [05 · repository](../05%20Design%20Patterns/20_repository.md). Typed failures/`Result`: [Module 38](../38%20Error%20Handling/README.md). Caching/offline: [15 · caching_strategies](../15%20Local%20Storage/05_caching_strategies.md), [Module 19](../19%20Offline%20First/README.md). Auth tokens/refresh: [Module 17](../17%20Authentication/README.md). Isolates for heavy parsing: [02 · isolates](../02%20Advanced%20Dart/04_isolates.md).
 
 ## Prerequisites
 
-[02 Advanced Dart](../02%20Advanced%20Dart/README.md) (async/streams/isolates/JSON), [05 · repository/DI](../05%20Design%20Patterns/repository.md), [14 DI](../14%20Dependency%20Injection/README.md).
+[02 Advanced Dart](../02%20Advanced%20Dart/README.md) (async/streams/isolates/JSON), [05 · repository/DI](../05%20Design%20Patterns/20_repository.md), [14 DI](../14%20Dependency%20Injection/README.md).
 
 ## What you'll be able to do after this module
 

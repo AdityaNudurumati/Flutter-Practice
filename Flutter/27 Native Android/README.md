@@ -12,13 +12,13 @@ Flutter apps still ship as Android apps: you configure Gradle, request permissio
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [android_project_and_gradle.md](android_project_and_gradle.md) | Project structure, Gradle, build config, flavors | 🔵 |
-| 2 | [kotlin_plugin_code.md](kotlin_plugin_code.md) | Kotlin channel handlers, `MainActivity`, context, lifecycle | 🔴 |
-| 3 | [platform_views_android.md](platform_views_android.md) | Embedding native Android views | 🔴 |
-| 4 | [permissions_and_manifest.md](permissions_and_manifest.md) | Manifest, permissions (declared + runtime) | 🔵 |
-| 5 | [android_integration.md](android_integration.md) | Services, intents, broadcast receivers, background | 🔴 |
+| 1 | [01_android_project_and_gradle.md](01_android_project_and_gradle.md) | Project structure, Gradle, build config, flavors | 🔵 |
+| 2 | [02_kotlin_plugin_code.md](02_kotlin_plugin_code.md) | Kotlin channel handlers, `MainActivity`, context, lifecycle | 🔴 |
+| 3 | [03_platform_views_android.md](03_platform_views_android.md) | Embedding native Android views | 🔴 |
+| 4 | [04_permissions_and_manifest.md](04_permissions_and_manifest.md) | Manifest, permissions (declared + runtime) | 🔵 |
+| 5 | [05_android_integration.md](05_android_integration.md) | Services, intents, broadcast receivers, background | 🔴 |
 
-> **Cross-references:** Platform channels/plugins: [Module 26](../26%20Platform%20Channels/README.md). Embedder/startup: [10 · embedder_and_startup](../10%20Flutter%20Architecture/embedder_and_startup.md). Device features (plugins): [Module 29](../29%20Device%20Features/README.md). Background: [Module 33](../33%20Background%20Services/README.md). Deployment/signing: [Module 51](../51%20Deployment/README.md). iOS counterpart: [Module 28](../28%20Native%20iOS/README.md).
+> **Cross-references:** Platform channels/plugins: [Module 26](../26%20Platform%20Channels/README.md). Embedder/startup: [10 · embedder_and_startup](../10%20Flutter%20Architecture/05_embedder_and_startup.md). Device features (plugins): [Module 29](../29%20Device%20Features/README.md). Background: [Module 33](../33%20Background%20Services/README.md). Deployment/signing: [Module 51](../51%20Deployment/README.md). iOS counterpart: [Module 28](../28%20Native%20iOS/README.md).
 
 ## Prerequisites
 

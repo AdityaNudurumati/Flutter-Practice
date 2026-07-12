@@ -12,13 +12,13 @@ Flutter Desktop turns one codebase into native Windows/macOS/Linux apps — genu
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [desktop_fundamentals.md](desktop_fundamentals.md) | Windows/macOS/Linux targets, how it works, when desktop fits | 🔵 |
-| 2 | [desktop_ux_and_windowing.md](desktop_ux_and_windowing.md) | Window management, menus, keyboard shortcuts, mouse, multi-window | 🟡 |
-| 3 | [native_integration_desktop.md](native_integration_desktop.md) | FFI, platform channels, filesystem/OS access on desktop | 🔴 |
-| 4 | [packaging_and_distribution.md](packaging_and_distribution.md) | MSIX/DMG/AppImage, signing, stores vs direct, updates | 🔴 |
-| 5 | [desktop_integration.md](desktop_integration.md) | Capstone: a production desktop app | 🔴 |
+| 1 | [01_desktop_fundamentals.md](01_desktop_fundamentals.md) | Windows/macOS/Linux targets, how it works, when desktop fits | 🔵 |
+| 2 | [02_desktop_ux_and_windowing.md](02_desktop_ux_and_windowing.md) | Window management, menus, keyboard shortcuts, mouse, multi-window | 🟡 |
+| 3 | [03_native_integration_desktop.md](03_native_integration_desktop.md) | FFI, platform channels, filesystem/OS access on desktop | 🔴 |
+| 4 | [04_packaging_and_distribution.md](04_packaging_and_distribution.md) | MSIX/DMG/AppImage, signing, stores vs direct, updates | 🔴 |
+| 5 | [05_desktop_integration.md](05_desktop_integration.md) | Capstone: a production desktop app | 🔴 |
 
-> **Cross-references:** Web (sibling target): [Module 53](../53%20Flutter%20Web/README.md). Responsive/adaptive UI: [Module 24](../24%20Responsive%20UI/README.md)/[Module 25](../25%20Adaptive%20UI/README.md). Platform channels/native: [Module 26](../26%20Platform%20Channels/README.md)/[Module 27](../27%20Native%20Android/README.md)/[Module 28](../28%20Native%20iOS/README.md). File handling: [Module 34](../34%20File%20Handling/README.md). Deployment/signing: [Module 51](../51%20Deployment/README.md)/[50 · build_signing](../50%20CI%20CD/build_signing_and_flavors.md).
+> **Cross-references:** Web (sibling target): [Module 53](../53%20Flutter%20Web/README.md). Responsive/adaptive UI: [Module 24](../24%20Responsive%20UI/README.md)/[Module 25](../25%20Adaptive%20UI/README.md). Platform channels/native: [Module 26](../26%20Platform%20Channels/README.md)/[Module 27](../27%20Native%20Android/README.md)/[Module 28](../28%20Native%20iOS/README.md). File handling: [Module 34](../34%20File%20Handling/README.md). Deployment/signing: [Module 51](../51%20Deployment/README.md)/[50 · build_signing](../50%20CI%20CD/03_build_signing_and_flavors.md).
 
 ## Prerequisites
 

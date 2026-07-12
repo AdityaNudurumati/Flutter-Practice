@@ -12,13 +12,13 @@ Module 12 covered the mechanics; real apps need URL sync (web), deep links, auth
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [go_router_fundamentals.md](go_router_fundamentals.md) | Setup, routes, path/query params, `go`/`push` | 🔵 |
-| 2 | [deep_linking_and_url_strategy.md](deep_linking_and_url_strategy.md) | Deep links (mobile/web), URL strategy | 🔴 |
-| 3 | [guards_and_redirects.md](guards_and_redirects.md) | `redirect`, auth guards, `refreshListenable` | 🔴 |
-| 4 | [shell_routes_and_nested.md](shell_routes_and_nested.md) | `ShellRoute`/`StatefulShellRoute` (tabs + deep links) | 🔴 |
-| 5 | [type_safe_and_error_handling.md](type_safe_and_error_handling.md) | Typed routes (codegen), `errorBuilder`, `extra` | 🔵 |
+| 1 | [01_go_router_fundamentals.md](01_go_router_fundamentals.md) | Setup, routes, path/query params, `go`/`push` | 🔵 |
+| 2 | [02_deep_linking_and_url_strategy.md](02_deep_linking_and_url_strategy.md) | Deep links (mobile/web), URL strategy | 🔴 |
+| 3 | [03_guards_and_redirects.md](03_guards_and_redirects.md) | `redirect`, auth guards, `refreshListenable` | 🔴 |
+| 4 | [04_shell_routes_and_nested.md](04_shell_routes_and_nested.md) | `ShellRoute`/`StatefulShellRoute` (tabs + deep links) | 🔴 |
+| 5 | [05_type_safe_and_error_handling.md](05_type_safe_and_error_handling.md) | Typed routes (codegen), `errorBuilder`, `extra` | 🔵 |
 
-> **Cross-references:** Navigator/stack + declarative basics: [Module 12](../12%20Navigation/README.md). Auth: [Module 17](../17%20Authentication/README.md). State (auth listenable): [Module 11](../11%20State%20Management/README.md). Web URL/SEO: [Module 53](../53%20Flutter%20Web/README.md). App entry/`MaterialApp.router`: [06 · app_entry_point](../06%20Flutter%20Fundamentals/app_entry_point.md).
+> **Cross-references:** Navigator/stack + declarative basics: [Module 12](../12%20Navigation/README.md). Auth: [Module 17](../17%20Authentication/README.md). State (auth listenable): [Module 11](../11%20State%20Management/README.md). Web URL/SEO: [Module 53](../53%20Flutter%20Web/README.md). App entry/`MaterialApp.router`: [06 · app_entry_point](../06%20Flutter%20Fundamentals/07_app_entry_point.md).
 
 ## Prerequisites
 

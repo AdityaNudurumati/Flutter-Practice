@@ -12,11 +12,11 @@ Payments are where bugs cost real money and mistakes create fraud/compliance lia
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [payments_overview_and_security.md](payments_overview_and_security.md) | Payment models, PCI/security, IAP-vs-gateway rule, server-as-source-of-truth | 🔴 |
-| 2 | [payment_gateways.md](payment_gateways.md) | Stripe/Razorpay, `PaymentIntent`/order flow, cards & wallets for goods/services | 🔴 |
-| 3 | [in_app_purchases.md](in_app_purchases.md) | `in_app_purchase`, consumables/non-consumables/subscriptions, store setup | 🔴 |
-| 4 | [wallets_google_apple_pay.md](wallets_google_apple_pay.md) | Google Pay / Apple Pay integration & when they apply | 🟡 |
-| 5 | [payments_integration.md](payments_integration.md) | Capstone: server verification, webhooks, receipts, reconciliation | 🔴 |
+| 1 | [01_payments_overview_and_security.md](01_payments_overview_and_security.md) | Payment models, PCI/security, IAP-vs-gateway rule, server-as-source-of-truth | 🔴 |
+| 2 | [02_payment_gateways.md](02_payment_gateways.md) | Stripe/Razorpay, `PaymentIntent`/order flow, cards & wallets for goods/services | 🔴 |
+| 3 | [03_in_app_purchases.md](03_in_app_purchases.md) | `in_app_purchase`, consumables/non-consumables/subscriptions, store setup | 🔴 |
+| 4 | [04_wallets_google_apple_pay.md](04_wallets_google_apple_pay.md) | Google Pay / Apple Pay integration & when they apply | 🟡 |
+| 5 | [05_payments_integration.md](05_payments_integration.md) | Capstone: server verification, webhooks, receipts, reconciliation | 🔴 |
 
 > **Cross-references:** Networking (calling your backend): [Module 16](../16%20Networking/README.md). Auth (identifying the buyer): [Module 17](../17%20Authentication/README.md). Secure storage (tokens, never cards): [Module 15](../15%20Local%20Storage/README.md). Error handling: [Module 38](../38%20Error%20Handling/README.md). Firebase (Cloud Functions for webhooks): [Module 18](../18%20Firebase/README.md). Deployment/store review: [Module 51](../51%20Deployment/README.md).
 

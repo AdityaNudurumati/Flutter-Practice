@@ -6,23 +6,23 @@ When widgets can't express your visual — charts, gauges, signatures, custom sh
 
 ## Why this module exists
 
-Widget composition covers most UIs, but data-viz, drawing tools, and unique brand visuals need pixel-level control. Custom painting gives it — grounded in the paint phase ([09 · paint_phase](../09%20Rendering%20Pipeline/paint_phase.md)) — and must be done efficiently (`shouldRepaint`, isolation) to avoid jank.
+Widget composition covers most UIs, but data-viz, drawing tools, and unique brand visuals need pixel-level control. Custom painting gives it — grounded in the paint phase ([09 · paint_phase](../09%20Rendering%20Pipeline/04_paint_phase.md)) — and must be done efficiently (`shouldRepaint`, isolation) to avoid jank.
 
 ## Module map
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [custompainter_and_canvas.md](custompainter_and_canvas.md) | `CustomPaint`/`CustomPainter`/`Canvas`/`Paint` | 🔵 |
-| 2 | [paths_shapes_gradients.md](paths_shapes_gradients.md) | `Path`, shapes, gradients, clipping | 🔵 |
-| 3 | [custom_renderobject.md](custom_renderobject.md) | Bespoke layout + paint via `RenderObject` | 🔴 |
-| 4 | [shaders_and_effects.md](shaders_and_effects.md) | Fragment shaders, `ImageFilter`, blend modes | 🔴 |
-| 5 | [custom_painting_performance.md](custom_painting_performance.md) | Keeping custom paint fast | 🔴 |
+| 1 | [01_custompainter_and_canvas.md](01_custompainter_and_canvas.md) | `CustomPaint`/`CustomPainter`/`Canvas`/`Paint` | 🔵 |
+| 2 | [02_paths_shapes_gradients.md](02_paths_shapes_gradients.md) | `Path`, shapes, gradients, clipping | 🔵 |
+| 3 | [03_custom_renderobject.md](03_custom_renderobject.md) | Bespoke layout + paint via `RenderObject` | 🔴 |
+| 4 | [04_shaders_and_effects.md](04_shaders_and_effects.md) | Fragment shaders, `ImageFilter`, blend modes | 🔴 |
+| 5 | [05_custom_painting_performance.md](05_custom_painting_performance.md) | Keeping custom paint fast | 🔴 |
 
-> **Cross-references:** Paint phase: [09 · paint_phase](../09%20Rendering%20Pipeline/paint_phase.md). Layout phase / render objects: [09 · layout_phase](../09%20Rendering%20Pipeline/layout_phase.md). Repaint isolation: [09 · compositing](../09%20Rendering%20Pipeline/compositing_and_repaint_boundaries.md), [21 · jank_and_raster](../21%20Performance/jank_and_raster.md). Animation (driving repaints): [Module 22](../22%20Animations/README.md). `dart:ui`: [10 · engine_internals](../10%20Flutter%20Architecture/engine_internals.md).
+> **Cross-references:** Paint phase: [09 · paint_phase](../09%20Rendering%20Pipeline/04_paint_phase.md). Layout phase / render objects: [09 · layout_phase](../09%20Rendering%20Pipeline/03_layout_phase.md). Repaint isolation: [09 · compositing](../09%20Rendering%20Pipeline/05_compositing_and_repaint_boundaries.md), [21 · jank_and_raster](../21%20Performance/03_jank_and_raster.md). Animation (driving repaints): [Module 22](../22%20Animations/README.md). `dart:ui`: [10 · engine_internals](../10%20Flutter%20Architecture/04_engine_internals.md).
 
 ## Prerequisites
 
-[09 Rendering Pipeline](../09%20Rendering%20Pipeline/README.md) (paint/layout), [22 Animations](../22%20Animations/README.md), [21 · jank_and_raster](../21%20Performance/jank_and_raster.md).
+[09 Rendering Pipeline](../09%20Rendering%20Pipeline/README.md) (paint/layout), [22 Animations](../22%20Animations/README.md), [21 · jank_and_raster](../21%20Performance/03_jank_and_raster.md).
 
 ## What you'll be able to do after this module
 

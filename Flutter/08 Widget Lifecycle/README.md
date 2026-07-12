@@ -6,20 +6,20 @@ A `StatefulWidget`'s `State` object goes through a well-defined lifecycle: creat
 
 ## Why this module exists
 
-Most Flutter bugs — leaks, "setState after dispose", "no initialized value", stale subscriptions, work done at the wrong time — are lifecycle mistakes. This module makes the sequence and the responsibilities of each method precise, building on the three-trees model ([Module 06](../06%20Flutter%20Fundamentals/widgets_elements_render_objects.md)).
+Most Flutter bugs — leaks, "setState after dispose", "no initialized value", stale subscriptions, work done at the wrong time — are lifecycle mistakes. This module makes the sequence and the responsibilities of each method precise, building on the three-trees model ([Module 06](../06%20Flutter%20Fundamentals/04_widgets_elements_render_objects.md)).
 
 ## Module map
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [state_lifecycle_overview.md](state_lifecycle_overview.md) | The full `State` lifecycle sequence | 🔵 |
-| 2 | [initstate_and_dependencies.md](initstate_and_dependencies.md) | `initState` vs `didChangeDependencies` | 🔵 |
-| 3 | [didupdatewidget.md](didupdatewidget.md) | Reacting to new widget config | 🔵 |
-| 4 | [setstate_mechanics.md](setstate_mechanics.md) | How `setState` works + pitfalls | 🟢 |
-| 5 | [dispose_and_leaks.md](dispose_and_leaks.md) | `dispose`, cleanup, leak prevention | 🔴 |
-| 6 | [app_lifecycle.md](app_lifecycle.md) | `AppLifecycleState`, `WidgetsBindingObserver` | 🔵 |
+| 1 | [01_state_lifecycle_overview.md](01_state_lifecycle_overview.md) | The full `State` lifecycle sequence | 🔵 |
+| 2 | [02_initstate_and_dependencies.md](02_initstate_and_dependencies.md) | `initState` vs `didChangeDependencies` | 🔵 |
+| 3 | [03_didupdatewidget.md](03_didupdatewidget.md) | Reacting to new widget config | 🔵 |
+| 4 | [04_setstate_mechanics.md](04_setstate_mechanics.md) | How `setState` works + pitfalls | 🟢 |
+| 5 | [05_dispose_and_leaks.md](05_dispose_and_leaks.md) | `dispose`, cleanup, leak prevention | 🔴 |
+| 6 | [06_app_lifecycle.md](06_app_lifecycle.md) | `AppLifecycleState`, `WidgetsBindingObserver` | 🔵 |
 
-> **Cross-references:** Three trees / state persistence: [Module 06](../06%20Flutter%20Fundamentals/widgets_elements_render_objects.md). Memory/leaks: [02 · memory_and_gc](../02%20Advanced%20Dart/memory_and_gc.md). Streams/subscriptions: [02 · streams](../02%20Advanced%20Dart/streams.md). Controllers/forms: [07 · input_and_forms](../07%20Widgets/input_and_forms.md). State management alternatives to raw `setState`: [Module 11](../11%20State%20Management/README.md).
+> **Cross-references:** Three trees / state persistence: [Module 06](../06%20Flutter%20Fundamentals/04_widgets_elements_render_objects.md). Memory/leaks: [02 · memory_and_gc](../02%20Advanced%20Dart/13_memory_and_gc.md). Streams/subscriptions: [02 · streams](../02%20Advanced%20Dart/03_streams.md). Controllers/forms: [07 · input_and_forms](../07%20Widgets/08_input_and_forms.md). State management alternatives to raw `setState`: [Module 11](../11%20State%20Management/README.md).
 
 ## Prerequisites
 

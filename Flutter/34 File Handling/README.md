@@ -12,13 +12,13 @@ Apps constantly touch files — cached images, downloaded PDFs, exported reports
 
 | # | File | Topic | Level |
 |---|------|-------|-------|
-| 1 | [app_directories_and_paths.md](app_directories_and_paths.md) | `path_provider`: temp/documents/support/cache dirs, lifetimes, platforms | 🔵 |
-| 2 | [reading_writing_files.md](reading_writing_files.md) | `dart:io` `File`: text/bytes/JSON, streaming, async off-UI-thread | 🔵 |
-| 3 | [file_picker_and_sharing.md](file_picker_and_sharing.md) | `file_picker`, `share_plus`, saving picked files, save dialogs | 🟡 |
-| 4 | [downloads_and_caching.md](downloads_and_caching.md) | Streamed downloads, cache dirs, TTL/eviction, cleanup | 🔴 |
-| 5 | [file_integration.md](file_integration.md) | Capstone: file repository, directory strategy, lifecycle | 🔴 |
+| 1 | [01_app_directories_and_paths.md](01_app_directories_and_paths.md) | `path_provider`: temp/documents/support/cache dirs, lifetimes, platforms | 🔵 |
+| 2 | [02_reading_writing_files.md](02_reading_writing_files.md) | `dart:io` `File`: text/bytes/JSON, streaming, async off-UI-thread | 🔵 |
+| 3 | [03_file_picker_and_sharing.md](03_file_picker_and_sharing.md) | `file_picker`, `share_plus`, saving picked files, save dialogs | 🟡 |
+| 4 | [04_downloads_and_caching.md](04_downloads_and_caching.md) | Streamed downloads, cache dirs, TTL/eviction, cleanup | 🔴 |
+| 5 | [05_file_integration.md](05_file_integration.md) | Capstone: file repository, directory strategy, lifecycle | 🔴 |
 
-> **Cross-references:** Storage overview (prefs/secure/files): [Module 15](../15%20Local%20Storage/README.md). Networking/downloads (`dio`): [Module 16](../16%20Networking/README.md). Camera/gallery files: [29 · camera_and_gallery](../29%20Device%20Features/camera_and_gallery.md). Isolates (heavy file work): [02 · isolates](../02%20Advanced%20Dart/isolates_and_concurrency.md). PDF/Excel generation: [Module 35](../35%20PDF/README.md), [Module 36](../36%20Excel/README.md). Offline caching: [Module 19](../19%20Offline%20First/README.md).
+> **Cross-references:** Storage overview (prefs/secure/files): [Module 15](../15%20Local%20Storage/README.md). Networking/downloads (`dio`): [Module 16](../16%20Networking/README.md). Camera/gallery files: [29 · camera_and_gallery](../29%20Device%20Features/01_camera_and_gallery.md). Isolates (heavy file work): [02 · isolates](../02%20Advanced%20Dart/04_isolates.md). PDF/Excel generation: [Module 35](../35%20PDF/README.md), [Module 36](../36%20Excel/README.md). Offline caching: [Module 19](../19%20Offline%20First/README.md).
 
 ## Prerequisites
 
