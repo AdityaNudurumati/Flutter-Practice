@@ -1,0 +1,58 @@
+<script src="mermaid.min.js"></script>
+<script>
+(function () {
+  // Pandoc renders ```mermaid fences as <pre class="mermaid"> (or a sourceCode wrapper).
+  // Mermaid needs the raw diagram text inside a bare element, so rewrite them first.
+  var blocks = document.querySelectorAll('pre.mermaid, pre code.mermaid, pre code.language-mermaid');
+  Array.prototype.forEach.call(blocks, function (el) {
+    var pre = el.tagName === 'PRE' ? el : el.parentNode;
+    var target = pre.parentNode.classList && pre.parentNode.classList.contains('sourceCode')
+      ? pre.parentNode : pre;
+    var div = document.createElement('div');
+    div.className = 'mermaid';
+    div.textContent = pre.textContent;
+    target.parentNode.replaceChild(div, target);
+  });
+
+  // Very long code blocks should flow across pages instead of overflowing one.
+  Array.prototype.forEach.call(document.querySelectorAll('pre'), function (pre) {
+    if (pre.textContent.split('\n').length > 32) pre.classList.add('long');
+  });
+
+  var report = function (msg) { document.documentElement.setAttribute('data-mermaid', msg); };
+  if (!window.mermaid) { report('no-global'); return; }
+
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'neutral',
+    securityLevel: 'loose',
+    flowchart: { htmlLabels: true, useMaxWidth: true },
+    sequence: { useMaxWidth: true },
+    themeVariables: { fontSize: '13px', fontFamily: 'Segoe UI, Arial, sans-serif' }
+  });
+
+  // Render one at a time so a single bad diagram can't abort the rest.
+  (async function () {
+    var nodes = document.querySelectorAll('div.mermaid');
+    var ok = 0, bad = 0, lastErr = '';
+    for (var i = 0; i < nodes.length; i++) {
+      var src = nodes[i].textContent;
+      try {
+        var res = await mermaid.render('mmd' + i, src);
+        nodes[i].innerHTML = res.svg;
+        if (res.bindFunctions) res.bindFunctions(nodes[i]);
+        nodes[i].setAttribute('data-processed', 'true');
+        ok++;
+      } catch (e) {
+        bad++;
+        lastErr = String((e && (e.message || e.str)) || e).slice(0, 80);
+        // leave the source text in place; CSS renders it as a code block
+      }
+    }
+    // mermaid injects a scratch element for measuring; drop it before printing
+    var tmp = document.getElementById('dmmd0');
+    if (tmp) tmp.remove();
+    report('ok=' + ok + ' bad=' + bad + ' ' + lastErr.replace(/\s+/g, ' '));
+  })();
+})();
+</script>

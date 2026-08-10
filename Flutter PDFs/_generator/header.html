@@ -1,0 +1,159 @@
+<style>
+  @page { size: A4; margin: 16mm 14mm 16mm 14mm; }
+
+  html { font-size: 10.5pt; }
+  body {
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.55;
+    color: #1a1a1a;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    hyphens: none;
+  }
+
+  /* ---------- title block ---------- */
+  h1.title {
+    font-size: 30pt;
+    line-height: 1.2;
+    margin: 22mm 0 4mm 0;
+    padding-bottom: 6mm;
+    border-bottom: 3px solid #0553B1;
+    color: #0553B1;
+    letter-spacing: -0.5px;
+  }
+  p.subtitle { font-size: 12pt; color: #555; margin-top: 0; }
+
+  /* ---------- table of contents ---------- */
+  nav#TOC {
+    page-break-after: always;
+    margin-top: 8mm;
+  }
+  nav#TOC::before {
+    content: "Contents";
+    display: block;
+    font-size: 17pt;
+    font-weight: 600;
+    color: #0553B1;
+    margin-bottom: 4mm;
+  }
+  nav#TOC ul { list-style: none; padding-left: 0; margin: 0; }
+  nav#TOC > ul > li { margin: 2.5mm 0; font-weight: 600; font-size: 11pt; }
+  nav#TOC ul ul { padding-left: 6mm; }
+  nav#TOC ul ul li { font-weight: 400; font-size: 9.5pt; color: #444; margin: 0.8mm 0; }
+  nav#TOC a { text-decoration: none; color: inherit; }
+
+  /* ---------- headings ---------- */
+  h1 {
+    font-size: 20pt;
+    color: #0553B1;
+    border-bottom: 2px solid #d7e3f4;
+    padding-bottom: 2mm;
+    margin: 0 0 5mm 0;
+    page-break-after: avoid;
+    letter-spacing: -0.3px;
+  }
+  h2 {
+    font-size: 14pt;
+    color: #17324d;
+    margin: 8mm 0 2.5mm 0;
+    padding-left: 3mm;
+    border-left: 4px solid #0553B1;
+    page-break-after: avoid;
+  }
+  h3 { font-size: 11.5pt; color: #17324d; margin: 5mm 0 1.5mm 0; page-break-after: avoid; }
+  h4, h5, h6 { font-size: 10.5pt; color: #333; margin: 4mm 0 1mm 0; page-break-after: avoid; }
+
+  p { margin: 0 0 2.5mm 0; text-align: left; }
+  ul, ol { margin: 0 0 2.5mm 0; padding-left: 6mm; }
+  li { margin: 0.8mm 0; }
+
+  /* ---------- chapter separation ---------- */
+  .chapter { page-break-before: always; }
+
+  /* ---------- code ---------- */
+  code {
+    font-family: Consolas, "Cascadia Mono", "DejaVu Sans Mono", monospace;
+    font-size: 8.8pt;
+    background: #f2f4f7;
+    padding: 0.4mm 1.2mm;
+    border-radius: 2px;
+    color: #0b4f6c;
+  }
+  pre {
+    background: #f7f9fc;
+    border: 1px solid #dde5ef;
+    border-left: 3px solid #0553B1;
+    border-radius: 3px;
+    padding: 2.5mm 3mm;
+    margin: 0 0 3mm 0;
+    overflow-x: hidden;
+    white-space: pre-wrap;
+    word-break: break-word;
+    page-break-inside: avoid;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    color: #1a1a1a;
+    font-size: 8.4pt;
+    line-height: 1.42;
+  }
+  /* long code blocks may break across pages rather than overflow */
+  pre.long { page-break-inside: auto; }
+
+  /* ---------- tables ---------- */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 0 3mm 0;
+    font-size: 9pt;
+    page-break-inside: avoid;
+  }
+  th, td { border: 1px solid #ccd6e4; padding: 1.5mm 2mm; text-align: left; vertical-align: top; }
+  th { background: #eaf1fa; color: #17324d; font-weight: 600; }
+  tr:nth-child(even) td { background: #fafbfd; }
+
+  /* ---------- blockquote ---------- */
+  blockquote {
+    margin: 0 0 3mm 0;
+    padding: 2mm 3mm;
+    background: #fff8e6;
+    border-left: 4px solid #f0ad00;
+    color: #4a3a13;
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+
+  hr { border: none; border-top: 1px solid #dde5ef; margin: 5mm 0; }
+
+  a { color: #0553B1; text-decoration: none; }
+
+  /* ---------- mermaid ---------- */
+  .mermaid {
+    text-align: center;
+    margin: 0 0 4mm 0;
+    page-break-inside: avoid;
+    background: #fbfcfe;
+    border: 1px solid #e4ebf4;
+    border-radius: 3px;
+    padding: 3mm 2mm;
+  }
+  .mermaid svg { max-width: 100% !important; height: auto !important; }
+  /* fallback when a diagram fails to parse: show its source, not a red error box */
+  .mermaid:not([data-processed]) {
+    text-align: left;
+    font-family: Consolas, monospace;
+    font-size: 8pt;
+    white-space: pre-wrap;
+    color: #555;
+  }
+
+  /* pandoc syntax highlighting tweaks */
+  div.sourceCode { background: none; margin: 0; }
+  code span.kw { color: #0000c0; font-weight: 600; }
+  code span.dt { color: #902000; }
+  code span.st { color: #067d17; }
+  code span.co { color: #7a7a7a; font-style: italic; }
+  code span.dv, code span.fl { color: #1750eb; }
+  code span.fu { color: #6a3ea1; }
+</style>
