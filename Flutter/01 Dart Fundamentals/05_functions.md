@@ -84,20 +84,25 @@ typedef IntTransform = int Function(int value); // named signature
 IntTransform makeAdder(int amount) {
   return (value) => value + amount; // closure capturing `amount`
 }
+ //(value) => value + amount this is a function and returns a FUNCTION
+    // beginner-friendly equivalent of the body:
+    //   int add(int value) => value + amount;
+    //   return add;
 
 int Function() makeCounter() {
   var count = 0;                 // captured, mutable
-  return () => ++count;          // remembers & mutates the same count
+  return () => ++count;          // remembers & mutates the same count //returned closure captures `count`
 }
 
 String describe(String name, {int age = 0, required String city}) =>
     '$name ($age) from $city';
 
 void main() {
-  final addTen = makeAdder(10);
+  final addTen = makeAdder(10); //amount = 10, returns (value) => value + 10
   print(addTen(5)); // 15
 
   final counter = makeCounter();
+  //each call runs `++count` (increment THEN return) on the SAME count
   print(counter()); // 1
   print(counter()); // 2 — same captured count
 
@@ -115,6 +120,127 @@ void main() {
   final ref = sayHi; // store the function
   ref();             // hi — now it runs
 }
+```
+
+### Reference vs call: `myFn` vs `myFn()` — the `onPressed` bug
+
+One pair of parentheses changes *when* the code runs. This is the single most common Flutter beginner bug, so it's worth seeing the mechanism in plain Dart first.
+
+```dart
+// A stand-in for the framework: it STORES a callback and runs it later.
+class Button {
+  final void Function() onPressed;   // Flutter calls this type `VoidCallback`
+  Button({required this.onPressed});
+  void tap() => onPressed();         // the framework calls it on the event
+}
+
+void increment() => print('incremented!');
+
+void main() {
+  print('--- building ---');
+
+  final good = Button(onPressed: increment);  // ✅ NO parens: pass the recipe
+  //                              ^^^^^^^^^ a value of type void Function()
+
+  print('--- built, nothing ran yet ---');
+  good.tap();   // incremented!   <- runs HERE, on the event
+  good.tap();   // incremented!   <- and again, every tap
+}
+```
+
+Output shows the ordering clearly:
+
+```
+--- building ---
+--- built, nothing ran yet ---
+incremented!
+incremented!
+```
+
+Now the bug. Adding `()` **invokes** `increment` immediately and passes its *return value*:
+
+```dart
+final bad = Button(onPressed: increment());
+//                           ^^^^^^^^^^^ this RUNS during build,
+//                                       then hands the RESULT to onPressed
+```
+
+Two things go wrong at once:
+
+1. `increment()` executes at build time — you'll see "incremented!" printed while the UI is being constructed, before any tap.
+2. Its return value (`void`) is passed as the callback. Since `void` isn't a `void Function()`, the analyzer rejects it:
+   `The argument type 'void' can't be assigned to the parameter type 'void Function()'.`
+
+That compile error is the *lucky* case. The dangerous variants compile fine:
+
+```dart
+// Flutter's real onPressed is NULLABLE: `final VoidCallback? onPressed;`
+class Button2 {
+  final void Function()? onPressed;   // null = disabled
+  Button2({required this.onPressed});
+}
+
+// ☠️ Returns null -> in Flutter, `onPressed: null` means DISABLED BUTTON.
+// No error, no crash. The button just silently never works.
+void Function()? getHandler() { print('side effect at build time!'); return null; }
+final sneaky = Button2(onPressed: getHandler());   // compiles, button dead
+
+// ☠️ Returns a function -> types line up perfectly, so nothing complains.
+// But the OUTER function ran at build time; only the inner one runs on tap.
+void Function() makeHandler() { print('runs during build'); return () => print('runs on tap'); }
+final subtle = Button(onPressed: makeHandler());   // compiles, but ran early
+```
+
+#### When `()` *is* correct
+
+You need parentheses when the callback takes arguments the framework won't supply. Wrap the call in a closure — the closure is the value being passed; the call happens inside it, later:
+
+```dart
+void deleteItem(int id) => print('deleted $id');
+
+// ❌ deleteItem(5)      -> runs now, passes void
+// ✅ () => deleteItem(5) -> a void Function() that will call it on tap
+final del = Button(onPressed: () => deleteItem(5));
+del.tap(); // deleted 5
+```
+
+#### Signature must match, too
+
+The reference only works when its signature matches the expected type. `onChanged` supplies a value, so it needs `void Function(String)`:
+
+```dart
+void handleText(String v) => print('typed: $v');
+
+// expects: void Function(String)
+final okDirect  = handleText;              // ✅ tear-off — signatures match
+final okWrapped = (String v) => handleText(v); // ✅ same thing, verbose
+// final wrong  = handleText();            // ❌ missing required arg, and runs now
+```
+
+Prefer the bare reference (a **tear-off**) when signatures match — it's one less closure allocated per build, which matters in lists (see [Performance](#performance)).
+
+| You write | What's passed | When your code runs |
+|-----------|---------------|---------------------|
+| `onPressed: myFn` | the function itself | on tap ✅ |
+| `onPressed: myFn()` | `myFn`'s return value | during build ❌ |
+| `onPressed: () => myFn()` | a new closure wrapping the call | on tap ✅ |
+| `onPressed: () => myFn(5)` | closure carrying the argument | on tap ✅ (use for args) |
+| `onPressed: null` | nothing | never — **disables** the button |
+
+> **The tell:** if you see the effect happen the moment the screen appears, and nothing happens when you tap, you passed `myFn()` instead of `myFn`.
+
+In real Flutter, all of the above reads identically:
+
+```dart
+ElevatedButton(
+  onPressed: _increment,             // ✅ tear-off
+  child: const Text('+1'),
+)
+
+ElevatedButton(
+  onPressed: () => _delete(item.id), // ✅ closure, because it needs an argument
+  child: const Text('Delete'),
+)
 ```
 
 ## Diagrams
