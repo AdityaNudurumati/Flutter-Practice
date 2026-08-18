@@ -1,0 +1,3 @@
+# FVM: the pinned SDK symlink is machine-local. `.fvmrc` IS committed so
+# everyone resolves the same Flutter version.
+.fvm/

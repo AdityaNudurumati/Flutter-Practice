@@ -1,0 +1,12 @@
+{
+  // Use the FVM-pinned Flutter 3.35.4 (Dart 3.9.2) instead of the system
+  // Flutter 3.16.8 (Dart 3.2.5). Needed so the analyzer understands Dart 3.3+
+  // features such as `extension type`.
+  "dart.flutterSdkPath": ".fvm/flutter_sdk",
+  "search.exclude": {
+    "**/.fvm": true
+  },
+  "files.watcherExclude": {
+    "**/.fvm": true
+  }
+}
